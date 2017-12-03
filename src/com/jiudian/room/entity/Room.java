@@ -2,9 +2,12 @@ package com.jiudian.room.entity;
 
 import com.jiudian.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Objects;
+
+/**
+ * 房间表
+ */
 
 @Entity
 @Table(name="room")
@@ -29,8 +32,9 @@ public class Room extends BaseEntity{
     /**
      * 房间类型
      */
-    @Column(name = "roomType")
-    private String roomType;
+    @ManyToOne
+    @JoinColumn(name = "roomTypeId")
+    private RoomType roomTypeId;
 
     /**
      * 房间状态
@@ -60,12 +64,12 @@ public class Room extends BaseEntity{
         this.roomPhone = roomPhone;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public RoomType getRoomTypeId() {
+        return roomTypeId;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoomTypeId(RoomType roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 
     public String getRoomState() {
@@ -82,5 +86,23 @@ public class Room extends BaseEntity{
 
     public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return Double.compare(room.roomPrice, roomPrice) == 0 &&
+                Objects.equals(roomPhone, room.roomPhone) &&
+                Objects.equals(roomTypeId, room.roomTypeId) &&
+                Objects.equals(roomState, room.roomState) &&
+                Objects.equals(roomDescription, room.roomDescription);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(roomPrice, roomPhone, roomTypeId, roomState, roomDescription);
     }
 }

@@ -55,7 +55,7 @@
             dataType : "json",
             success : function(data) {
                 if(data.state=="success") {
-                    window.location.href="${basePath}/";
+                    window.location.href="${basePath}/sys/index.jsp";
                 }
                 else {
                     alert("用户名密码错误！")

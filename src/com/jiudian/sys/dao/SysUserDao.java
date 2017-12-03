@@ -5,6 +5,6 @@ import com.jiudian.sys.entity.SysUser;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LoginDao extends BaseDao<SysUser> {
+public class SysUserDao extends BaseDao<SysUser> {
 
 }

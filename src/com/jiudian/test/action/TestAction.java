@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 public class TestAction extends ActionSupport {
 
     public String showyemian() {
-
         return "yemian";
     }
 

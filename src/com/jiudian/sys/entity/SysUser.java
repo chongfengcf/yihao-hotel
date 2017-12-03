@@ -2,9 +2,14 @@ package com.jiudian.sys.entity;
 
 import com.jiudian.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+/**
+ * 系统用户表
+ */
 
 @Entity
 @Table(name = "sys_user")
@@ -34,7 +39,7 @@ public class SysUser extends BaseEntity{
     private String password;
 
     /**
-     * 用户类型，0为管理员，1为工作人员
+     * 用户类型，0为管理员，1为酒店前台
      */
     @Column(name = "type")
     private String type;
@@ -44,6 +49,18 @@ public class SysUser extends BaseEntity{
      */
     @Column(name = "able")
     private int able;
+
+    /**
+     * 用户所属的角色
+     */
+    @ManyToMany(fetch= FetchType.EAGER, cascade = { CascadeType.PERSIST })
+    @JoinTable(
+            name="tb_user_role",
+            joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns=@JoinColumn(name="role_id")
+    )
+    @Column(name = "roles")
+    private Set<Role> roles =  new HashSet<Role>();
 
     public String getLoginId() {
         return loginId;
@@ -83,5 +100,32 @@ public class SysUser extends BaseEntity{
 
     public void setAble(int able) {
         this.able = able;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SysUser sysUser = (SysUser) o;
+        return able == sysUser.able &&
+                Objects.equals(loginId, sysUser.loginId) &&
+                Objects.equals(userName, sysUser.userName) &&
+                Objects.equals(password, sysUser.password) &&
+                Objects.equals(type, sysUser.type) &&
+                Objects.equals(roles, sysUser.roles);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(loginId, userName, password, type, able, roles);
     }
 }

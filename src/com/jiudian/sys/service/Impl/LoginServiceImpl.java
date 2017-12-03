@@ -2,7 +2,11 @@ package com.jiudian.sys.service.Impl;
 
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
-import com.jiudian.sys.dao.LoginDao;
+import com.jiudian.sys.dao.RoleDao;
+import com.jiudian.sys.dao.RuleDao;
+import com.jiudian.sys.dao.SysUserDao;
+import com.jiudian.sys.entity.Role;
+import com.jiudian.sys.entity.Rule;
 import com.jiudian.sys.entity.SysUser;
 import com.jiudian.sys.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Service("loginservice")
@@ -18,7 +24,13 @@ import java.util.List;
 public class LoginServiceImpl extends BaseServiceImpl<SysUser> implements LoginService {
 
     @Autowired
-    private LoginDao logindao;
+    private SysUserDao sysUserDao;
+
+    @Autowired
+    private RoleDao roleDao;
+
+    @Autowired
+    private RuleDao ruleDao;
 
     @Override
     public SysUser checkUser(String username, String password,String type) {
@@ -54,6 +66,7 @@ public class LoginServiceImpl extends BaseServiceImpl<SysUser> implements LoginS
 
     @Override
     public BaseDao getBaseDao() {
-        return logindao;
+        return sysUserDao;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.jiudian.sys.action;
 
+import com.jiudian.sys.entity.Role;
+import com.jiudian.sys.entity.Rule;
 import com.jiudian.sys.entity.SysUser;
 import com.jiudian.sys.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -8,6 +10,9 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @ParentPackage("json-default")
@@ -19,7 +24,8 @@ public class LoginAction extends ActionSupport{
     private LoginService loginService;
 
 
-    @Action(value = "/sys/login", results = {@Result(name = "index", location = "/sys/login.jsp")})
+    @Action(value = "/sys/login",
+            results = {@Result(name = "index", location = "/sys/login.jsp")})
     public String index() {
         return "index";
     }
@@ -28,7 +34,8 @@ public class LoginAction extends ActionSupport{
     String username;
     String password;
     String type;
-    @Action(value = "/sys/login/logincheck", results = {@Result(name = "logincheck",type = "json", params = {"includeProperties", "state"})})
+    @Action(value = "/sys/login/logincheck",
+            results = {@Result(name = "logincheck",type = "json", params = {"includeProperties", "state"})})
     public String logincheck() {
         //如果还没有登录过则检查
         if(ServletActionContext.getRequest().getSession().getAttribute("sysuser")==null) {
@@ -49,10 +56,16 @@ public class LoginAction extends ActionSupport{
         else {
             state = "success";
         }
+        //返回json
         return "logincheck";
     }
 
+    @Action(value = "/sys/registration",
+            results = {@Result(name = "index", location = "/sys/index.jsp")})
+    public String registration() {
 
+        return "index";
+    }
 
     public void setUsername(String username) {
         this.username = username;
