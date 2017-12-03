@@ -14,16 +14,19 @@ public class SysUser extends BaseEntity{
      * 兼容类版本
      */
     private static final long serialVersionUID = 1L;
+
     /**
      * 账号名
      */
     @Column(name="loginId",unique = true)
     private String loginId;
+
     /**
      * 姓名
      */
     @Column(name = "userName")
     private String userName;
+
     /**
      * 密码
      */
