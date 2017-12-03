@@ -37,6 +37,7 @@ public class BaseDao<T> extends HibernateDaoSupport{
         this.getHibernateTemplate().save(t);
     }
 
+
     //删除
     public void delete(T t) {
         this.getHibernateTemplate().delete(t);

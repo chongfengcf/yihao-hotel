@@ -3,7 +3,8 @@
 
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    pageContext.setAttribute("basePath", basePath);
 %>
 
 <!doctype html>
@@ -55,6 +56,9 @@
             success : function(data) {
                 if(data.state=="success") {
                     window.location.href="${basePath}/";
+                }
+                else {
+                    alert("用户名密码错误！")
                 }
             },
             error : function() {

@@ -20,5 +20,4 @@
     <constant name="struts.action.extension" value="action" />
     <!--设置struts2简单主题，不对标签添加任何内容-->
     <constant name="struts.ui.theme" value="simple" />
-
 </struts>

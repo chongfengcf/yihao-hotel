@@ -18,12 +18,13 @@ public class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(length = 64)
     private String id;
 
     /**
      * 创建时间
      */
-    @Column()
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
@@ -54,7 +55,7 @@ public class BaseEntity implements Serializable {
     /**
      * 修改时间
      */
-    @Column()
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyDate;
 
