@@ -3,9 +3,8 @@ package com.jiudian.sys.entity;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * 角色表
@@ -35,7 +34,7 @@ public class Role extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "rule_id", referencedColumnName = "id")
     )
     @Column(name = "rules")
-    private Set<Rule> rules = new HashSet<>();
+    private Collection<Rule> rules;
 
     /**
      * 角色类型，0为管理员，1为酒店前台
@@ -51,11 +50,11 @@ public class Role extends BaseEntity {
         this.rolename = rolename;
     }
 
-    public Set<Rule> getRules() {
+    public Collection<Rule> getRules() {
         return rules;
     }
 
-    public void setRules(Set<Rule> rules) {
+    public void setRules(Collection<Rule> rules) {
         this.rules = rules;
     }
 

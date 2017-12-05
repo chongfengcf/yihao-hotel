@@ -50,6 +50,14 @@ public class RoomType extends BaseEntity {
         this.roomTypeDescription = roomTypeDescription;
     }
 
+    public Room getRoomByRoomId() {
+        return roomByRoomId;
+    }
+
+    public void setRoomByRoomId(Room roomByRoomId) {
+        this.roomByRoomId = roomByRoomId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,13 +71,5 @@ public class RoomType extends BaseEntity {
     public int hashCode() {
 
         return Objects.hash(roomTypeName, roomTypeDescription);
-    }
-
-    public Room getRoomByRoomId() {
-        return roomByRoomId;
-    }
-
-    public void setRoomByRoomId(Room roomByRoomId) {
-        this.roomByRoomId = roomByRoomId;
     }
 }

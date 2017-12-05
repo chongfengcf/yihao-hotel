@@ -4,9 +4,7 @@ import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * 系统用户表

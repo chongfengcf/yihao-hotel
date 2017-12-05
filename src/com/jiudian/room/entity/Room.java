@@ -91,24 +91,6 @@ public class Room extends BaseEntity {
         this.notes = notes;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(roomName, room.roomName) &&
-                Objects.equals(roomPrice, room.roomPrice) &&
-                Objects.equals(roomPhone, room.roomPhone) &&
-                Objects.equals(roomState, room.roomState) &&
-                Objects.equals(notes, room.notes);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(roomName, roomPrice, roomPhone, roomState, notes);
-    }
-
     public Collection<Booking> getBookingsByRoomId() {
         return bookingsByRoomId;
     }
@@ -147,5 +129,23 @@ public class Room extends BaseEntity {
 
     public void setRoomTypeByRoomId(Collection<RoomType> roomTypeByRoomId) {
         this.roomTypeByRoomId = roomTypeByRoomId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return Objects.equals(roomName, room.roomName) &&
+                Objects.equals(roomPrice, room.roomPrice) &&
+                Objects.equals(roomPhone, room.roomPhone) &&
+                Objects.equals(roomState, room.roomState) &&
+                Objects.equals(notes, room.notes);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(roomName, roomPrice, roomPhone, roomState, notes);
     }
 }
