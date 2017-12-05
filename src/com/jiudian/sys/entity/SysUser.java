@@ -1,7 +1,7 @@
 package com.jiudian.sys.entity;
 
+import com.jiudian.bean.Staff;
 import com.jiudian.core.base.BaseEntity;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -61,6 +61,9 @@ public class SysUser extends BaseEntity{
     @Column(name = "roles")
     private Collection<Role> roles;
 
+    @OneToMany(mappedBy = "sysUserBysysUserId")
+    private Collection<Staff> staffByStaffId;
+
     public String getLoginId() {
         return loginId;
     }
@@ -107,6 +110,14 @@ public class SysUser extends BaseEntity{
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Collection<Staff> getStaffByStaffId() {
+        return staffByStaffId;
+    }
+
+    public void setStaffByStaffId(Collection<Staff> staffByStaffId) {
+        this.staffByStaffId = staffByStaffId;
     }
 
     @Override

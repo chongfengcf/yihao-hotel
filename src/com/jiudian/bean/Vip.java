@@ -22,7 +22,7 @@ public class Vip extends BaseEntity{
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinTable(name = "tb_customer_vip",
-            joinColumns = @JoinColumn(name = "vipPhone"),
+            joinColumns = @JoinColumn(name = "vipPhone", referencedColumnName = "vipPhone"),
             inverseJoinColumns = @JoinColumn(name = "customerId", referencedColumnName = "id")
     )
     @Column(name = "customers")

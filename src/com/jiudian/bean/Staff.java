@@ -1,6 +1,7 @@
 package com.jiudian.bean;
 
 import com.jiudian.core.base.BaseEntity;
+import com.jiudian.sys.entity.SysUser;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -36,6 +37,10 @@ public class Staff extends BaseEntity{
 
     @OneToMany(mappedBy = "staffByStaffId")
     private Collection<Checkin> staffByStaffId;
+
+    @ManyToOne
+    @JoinColumn(name = "sys_userID", referencedColumnName = "id")
+    private SysUser sysUserBysysUserId;
 
     public String getStaffName() {
         return staffName;
@@ -101,6 +106,13 @@ public class Staff extends BaseEntity{
         this.staffByStaffId = staffByStaffId;
     }
 
+    public SysUser getSysUserBysysUserId() {
+        return sysUserBysysUserId;
+    }
+
+    public void setSysUserBysysUserId(SysUser sysUserBysysUserId) {
+        this.sysUserBysysUserId = sysUserBysysUserId;
+    }
 
     @Override
     public boolean equals(Object o) {
