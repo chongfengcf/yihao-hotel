@@ -1,60 +1,68 @@
 package com.jiudian.room.entity;
 
+import com.jiudian.bean.Booking;
+import com.jiudian.bean.Checkin;
+import com.jiudian.bean.Items;
+import com.jiudian.bean.Maintain;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
-/**
- * 房间表
- */
-
 @Entity
-@Table(name="room")
-public class Room extends BaseEntity{
-    /**
-     * 兼容类版本
-     */
+@Table(name = "room")
+public class Room extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 房间价格
-     */
-    @Column(name = "roomPrice")
-    private double roomPrice;
+    @Column(name = "roomName")
+    private String roomName;
 
-    /**
-     * 房间电话
-     */
+    @Column(name = "roomPrice", precision = 2)
+    private Double roomPrice;
+
     @Column(name = "roomPhone")
     private String roomPhone;
 
-    /**
-     * 房间类型
-     */
-    @ManyToOne
-    @JoinColumn(name = "roomTypeId")
-    private RoomType roomTypeId;
-
-    /**
-     * 房间状态
-     */
     @Column(name = "roomState")
     private String roomState;
 
-    /**
-     * 房间描述
-     */
-    @Column(name = "roomDescription")
-    private String roomDescription;
+    @Column(name = "notes")
+    private String notes;
 
-    public double getRoomPrice() {
+    @OneToMany(mappedBy = "roomByRoomId")
+    private Collection<RoomType> roomTypeByRoomId;
+
+    @OneToMany(mappedBy = "roomByRoomId")
+    private Collection<Booking> bookingsByRoomId;
+
+    @OneToMany(mappedBy = "roomByRoomId")
+    private Collection<Checkin> checkinsByRoomId;
+
+    @OneToMany(mappedBy = "roomByRoomId")
+    private Collection<Items> itemsByRoomId;
+
+    @OneToMany(mappedBy = "roomByRoomId")
+    private Collection<Maintain> maintainsByRoomId;
+
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+
+    public Double getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(double roomPrice) {
+    public void setRoomPrice(Double roomPrice) {
         this.roomPrice = roomPrice;
     }
+
 
     public String getRoomPhone() {
         return roomPhone;
@@ -64,13 +72,7 @@ public class Room extends BaseEntity{
         this.roomPhone = roomPhone;
     }
 
-    public RoomType getRoomTypeId() {
-        return roomTypeId;
-    }
 
-    public void setRoomTypeId(RoomType roomTypeId) {
-        this.roomTypeId = roomTypeId;
-    }
 
     public String getRoomState() {
         return roomState;
@@ -80,12 +82,13 @@ public class Room extends BaseEntity{
         this.roomState = roomState;
     }
 
-    public String getRoomDescription() {
-        return roomDescription;
+
+    public String getNotes() {
+        return notes;
     }
 
-    public void setRoomDescription(String roomDescription) {
-        this.roomDescription = roomDescription;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     @Override
@@ -93,16 +96,56 @@ public class Room extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return Double.compare(room.roomPrice, roomPrice) == 0 &&
+        return Objects.equals(roomName, room.roomName) &&
+                Objects.equals(roomPrice, room.roomPrice) &&
                 Objects.equals(roomPhone, room.roomPhone) &&
-                Objects.equals(roomTypeId, room.roomTypeId) &&
                 Objects.equals(roomState, room.roomState) &&
-                Objects.equals(roomDescription, room.roomDescription);
+                Objects.equals(notes, room.notes);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(roomPrice, roomPhone, roomTypeId, roomState, roomDescription);
+        return Objects.hash(roomName, roomPrice, roomPhone, roomState, notes);
+    }
+
+    public Collection<Booking> getBookingsByRoomId() {
+        return bookingsByRoomId;
+    }
+
+    public void setBookingsByRoomId(Collection<Booking> bookingsByRoomId) {
+        this.bookingsByRoomId = bookingsByRoomId;
+    }
+
+    public Collection<Checkin> getCheckinsByRoomId() {
+        return checkinsByRoomId;
+    }
+
+    public void setCheckinsByRoomId(Collection<Checkin> checkinsByRoomId) {
+        this.checkinsByRoomId = checkinsByRoomId;
+    }
+
+    public Collection<Items> getItemsByRoomId() {
+        return itemsByRoomId;
+    }
+
+    public void setItemsByRoomId(Collection<Items> itemsByRoomId) {
+        this.itemsByRoomId = itemsByRoomId;
+    }
+
+    public Collection<Maintain> getMaintainsByRoomId() {
+        return maintainsByRoomId;
+    }
+
+    public void setMaintainsByRoomId(Collection<Maintain> maintainsByRoomId) {
+        this.maintainsByRoomId = maintainsByRoomId;
+    }
+
+    public Collection<RoomType> getRoomTypeByRoomId() {
+        return roomTypeByRoomId;
+    }
+
+    public void setRoomTypeByRoomId(Collection<RoomType> roomTypeByRoomId) {
+        this.roomTypeByRoomId = roomTypeByRoomId;
     }
 }

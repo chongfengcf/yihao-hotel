@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
+import sun.misc.Queue;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -90,6 +91,18 @@ public class BaseDao<T> extends HibernateDaoSupport{
     //使用hql语句查询
     public List<T> findByHql(String hqlString, Object... values) {
         return (List<T>)this.getHibernateTemplate().find(hqlString, values);
+    }
+
+    //使用sql语句查询
+    public List<T> findBySql(String sqlString) {
+        Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
+            @Override
+            public Query doInHibernate(Session session) throws HibernateException {
+                Query query = session.createNativeQuery(sqlString);
+                return query;
+            }
+        });
+        return sqlquery.getResultList();
     }
 
 }

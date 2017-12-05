@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -128,4 +129,5 @@ public class BaseEntity implements Serializable {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
 }

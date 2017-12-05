@@ -55,4 +55,9 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     public List<T> findByExample(T t) {
         return getBaseDao().findByExample(t);
     }
+
+    @Override
+    public List<T> findBySql(String sqlString) {
+        return getBaseDao().findBySql(sqlString);
+    }
 }

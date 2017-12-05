@@ -14,4 +14,5 @@ public interface BaseService<T> {
     public List<T> findByHql(String hqlString, Object... values);
     public T load(Serializable id);
     public List<T> findByExample(T t);
+    public List<T> findBySql(String sqlString);
 }

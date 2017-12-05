@@ -3,6 +3,7 @@ package com.jiudian.sys.entity;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class SysUser extends BaseEntity{
     private String loginId;
 
     /**
-     * 姓名
+     * 昵称
      */
     @Column(name = "userName")
     private String userName;
@@ -60,7 +61,7 @@ public class SysUser extends BaseEntity{
             inverseJoinColumns=@JoinColumn(name="role_id")
     )
     @Column(name = "roles")
-    private Set<Role> roles =  new HashSet<Role>();
+    private Collection<Role> roles;
 
     public String getLoginId() {
         return loginId;
@@ -102,11 +103,11 @@ public class SysUser extends BaseEntity{
         this.able = able;
     }
 
-    public Set<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 
@@ -119,13 +120,12 @@ public class SysUser extends BaseEntity{
                 Objects.equals(loginId, sysUser.loginId) &&
                 Objects.equals(userName, sysUser.userName) &&
                 Objects.equals(password, sysUser.password) &&
-                Objects.equals(type, sysUser.type) &&
-                Objects.equals(roles, sysUser.roles);
+                Objects.equals(type, sysUser.type);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(loginId, userName, password, type, able, roles);
+        return Objects.hash(loginId, userName, password, type, able);
     }
 }

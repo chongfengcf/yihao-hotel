@@ -2,9 +2,7 @@ package com.jiudian.room.entity;
 
 import com.jiudian.core.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -31,6 +29,10 @@ public class RoomType extends BaseEntity {
      */
     @Column(name = "roomTypeDescription")
     private String roomTypeDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "roomId", referencedColumnName = "id")
+    private Room roomByRoomId;
 
     public String getRoomTypeName() {
         return roomTypeName;
@@ -61,5 +63,13 @@ public class RoomType extends BaseEntity {
     public int hashCode() {
 
         return Objects.hash(roomTypeName, roomTypeDescription);
+    }
+
+    public Room getRoomByRoomId() {
+        return roomByRoomId;
+    }
+
+    public void setRoomByRoomId(Room roomByRoomId) {
+        this.roomByRoomId = roomByRoomId;
     }
 }

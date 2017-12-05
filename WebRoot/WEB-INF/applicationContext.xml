@@ -56,6 +56,8 @@
                 <!--自动更新表结构-->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/hoteldb</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
         <!--自动扫描注解方式配置的hibernate类文件-->

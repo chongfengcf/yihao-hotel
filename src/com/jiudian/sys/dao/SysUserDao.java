@@ -1,3 +1,4 @@
+
 package com.jiudian.sys.dao;
 
 import com.jiudian.core.base.BaseDao;
@@ -8,3 +9,4 @@ import org.springframework.stereotype.Repository;
 public class SysUserDao extends BaseDao<SysUser> {
 
 }
+
