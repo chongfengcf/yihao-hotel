@@ -1,4 +1,4 @@
-/*
+
 package com.jiudian.room.service.Impl;
 
 import com.jiudian.core.base.BaseDao;
@@ -19,9 +19,20 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
 
     @Override
     public void findAllRoom() {
-        Room room = new Room();
-        room.setRoomName("301");
-        room.setRoomPhone("301");
+        int i;
+        int j;
+        int res;
+        for(i=3;i<=10;i++){
+            for(j=1;j<=10;j++){
+                res = i*100+j*1;
+                Room room = new Room();
+                room.setRoomName(String.valueOf(res));
+                room.setRoomPhone(String.valueOf(res));
+                room.setRoomPrice(288.00+i*10);
+                save(room);
+                room=null;
+            }
+        }
     }
 
     @Override
@@ -29,4 +40,4 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
         return roomDao;
     }
 }
-*/
+

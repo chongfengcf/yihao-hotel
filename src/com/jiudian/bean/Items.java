@@ -24,12 +24,12 @@ public class Items extends BaseEntity {
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "itemsByItemsId")
-    private Collection<Extrabill> extrabillsByItemsId;
-
     @ManyToOne
     @JoinColumn(name = "roomID", referencedColumnName = "id")
     private Room roomByRoomId;
+
+    @OneToMany(mappedBy = "itemsByItemsId")
+    private Collection<ItemsBill> itemsbillsByItemsId;
 
     public String getItemsName() {
         return itemsName;
@@ -63,20 +63,20 @@ public class Items extends BaseEntity {
         this.notes = notes;
     }
 
-    public Collection<Extrabill> getExtrabillsByItemsId() {
-        return extrabillsByItemsId;
-    }
-
-    public void setExtrabillsByItemsId(Collection<Extrabill> extrabillsByItemsId) {
-        this.extrabillsByItemsId = extrabillsByItemsId;
-    }
-
     public Room getRoomByRoomId() {
         return roomByRoomId;
     }
 
     public void setRoomByRoomId(Room roomByRoomId) {
         this.roomByRoomId = roomByRoomId;
+    }
+
+    public Collection<ItemsBill> getItemsbillsByItemsId() {
+        return itemsbillsByItemsId;
+    }
+
+    public void setItemsbillsByItemsId(Collection<ItemsBill> itemsbillsByItemsId) {
+        this.itemsbillsByItemsId = itemsbillsByItemsId;
     }
 
     @Override

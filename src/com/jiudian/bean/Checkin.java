@@ -30,10 +30,6 @@ public class Checkin extends BaseEntity {
     private Collection<Bill> billsByCheckinId;
 
     @ManyToOne
-    @JoinColumn(name = "companionID", referencedColumnName = "id")
-    private Companion companionByCompanionId;
-
-    @ManyToOne
     @JoinColumn(name = "staffID", referencedColumnName = "id")
     private Staff staffByStaffId;
 
@@ -49,8 +45,8 @@ public class Checkin extends BaseEntity {
     @JoinColumn(name = "roomID", referencedColumnName = "id")
     private Room roomByRoomId;
 
-    @OneToMany(mappedBy = "checkinByCheckId")
-    private Collection<Extrabill> extrabillsByCheckinId;
+    @OneToMany(mappedBy = "checkinByCheckinId")
+    private Collection<Companion> companionsByCheckinId;
 
     public Date getArrivalDate() {
         return arrivalDate;
@@ -84,13 +80,6 @@ public class Checkin extends BaseEntity {
         this.notes = notes;
     }
 
-    public Companion getCompanionByCompanionId() {
-        return companionByCompanionId;
-    }
-
-    public void setCompanionByCompanionId(Companion companionByCompanionId) {
-        this.companionByCompanionId = companionByCompanionId;
-    }
 
     public Staff getStaffByStaffId() {
         return staffByStaffId;
@@ -132,12 +121,12 @@ public class Checkin extends BaseEntity {
         this.roomByRoomId = roomByRoomId;
     }
 
-    public Collection<Extrabill> getExtrabillsByCheckinId() {
-        return extrabillsByCheckinId;
+    public Collection<Companion> getCompanionsByCheckinId() {
+        return companionsByCheckinId;
     }
 
-    public void setExtrabillsByCheckinId(Collection<Extrabill> extrabillsByCheckinId) {
-        this.extrabillsByCheckinId = extrabillsByCheckinId;
+    public void setCompanionsByCheckinId(Collection<Companion> companionsByCheckinId) {
+        this.companionsByCheckinId = companionsByCheckinId;
     }
 
     @Override

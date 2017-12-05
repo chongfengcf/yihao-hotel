@@ -62,7 +62,7 @@ public class SysUser extends BaseEntity{
     private Collection<Role> roles;
 
     @OneToMany(mappedBy = "sysUserBysysUserId")
-    private Collection<Staff> staffByStaffId;
+    private Collection<Staff> staffsByStaffId;
 
     public String getLoginId() {
         return loginId;
@@ -112,12 +112,12 @@ public class SysUser extends BaseEntity{
         this.roles = roles;
     }
 
-    public Collection<Staff> getStaffByStaffId() {
-        return staffByStaffId;
+    public Collection<Staff> getStaffsByStaffId() {
+        return staffsByStaffId;
     }
 
-    public void setStaffByStaffId(Collection<Staff> staffByStaffId) {
-        this.staffByStaffId = staffByStaffId;
+    public void setStaffsByStaffId(Collection<Staff> staffsByStaffId) {
+        this.staffsByStaffId = staffsByStaffId;
     }
 
     @Override

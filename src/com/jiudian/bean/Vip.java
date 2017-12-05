@@ -4,6 +4,7 @@ import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "vip")
@@ -18,7 +19,7 @@ public class Vip extends BaseEntity{
     private int vipCredit;
 
     @OneToMany(mappedBy = "vipByvipId")
-    private Collection<Checkin> vipByvipId;
+    private Collection<Checkin> checkinsByvipId;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinTable(name = "tb_customer_vip",
@@ -45,12 +46,12 @@ public class Vip extends BaseEntity{
         this.vipCredit = vipCredit;
     }
 
-    public Collection<Checkin> getVipByvipId() {
-        return vipByvipId;
+    public Collection<Checkin> getCheckinsByvipId() {
+        return checkinsByvipId;
     }
 
-    public void setVipByvipId(Collection<Checkin> vipByvipId) {
-        this.vipByvipId = vipByvipId;
+    public void setCheckinsByvipId(Collection<Checkin> checkinsByvipId) {
+        this.checkinsByvipId = checkinsByvipId;
     }
 
     public Collection<Customer> getCustomers() {
@@ -65,17 +66,13 @@ public class Vip extends BaseEntity{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Vip vip = (Vip) o;
-
-        if (vipCredit != vip.vipCredit) return false;
-        return vipPhone != null ? vipPhone.equals(vip.vipPhone) : vip.vipPhone == null;
+        return vipCredit == vip.vipCredit &&
+                Objects.equals(vipPhone, vip.vipPhone);
     }
 
     @Override
     public int hashCode() {
-        int result = vipPhone != null ? vipPhone.hashCode() : 0;
-        result = 31 * result + vipCredit;
-        return result;
+        return Objects.hash(vipPhone, vipCredit);
     }
 }

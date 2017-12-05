@@ -3,6 +3,7 @@ package com.jiudian.bean;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -23,10 +24,8 @@ public class Bill extends BaseEntity {
     @JoinColumn(name = "checkinID", referencedColumnName = "id")
     private Checkin checkinByCheckinId;
 
-    @ManyToOne
-    @JoinColumn(name = "extraBillID", referencedColumnName = "id")
-    private Extrabill extrabillByExtraBillId;
-
+    @OneToMany(mappedBy = "billByBillId")
+    private Collection<ItemsBill> itemsbillByBillId;
 
     public Double getRoomCosts() {
         return roomCosts;
@@ -60,12 +59,12 @@ public class Bill extends BaseEntity {
         this.checkinByCheckinId = checkinByCheckinId;
     }
 
-    public Extrabill getExtrabillByExtraBillId() {
-        return extrabillByExtraBillId;
+    public Collection<ItemsBill> getItemsbillByBillId() {
+        return itemsbillByBillId;
     }
 
-    public void setExtrabillByExtraBillId(Extrabill extrabillByExtraBillId) {
-        this.extrabillByExtraBillId = extrabillByExtraBillId;
+    public void setItemsbillByBillId(Collection<ItemsBill> itemsbillByBillId) {
+        this.itemsbillByBillId = itemsbillByBillId;
     }
 
     @Override

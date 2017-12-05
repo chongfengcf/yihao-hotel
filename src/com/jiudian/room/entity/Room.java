@@ -30,8 +30,6 @@ public class Room extends BaseEntity {
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "roomByRoomId")
-    private Collection<RoomType> roomTypeByRoomId;
 
     @OneToMany(mappedBy = "roomByRoomId")
     private Collection<Booking> bookingsByRoomId;
@@ -44,6 +42,10 @@ public class Room extends BaseEntity {
 
     @OneToMany(mappedBy = "roomByRoomId")
     private Collection<Maintain> maintainsByRoomId;
+
+    @ManyToOne
+    @JoinColumn(name = "roomTypeId", referencedColumnName = "id")
+    private RoomType roomTypeByroomTypeId;
 
 
     public String getRoomName() {
@@ -72,8 +74,6 @@ public class Room extends BaseEntity {
         this.roomPhone = roomPhone;
     }
 
-
-
     public String getRoomState() {
         return roomState;
     }
@@ -81,7 +81,6 @@ public class Room extends BaseEntity {
     public void setRoomState(String roomState) {
         this.roomState = roomState;
     }
-
 
     public String getNotes() {
         return notes;
@@ -123,12 +122,12 @@ public class Room extends BaseEntity {
         this.maintainsByRoomId = maintainsByRoomId;
     }
 
-    public Collection<RoomType> getRoomTypeByRoomId() {
-        return roomTypeByRoomId;
+    public RoomType getRoomTypeByroomTypeId() {
+        return roomTypeByroomTypeId;
     }
 
-    public void setRoomTypeByRoomId(Collection<RoomType> roomTypeByRoomId) {
-        this.roomTypeByRoomId = roomTypeByRoomId;
+    public void setRoomTypeByroomTypeId(RoomType roomTypeByroomTypeId) {
+        this.roomTypeByroomTypeId = roomTypeByroomTypeId;
     }
 
     @Override

@@ -30,8 +30,9 @@ public class Companion extends BaseEntity{
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "companionByCompanionId")
-    private Collection<Checkin> companionByCompanionId;
+    @ManyToOne
+    @JoinColumn(name = "checkinID", referencedColumnName = "id")
+    private Checkin checkinByCheckinId;
 
     public String getCompanionName() {
         return companionName;
@@ -81,12 +82,12 @@ public class Companion extends BaseEntity{
         this.notes = notes;
     }
 
-    public Collection<Checkin> getCompanionByCompanionId() {
-        return companionByCompanionId;
+    public Checkin getCheckinByCheckinId() {
+        return checkinByCheckinId;
     }
 
-    public void setCompanionByCompanionId(Collection<Checkin> companionByCompanionId) {
-        this.companionByCompanionId = companionByCompanionId;
+    public void setCheckinByCheckinId(Checkin checkinByCheckinId) {
+        this.checkinByCheckinId = checkinByCheckinId;
     }
 
     @Override

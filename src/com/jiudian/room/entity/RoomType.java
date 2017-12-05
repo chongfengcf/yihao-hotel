@@ -3,6 +3,7 @@ package com.jiudian.room.entity;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -30,9 +31,9 @@ public class RoomType extends BaseEntity {
     @Column(name = "roomTypeDescription")
     private String roomTypeDescription;
 
-    @ManyToOne
-    @JoinColumn(name = "roomId", referencedColumnName = "id")
-    private Room roomByRoomId;
+
+    @OneToMany(mappedBy = "roomTypeByroomTypeId")
+    private Collection<Room> roomsByroomTypeId;
 
     public String getRoomTypeName() {
         return roomTypeName;
@@ -50,12 +51,12 @@ public class RoomType extends BaseEntity {
         this.roomTypeDescription = roomTypeDescription;
     }
 
-    public Room getRoomByRoomId() {
-        return roomByRoomId;
+    public Collection<Room> getRoomsByroomTypeId() {
+        return roomsByroomTypeId;
     }
 
-    public void setRoomByRoomId(Room roomByRoomId) {
-        this.roomByRoomId = roomByRoomId;
+    public void setRoomsByroomTypeId(Collection<Room> roomsByroomTypeId) {
+        this.roomsByroomTypeId = roomsByroomTypeId;
     }
 
     @Override

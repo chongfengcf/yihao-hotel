@@ -1,4 +1,3 @@
-/*
 package com.jiudian.room.action;
 
 import com.jiudian.room.service.RoomManageService;
@@ -27,4 +26,4 @@ public class RoomManageAction extends ActionSupport{
         return "index";
     }
 }
-*/
+

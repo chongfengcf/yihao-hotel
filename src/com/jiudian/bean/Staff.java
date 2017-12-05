@@ -6,6 +6,7 @@ import com.jiudian.sys.entity.SysUser;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "staff")
@@ -36,7 +37,7 @@ public class Staff extends BaseEntity{
     private String staffAble;
 
     @OneToMany(mappedBy = "staffByStaffId")
-    private Collection<Checkin> staffByStaffId;
+    private Collection<Checkin> checkinsByStaffId;
 
     @ManyToOne
     @JoinColumn(name = "sys_userID", referencedColumnName = "id")
@@ -98,12 +99,12 @@ public class Staff extends BaseEntity{
         this.staffAble = staffAble;
     }
 
-    public Collection<Checkin> getStaffByStaffId() {
-        return staffByStaffId;
+    public Collection<Checkin> getCheckinsByStaffId() {
+        return checkinsByStaffId;
     }
 
-    public void setStaffByStaffId(Collection<Checkin> staffByStaffId) {
-        this.staffByStaffId = staffByStaffId;
+    public void setCheckinsByStaffId(Collection<Checkin> checkinsByStaffId) {
+        this.checkinsByStaffId = checkinsByStaffId;
     }
 
     public SysUser getSysUserBysysUserId() {
@@ -118,28 +119,18 @@ public class Staff extends BaseEntity{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Staff staff = (Staff) o;
-
-        if (staffName != null ? !staffName.equals(staff.staffName) : staff.staffName != null) return false;
-        if (staffPhone != null ? !staffPhone.equals(staff.staffPhone) : staff.staffPhone != null) return false;
-        if (staffAddress != null ? !staffAddress.equals(staff.staffAddress) : staff.staffAddress != null) return false;
-        if (staffAge != null ? !staffAge.equals(staff.staffAge) : staff.staffAge != null) return false;
-        if (staffType != null ? !staffType.equals(staff.staffType) : staff.staffType != null) return false;
-        if (staffEntryTime != null ? !staffEntryTime.equals(staff.staffEntryTime) : staff.staffEntryTime != null)
-            return false;
-        return staffAble != null ? staffAble.equals(staff.staffAble) : staff.staffAble == null;
+        return Objects.equals(staffName, staff.staffName) &&
+                Objects.equals(staffPhone, staff.staffPhone) &&
+                Objects.equals(staffAddress, staff.staffAddress) &&
+                Objects.equals(staffAge, staff.staffAge) &&
+                Objects.equals(staffType, staff.staffType) &&
+                Objects.equals(staffEntryTime, staff.staffEntryTime) &&
+                Objects.equals(staffAble, staff.staffAble);
     }
 
     @Override
     public int hashCode() {
-        int result = staffName != null ? staffName.hashCode() : 0;
-        result = 31 * result + (staffPhone != null ? staffPhone.hashCode() : 0);
-        result = 31 * result + (staffAddress != null ? staffAddress.hashCode() : 0);
-        result = 31 * result + (staffAge != null ? staffAge.hashCode() : 0);
-        result = 31 * result + (staffType != null ? staffType.hashCode() : 0);
-        result = 31 * result + (staffEntryTime != null ? staffEntryTime.hashCode() : 0);
-        result = 31 * result + (staffAble != null ? staffAble.hashCode() : 0);
-        return result;
+        return Objects.hash(staffName, staffPhone, staffAddress, staffAge, staffType, staffEntryTime, staffAble);
     }
 }
