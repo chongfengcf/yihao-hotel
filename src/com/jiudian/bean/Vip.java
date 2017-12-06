@@ -8,11 +8,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "vip")
-public class Vip extends BaseEntity{
+public class Vip extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "vipPhone", unique = true)
+    @Column(name = "vipPhone")
     private String vipPhone;
 
     @Column(name = "vipCredit")
@@ -21,13 +21,8 @@ public class Vip extends BaseEntity{
     @OneToMany(mappedBy = "vipByvipId")
     private Collection<Checkin> checkinsByvipId;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-    @JoinTable(name = "tb_customer_vip",
-            joinColumns = @JoinColumn(name = "vipPhone", referencedColumnName = "vipPhone"),
-            inverseJoinColumns = @JoinColumn(name = "customerId", referencedColumnName = "id")
-    )
-    @Column(name = "customers")
-    private Collection<Customer> customers;
+    @OneToMany(mappedBy = "vipByVipId")
+    private Collection<Customer> customersByVipId;
 
 
     public String getVipPhone() {
@@ -54,25 +49,24 @@ public class Vip extends BaseEntity{
         this.checkinsByvipId = checkinsByvipId;
     }
 
-    public Collection<Customer> getCustomers() {
-        return customers;
+    public Collection<Customer> getCustomersByVipId() {
+        return customersByVipId;
     }
 
-    public void setCustomers(Collection<Customer> customers) {
-        this.customers = customers;
+    public void setCustomersByVipId(Collection<Customer> customersByVipId) {
+        this.customersByVipId = customersByVipId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Vip vip = (Vip) o;
-        return vipCredit == vip.vipCredit &&
-                Objects.equals(vipPhone, vip.vipPhone);
+        Vip that = (Vip) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vipPhone, vipCredit);
+        return Objects.hash(id);
     }
 }

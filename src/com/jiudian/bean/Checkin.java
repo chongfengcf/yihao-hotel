@@ -23,11 +23,11 @@ public class Checkin extends BaseEntity {
     @Column(name = "accesscardID")
     private String accesscardId;
 
+    @Column(name = "totalCosts", precision = 2)
+    private Double totalCosts;
+
     @Column(name = "notes")
     private String notes;
-
-    @OneToMany(mappedBy = "checkinByCheckinId")
-    private Collection<Bill> billsByCheckinId;
 
     @ManyToOne
     @JoinColumn(name = "staffID", referencedColumnName = "id")
@@ -45,8 +45,6 @@ public class Checkin extends BaseEntity {
     @JoinColumn(name = "roomID", referencedColumnName = "id")
     private Room roomByRoomId;
 
-    @OneToMany(mappedBy = "checkinByCheckinId")
-    private Collection<Companion> companionsByCheckinId;
 
     public Date getArrivalDate() {
         return arrivalDate;
@@ -80,6 +78,13 @@ public class Checkin extends BaseEntity {
         this.notes = notes;
     }
 
+    public Double getTotalCosts() {
+        return totalCosts;
+    }
+
+    public void setTotalCosts(Double totalCosts) {
+        this.totalCosts = totalCosts;
+    }
 
     public Staff getStaffByStaffId() {
         return staffByStaffId;
@@ -95,14 +100,6 @@ public class Checkin extends BaseEntity {
 
     public void setVipByvipId(Vip vipByvipId) {
         this.vipByvipId = vipByvipId;
-    }
-
-    public Collection<Bill> getBillsByCheckinId() {
-        return billsByCheckinId;
-    }
-
-    public void setBillsByCheckinId(Collection<Bill> billsByCheckinId) {
-        this.billsByCheckinId = billsByCheckinId;
     }
 
     public Customer getCustomerByCustomerId() {
@@ -121,29 +118,17 @@ public class Checkin extends BaseEntity {
         this.roomByRoomId = roomByRoomId;
     }
 
-    public Collection<Companion> getCompanionsByCheckinId() {
-        return companionsByCheckinId;
-    }
-
-    public void setCompanionsByCheckinId(Collection<Companion> companionsByCheckinId) {
-        this.companionsByCheckinId = companionsByCheckinId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Checkin that = (Checkin) o;
-        return Objects.equals(arrivalDate, that.arrivalDate) &&
-                Objects.equals(days, that.days) &&
-                Objects.equals(accesscardId, that.accesscardId) &&
-                Objects.equals(notes, that.notes);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(arrivalDate, days, accesscardId, notes);
+        return Objects.hash(id);
     }
 
 }

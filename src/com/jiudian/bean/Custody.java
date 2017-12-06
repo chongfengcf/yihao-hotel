@@ -63,14 +63,11 @@ public class Custody extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Custody that = (Custody) o;
-        return Objects.equals(saveTime, that.saveTime) &&
-                Objects.equals(receiveTime, that.receiveTime) &&
-                Objects.equals(notes, that.notes);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(saveTime, receiveTime, notes);
+        return Objects.hash(id);
     }
 }

@@ -74,15 +74,11 @@ public class Maintain extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Maintain that = (Maintain) o;
-        return Objects.equals(maintainType, that.maintainType) &&
-                Objects.equals(maintainTime, that.maintainTime) &&
-                Objects.equals(maintainState, that.maintainState) &&
-                Objects.equals(notes, that.notes);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(maintainType, maintainTime, maintainState, notes);
+        return Objects.hash(id);
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("roomservice")
 @Transactional
 public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements RoomManageService{
@@ -19,20 +21,9 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
 
     @Override
     public void findAllRoom() {
-        int i;
-        int j;
-        int res;
-        for(i=3;i<=10;i++){
-            for(j=1;j<=10;j++){
-                res = i*100+j*1;
-                Room room = new Room();
-                room.setRoomName(String.valueOf(res));
-                room.setRoomPhone(String.valueOf(res));
-                room.setRoomPrice(288.00+i*10);
-                save(room);
-                room=null;
-            }
-        }
+        List<Room> alllist = getAll();
+        List<Room> findlist = findBySql("SELECT * FROM room Order By roomName limit 10,10");
+        System.out.println(6666);
     }
 
     @Override

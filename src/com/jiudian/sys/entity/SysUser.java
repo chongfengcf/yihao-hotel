@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "sys_user")
+@Table(name = "sysuser")
 public class SysUser extends BaseEntity{
 
     /**
@@ -48,18 +48,6 @@ public class SysUser extends BaseEntity{
      */
     @Column(name = "able")
     private int able;
-
-    /**
-     * 用户所属的角色
-     */
-    @ManyToMany(fetch= FetchType.EAGER, cascade = { CascadeType.PERSIST })
-    @JoinTable(
-            name="tb_user_role",
-            joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="role_id")
-    )
-    @Column(name = "roles")
-    private Collection<Role> roles;
 
     @OneToMany(mappedBy = "sysUserBysysUserId")
     private Collection<Staff> staffsByStaffId;
@@ -104,14 +92,6 @@ public class SysUser extends BaseEntity{
         this.able = able;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
     public Collection<Staff> getStaffsByStaffId() {
         return staffsByStaffId;
     }
@@ -124,17 +104,12 @@ public class SysUser extends BaseEntity{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SysUser sysUser = (SysUser) o;
-        return able == sysUser.able &&
-                Objects.equals(loginId, sysUser.loginId) &&
-                Objects.equals(userName, sysUser.userName) &&
-                Objects.equals(password, sysUser.password) &&
-                Objects.equals(type, sysUser.type);
+        SysUser that = (SysUser) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(loginId, userName, password, type, able);
+        return Objects.hash(id);
     }
 }

@@ -1,7 +1,5 @@
 package com.jiudian.sys.action;
 
-import com.jiudian.sys.entity.Role;
-import com.jiudian.sys.entity.Rule;
 import com.jiudian.sys.entity.SysUser;
 import com.jiudian.sys.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -10,9 +8,6 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @ParentPackage("json-default")

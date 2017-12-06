@@ -63,14 +63,12 @@ public class RoomType extends BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RoomType roomType = (RoomType) o;
-        return Objects.equals(roomTypeName, roomType.roomTypeName) &&
-                Objects.equals(roomTypeDescription, roomType.roomTypeDescription);
+        RoomType that = (RoomType) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(roomTypeName, roomTypeDescription);
+        return Objects.hash(id);
     }
 }

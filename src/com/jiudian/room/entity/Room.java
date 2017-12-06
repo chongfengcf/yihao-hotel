@@ -1,8 +1,6 @@
 package com.jiudian.room.entity;
 
-import com.jiudian.bean.Booking;
 import com.jiudian.bean.Checkin;
-import com.jiudian.bean.Items;
 import com.jiudian.bean.Maintain;
 import com.jiudian.core.base.BaseEntity;
 
@@ -30,15 +28,8 @@ public class Room extends BaseEntity {
     @Column(name = "notes")
     private String notes;
 
-
-    @OneToMany(mappedBy = "roomByRoomId")
-    private Collection<Booking> bookingsByRoomId;
-
     @OneToMany(mappedBy = "roomByRoomId")
     private Collection<Checkin> checkinsByRoomId;
-
-    @OneToMany(mappedBy = "roomByRoomId")
-    private Collection<Items> itemsByRoomId;
 
     @OneToMany(mappedBy = "roomByRoomId")
     private Collection<Maintain> maintainsByRoomId;
@@ -90,13 +81,6 @@ public class Room extends BaseEntity {
         this.notes = notes;
     }
 
-    public Collection<Booking> getBookingsByRoomId() {
-        return bookingsByRoomId;
-    }
-
-    public void setBookingsByRoomId(Collection<Booking> bookingsByRoomId) {
-        this.bookingsByRoomId = bookingsByRoomId;
-    }
 
     public Collection<Checkin> getCheckinsByRoomId() {
         return checkinsByRoomId;
@@ -106,13 +90,6 @@ public class Room extends BaseEntity {
         this.checkinsByRoomId = checkinsByRoomId;
     }
 
-    public Collection<Items> getItemsByRoomId() {
-        return itemsByRoomId;
-    }
-
-    public void setItemsByRoomId(Collection<Items> itemsByRoomId) {
-        this.itemsByRoomId = itemsByRoomId;
-    }
 
     public Collection<Maintain> getMaintainsByRoomId() {
         return maintainsByRoomId;
@@ -134,17 +111,12 @@ public class Room extends BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(roomName, room.roomName) &&
-                Objects.equals(roomPrice, room.roomPrice) &&
-                Objects.equals(roomPhone, room.roomPhone) &&
-                Objects.equals(roomState, room.roomState) &&
-                Objects.equals(notes, room.notes);
+        Room that = (Room) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(roomName, roomPrice, roomPhone, roomState, notes);
+        return Objects.hash(id);
     }
 }

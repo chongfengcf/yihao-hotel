@@ -20,7 +20,7 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(length = 64)
-    private String id;
+    protected String id;
 
     /**
      * 创建时间
@@ -34,31 +34,6 @@ public class BaseEntity implements Serializable {
      * */
     @Column(length = 64)
     private String createId;
-
-    /**
-     * 创建者名称
-     * */
-    @Column
-    private String createName;
-
-    /**
-     * 修改者Id
-     * */
-    @Column(length = 64)
-    private String modifyId;
-
-    /**
-     * 修改者名称
-     * */
-    @Column
-    private String modifyName;
-
-    /**
-     * 修改时间
-     */
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modifyDate;
 
     /**
      * 乐观锁
@@ -88,38 +63,6 @@ public class BaseEntity implements Serializable {
 
     public void setCreateId(String createId) {
         this.createId = createId;
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName;
-    }
-
-    public String getModifyId() {
-        return modifyId;
-    }
-
-    public void setModifyId(String modifyId) {
-        this.modifyId = modifyId;
-    }
-
-    public String getModifyName() {
-        return modifyName;
-    }
-
-    public void setModifyName(String modifyName) {
-        this.modifyName = modifyName;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
     }
 
     public Integer getVersion() {

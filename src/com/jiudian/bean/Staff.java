@@ -40,7 +40,7 @@ public class Staff extends BaseEntity{
     private Collection<Checkin> checkinsByStaffId;
 
     @ManyToOne
-    @JoinColumn(name = "sys_userID", referencedColumnName = "id")
+    @JoinColumn(name = "sysuserID", referencedColumnName = "id")
     private SysUser sysUserBysysUserId;
 
     public String getStaffName() {
@@ -119,18 +119,12 @@ public class Staff extends BaseEntity{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Staff staff = (Staff) o;
-        return Objects.equals(staffName, staff.staffName) &&
-                Objects.equals(staffPhone, staff.staffPhone) &&
-                Objects.equals(staffAddress, staff.staffAddress) &&
-                Objects.equals(staffAge, staff.staffAge) &&
-                Objects.equals(staffType, staff.staffType) &&
-                Objects.equals(staffEntryTime, staff.staffEntryTime) &&
-                Objects.equals(staffAble, staff.staffAble);
+        Staff that = (Staff) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(staffName, staffPhone, staffAddress, staffAge, staffType, staffEntryTime, staffAble);
+        return Objects.hash(id);
     }
 }

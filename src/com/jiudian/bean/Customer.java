@@ -30,14 +30,14 @@ public class Customer extends BaseEntity {
     private String notes;
 
     @OneToMany(mappedBy = "customerByCustomerId")
-    private Collection<Booking> bookingsByCustomerId;
-
-    @OneToMany(mappedBy = "customerByCustomerId")
     private Collection<Checkin> checkinsByCustomerId;
 
     @OneToMany(mappedBy = "customerByCustomerId")
     private Collection<Custody> custodiesByCustomerId;
 
+    @ManyToOne
+    @JoinColumn(name = "vipID", referencedColumnName = "id")
+    private Vip vipByVipId;
 
     public String getCustomerName() {
         return customerName;
@@ -87,14 +87,6 @@ public class Customer extends BaseEntity {
         this.notes = notes;
     }
 
-    public Collection<Booking> getBookingsByCustomerId() {
-        return bookingsByCustomerId;
-    }
-
-    public void setBookingsByCustomerId(Collection<Booking> bookingsByCustomerId) {
-        this.bookingsByCustomerId = bookingsByCustomerId;
-    }
-
     public Collection<Checkin> getCheckinsByCustomerId() {
         return checkinsByCustomerId;
     }
@@ -111,24 +103,25 @@ public class Customer extends BaseEntity {
         this.custodiesByCustomerId = custodiesByCustomerId;
     }
 
+    public Vip getVipByVipId() {
+        return vipByVipId;
+    }
+
+    public void setVipByVipId(Vip vipByVipId) {
+        this.vipByVipId = vipByVipId;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer that = (Customer) o;
-        return Objects.equals(customerName, that.customerName) &&
-                Objects.equals(customerPhone, that.customerPhone) &&
-                Objects.equals(customerAddress, that.customerAddress) &&
-                Objects.equals(customerCard, that.customerCard) &&
-                Objects.equals(customerSex, that.customerSex) &&
-                Objects.equals(notes, that.notes);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(customerName, customerPhone, customerAddress, customerCard, customerSex, notes);
+        return Objects.hash(id);
     }
 
 }
