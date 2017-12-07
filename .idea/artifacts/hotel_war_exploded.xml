@@ -45,6 +45,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-6.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-5.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-commons-5.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/fastjson-1.2.41.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="hotel/web/Web" />
