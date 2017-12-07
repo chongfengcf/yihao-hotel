@@ -94,11 +94,61 @@ public class BaseDao<T> extends HibernateDaoSupport{
     }
 
     //使用sql语句查询
-    public List<T> findBySql(String sqlString) {
+    public List<T> findBySql(String sqlString, Object... values) {
         Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
             @Override
             public Query doInHibernate(Session session) throws HibernateException {
                 Query query = session.createNativeQuery(sqlString);
+                if (values != null)
+                {
+                    for (int i = 0; i < values.length; i++)
+                    {
+                        query.setParameter(i, values[i]);
+                    }
+                }
+                return query;
+            }
+        });
+        return sqlquery.getResultList();
+    }
+
+    //执行sql语句
+    public void executeSql(String sqlString, Object... values) {
+        Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
+            @Override
+            public Query doInHibernate(Session session) throws HibernateException {
+                Query query = session.createNativeQuery(sqlString);
+                if (values != null)
+                {
+                    for (int i = 0; i < values.length; i++)
+                    {
+                        query.setParameter(i, values[i]);
+                    }
+                }
+                query.executeUpdate();
+                return null;
+            }
+        });
+    }
+
+    /**
+     * 使用sql分页查询
+     * setFirstResult() 是设置从第几条开始
+     * setMaxResults() 是设置每页多少条数据
+     */
+    public List<T> pagingBySql(String sqlString, int first, int max, Object... values) {
+        Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
+            @Override
+            public Query doInHibernate(Session session) throws HibernateException {
+                Query query = session.createNativeQuery(sqlString);
+                if (values != null)
+                {
+                    for (int i = 0; i < values.length; i++)
+                    {
+                        query.setParameter(i, values[i]);
+                    }
+                }
+                query.setFirstResult(first).setMaxResults(max);
                 return query;
             }
         });

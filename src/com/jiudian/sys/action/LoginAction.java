@@ -1,7 +1,9 @@
 package com.jiudian.sys.action;
 
+import com.alibaba.fastjson.JSON;
 import com.jiudian.sys.entity.SysUser;
 import com.jiudian.sys.service.LoginService;
+import com.jiudian.util.JsonReturn;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
@@ -9,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
+
 @Controller
-@ParentPackage("json-default")
+@ParentPackage("struts-default")
 @Namespace("/")
 @Scope("prototype")
 public class LoginAction extends ActionSupport{
@@ -29,9 +33,9 @@ public class LoginAction extends ActionSupport{
     String username;
     String password;
     String type;
-    @Action(value = "/sys/login/logincheck",
-            results = {@Result(name = "logincheck",type = "json", params = {"includeProperties", "state"})})
-    public String logincheck() {
+    @Action(value = "/sys/login/logincheck")
+    public void logincheck() throws IOException {
+        JsonReturn jsonReturn = new JsonReturn();
         //如果还没有登录过则检查
         if(ServletActionContext.getRequest().getSession().getAttribute("sysuser")==null) {
             //检查用户密码是否正确
@@ -41,18 +45,19 @@ public class LoginAction extends ActionSupport{
                 //session记录登录信息
                 ServletActionContext.getRequest().getSession().setAttribute("sysuser", sysUser);
                 //返回登录成功标志
-                state = "success";
+                jsonReturn.setMsg("success");
             }
             else {
-                state = "error";
+                jsonReturn.setMsg("error");
             }
         }
         //登录过则跳过检查
         else {
-            state = "success";
+            jsonReturn.setMsg("success");
         }
         //返回json
-        return "logincheck";
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
     }
 
     @Action(value = "/sys/registration",

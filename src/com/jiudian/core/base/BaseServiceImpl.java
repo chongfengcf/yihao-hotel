@@ -57,7 +57,17 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
-    public List<T> findBySql(String sqlString) {
-        return getBaseDao().findBySql(sqlString);
+    public List<T> findBySql(String sqlString, Object... values) {
+        return getBaseDao().findBySql(sqlString, values);
+    }
+
+    @Override
+    public void executeSql(String sqlString, Object... values) {
+        getBaseDao().executeSql(sqlString, values);
+    }
+
+    @Override
+    public List<T> pagingBySql(String sqlString, int first, int max, Object... values) {
+        return getBaseDao().pagingBySql(sqlString, first, max, values);
     }
 }

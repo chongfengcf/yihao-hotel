@@ -54,7 +54,7 @@
             },
             dataType : "json",
             success : function(data) {
-                if(data.state=="success") {
+                if(data.msg=="success") {
                     window.location.href="${basePath}/sys/index.jsp";
                 }
                 else {
