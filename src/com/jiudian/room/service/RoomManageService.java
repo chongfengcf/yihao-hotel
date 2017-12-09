@@ -4,5 +4,5 @@ import com.jiudian.core.base.BaseService;
 import com.jiudian.room.entity.Room;
 
 public interface RoomManageService extends BaseService<Room>{
-    public void findAllRoom();
+    public String roomPagination(int page, int limit);
 }

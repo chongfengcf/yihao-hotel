@@ -84,7 +84,7 @@
             <dd>
                 <ul>
                     <li><a data-href="article-list.html" data-title="房间管理" href="javascript:void(0)">房间管理</a></li>
-                    <li><a data-href="article-list.html" data-title="房型管理" href="javascript:void(0)">房型管理</a></li>
+                    <li><a data-href="${basePath}/sys/room/roomtype.action" data-title="房型管理" href="javascript:void(0)">房型管理</a></li>
                 </ul>
             </dd>
         </dl>

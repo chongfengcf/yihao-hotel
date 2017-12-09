@@ -27,6 +27,11 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public void saveOrUpdate(T t) {
+        getBaseDao().saveOrUpdate(t);
+    }
+
+    @Override
     public T get(Serializable id) {
         return getBaseDao().get(id);
     }

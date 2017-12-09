@@ -1,12 +1,22 @@
 package com.jiudian.util;
 
+import com.alibaba.fastjson.JSON;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
+@Scope("prototype")
 public class JsonReturn {
     private int code;
     private String msg;
     private int count;
     private List data;
+
+    public String tojson(){
+        return JSON.toJSONString(this);
+    }
 
     public JsonReturn() {
     }

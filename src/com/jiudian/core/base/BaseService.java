@@ -8,6 +8,7 @@ public interface BaseService<T> {
     public void save(T t);
     public void delete(T t);
     public void update(T t);
+    public void saveOrUpdate(T t);
     public T get(Serializable id);
     public List<T> getAll();
     public void executeHql(String hqlString, Object... values);

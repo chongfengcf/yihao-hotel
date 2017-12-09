@@ -38,10 +38,14 @@ public class BaseDao<T> extends HibernateDaoSupport{
         this.getHibernateTemplate().save(t);
     }
 
-
     //删除
     public void delete(T t) {
         this.getHibernateTemplate().delete(t);
+    }
+
+    //新增或保存
+    public void saveOrUpdate(T t) {
+        this.getHibernateTemplate().saveOrUpdate(t);
     }
 
     //更新
@@ -98,7 +102,7 @@ public class BaseDao<T> extends HibernateDaoSupport{
         Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
             @Override
             public Query doInHibernate(Session session) throws HibernateException {
-                Query query = session.createNativeQuery(sqlString);
+                Query query = session.createNativeQuery(sqlString, getClazz());
                 if (values != null)
                 {
                     for (int i = 0; i < values.length; i++)
@@ -140,7 +144,7 @@ public class BaseDao<T> extends HibernateDaoSupport{
         Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
             @Override
             public Query doInHibernate(Session session) throws HibernateException {
-                Query query = session.createNativeQuery(sqlString);
+                Query query = session.createNativeQuery(sqlString, getClazz());
                 if (values != null)
                 {
                     for (int i = 0; i < values.length; i++)

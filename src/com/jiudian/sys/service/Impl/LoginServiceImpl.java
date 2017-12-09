@@ -13,7 +13,7 @@ import org.springframework.util.DigestUtils;
 import java.util.List;
 
 
-@Service("loginservice")
+@Service("LoginService")
 @Transactional
 public class LoginServiceImpl extends BaseServiceImpl<SysUser> implements LoginService {
 
