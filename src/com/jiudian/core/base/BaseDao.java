@@ -12,6 +12,7 @@ import sun.misc.Queue;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
@@ -159,4 +160,19 @@ public class BaseDao<T> extends HibernateDaoSupport{
         return sqlquery.getResultList();
     }
 
+    /**
+     * 返回总记录数
+     */
+    public Integer rowCount(String tablename) {
+        Query sqlquery = this.getHibernateTemplate().execute(new HibernateCallback<Query>() {
+            @Override
+            public Query doInHibernate(Session session) throws HibernateException {
+                String sql = "select count(*) from " + tablename;
+                Query query = session.createNativeQuery(sql);
+                return query;
+            }
+        });
+        Integer res = ((BigInteger)sqlquery.uniqueResult()).intValue();
+        return res;
+    }
 }

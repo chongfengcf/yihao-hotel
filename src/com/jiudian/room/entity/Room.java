@@ -25,6 +25,9 @@ public class Room extends BaseEntity {
     @Column(name = "roomState")
     private String roomState;
 
+    @Column(name = "roomAble")
+    private String roomAble;
+
     @Column(name = "notes")
     private String notes;
 
@@ -105,6 +108,14 @@ public class Room extends BaseEntity {
 
     public void setRoomTypeByroomTypeId(RoomType roomTypeByroomTypeId) {
         this.roomTypeByroomTypeId = roomTypeByroomTypeId;
+    }
+
+    public String getRoomAble() {
+        return roomAble;
+    }
+
+    public void setRoomAble(String roomAble) {
+        this.roomAble = roomAble;
     }
 
     @Override

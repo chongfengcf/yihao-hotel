@@ -32,8 +32,9 @@
 <title>产品分类</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品分类 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<a class="btn btn-primary-outline radius" href="javascript:;" onClick="addroomtype()">增加</a>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 房间管理 <span class="c-gray en">&gt;</span> 房型管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<a class="btn btn-primary-outline radius" href="javascript:;" onClick="addroomtype()">增加</a>
 	<table class="table table-border table-bordered table-hover radius">
 	<thead>
 	<tr>
@@ -56,7 +57,8 @@
 		</tr>
 	</s:iterator>
 	</tbody>
-</table>
+	</table>
+</div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="${basePath}/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${basePath}/lib/layer/2.4/layer.js"></script>
@@ -71,7 +73,7 @@
             layer.confirm('删除须谨慎，确认要删除吗？',function(index){
             $.ajax({
                 type : "post",
-                url : "${basePath}/sys/room/deleteroomtype.action?id="+id.toString(),
+                url : "${basePath}/sys/room/deleteroomtype.action?id="+id,
                 dataType : "json",
                 success : function(data) {
                     if(data.msg=="success") {

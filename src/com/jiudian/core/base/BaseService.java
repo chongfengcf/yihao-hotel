@@ -18,4 +18,5 @@ public interface BaseService<T> {
     public List<T> findBySql(String sqlString, Object... values);
     public void executeSql(String sqlString, Object... values);
     public List<T> pagingBySql(String sqlString, int first, int max, Object... values);
+    public Integer rowCount(String tablename);
 }

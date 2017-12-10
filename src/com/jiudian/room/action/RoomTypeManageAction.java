@@ -1,5 +1,6 @@
 package com.jiudian.room.action;
 
+import com.alibaba.fastjson.JSON;
 import com.jiudian.room.entity.RoomType;
 import com.jiudian.room.service.RoomTypeManageService;
 import com.jiudian.util.JsonReturn;
@@ -22,12 +23,10 @@ public class RoomTypeManageAction {
     @Autowired
     private RoomTypeManageService roomTypeManageService;
 
-    @Autowired
-    private JsonReturn jsonReturn;
-
     private String id;
     private String roomTypeName;
     private String roomTypeDescription;
+
     /**
      * 显示所有房间类型
      * */
@@ -74,8 +73,10 @@ public class RoomTypeManageAction {
      * */
     @Action(value = "/sys/room/deleteroomtype")
     public void deleteroomtype() throws IOException {
+        JsonReturn jsonReturn = new JsonReturn();
         try {
             RoomType roomType = roomTypeManageService.get(id);
+            roomTypeManageService.delroom(roomType);
             roomTypeManageService.delete(roomType);
             jsonReturn.setMsg("success");
         }catch (Exception e) {
@@ -95,6 +96,18 @@ public class RoomTypeManageAction {
         RoomType roomType = roomTypeManageService.get(id);
         ServletActionContext.getContext().put("roomtype", roomType);
         return "getoneroomtype";
+    }
+
+    /**
+     * 得到房间类型json数据
+     * */
+    @Action(value = "/sys/room/getroomtypelist")
+    public void getroomtypelist() throws IOException {
+        JsonReturn jsonReturn = new JsonReturn();
+        jsonReturn.setData(roomTypeManageService.getroomtypelist());
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonReturn.tojson());
     }
 
     public void setId(String id) {

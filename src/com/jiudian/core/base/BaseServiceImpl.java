@@ -75,4 +75,9 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     public List<T> pagingBySql(String sqlString, int first, int max, Object... values) {
         return getBaseDao().pagingBySql(sqlString, first, max, values);
     }
+
+    @Override
+    public Integer rowCount(String tablename) {
+        return getBaseDao().rowCount(tablename);
+    }
 }
