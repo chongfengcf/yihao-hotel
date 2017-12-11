@@ -1,6 +1,7 @@
 package com.jiudian.bean;
 
 import com.jiudian.core.base.BaseEntity;
+import com.jiudian.customer.entity.Customer;
 
 import javax.persistence.*;
 import java.util.Date;

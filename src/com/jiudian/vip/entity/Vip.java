@@ -1,9 +1,12 @@
-package com.jiudian.bean;
+package com.jiudian.vip.entity;
 
+import com.jiudian.bean.Checkin;
 import com.jiudian.core.base.BaseEntity;
+import com.jiudian.customer.entity.Customer;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -12,11 +15,19 @@ public class Vip extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "vipPhone")
-    private String vipPhone;
-
     @Column(name = "vipCredit")
     private int vipCredit;
+    
+    @Column(name = "birthday")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthday;
+    
+    @Column(name = "vipLevel")
+    private String vipLevel;
+    
+    @Column(name = "nums")
+    private int nums;
+    
 
     @OneToMany(mappedBy = "vipByvipId")
     private Collection<Checkin> checkinsByvipId;
@@ -25,15 +36,31 @@ public class Vip extends BaseEntity {
     private Collection<Customer> customersByVipId;
 
 
-    public String getVipPhone() {
-        return vipPhone;
-    }
+    public Date getBirthday() {
+		return birthday;
+	}
 
-    public void setVipPhone(String vipPhone) {
-        this.vipPhone = vipPhone;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public int getVipCredit() {
+	public String getVipLevel() {
+		return vipLevel;
+	}
+
+	public void setVipLevel(String vipLevel) {
+		this.vipLevel = vipLevel;
+	}
+
+	public int getNums() {
+		return nums;
+	}
+
+	public void setNums(int nums) {
+		this.nums = nums;
+	}
+
+	public int getVipCredit() {
         return vipCredit;
     }
 

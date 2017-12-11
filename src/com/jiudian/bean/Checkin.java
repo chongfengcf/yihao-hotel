@@ -1,10 +1,11 @@
 package com.jiudian.bean;
 
 import com.jiudian.core.base.BaseEntity;
+import com.jiudian.customer.entity.Customer;
 import com.jiudian.room.entity.Room;
+import com.jiudian.vip.entity.Vip;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 

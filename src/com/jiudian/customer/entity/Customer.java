@@ -1,6 +1,9 @@
-package com.jiudian.bean;
+package com.jiudian.customer.entity;
 
+import com.jiudian.bean.Checkin;
+import com.jiudian.bean.Custody;
 import com.jiudian.core.base.BaseEntity;
+import com.jiudian.vip.entity.Vip;
 
 import javax.persistence.*;
 import java.util.Collection;
