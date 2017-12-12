@@ -5,38 +5,29 @@ import com.jiudian.room.entity.Room;
 import com.jiudian.vip.entity.Vip;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "checkin")
-public class Checkin extends BaseEntity {
+@Table(name = "booking")
+public class Booking extends BaseEntity{
     private static final long serialVersionUID = 1L;
 
     @Column(name = "arrivalDate")
     @Temporal(TemporalType.DATE)
     private Date arrivalDate;
 
-    @Column(name = "accesscardID")
-    private String accesscardId;
-
-    @Column(name = "notes")
-    private String notes;
+    @Column(name = "bookingDate")
+    @Temporal(TemporalType.DATE)
+    private Date bookingDate;
 
     @ManyToOne
-    @JoinColumn(name = "vipID", referencedColumnName = "id")
+    @JoinColumn(name = "vipPhone", referencedColumnName = "phone")
     private Vip vipByVipId;
 
     @ManyToOne
     @JoinColumn(name = "roomID", referencedColumnName = "id")
     private Room roomByRoomId;
-
-    @OneToMany(mappedBy = "checkinByCheckinId")
-    private Collection<Bill> billsByRoomId;
-
-    @OneToMany(mappedBy = "checkinByCheckinId")
-    private Collection<CustomerCheckin> customerCheckinsById;
 
     public Date getArrivalDate() {
         return arrivalDate;
@@ -46,20 +37,12 @@ public class Checkin extends BaseEntity {
         this.arrivalDate = arrivalDate;
     }
 
-    public String getAccesscardId() {
-        return accesscardId;
+    public Date getBookingDate() {
+        return bookingDate;
     }
 
-    public void setAccesscardId(String accesscardId) {
-        this.accesscardId = accesscardId;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public Vip getVipByVipId() {
@@ -78,27 +61,11 @@ public class Checkin extends BaseEntity {
         this.roomByRoomId = roomByRoomId;
     }
 
-    public Collection<Bill> getBillsByRoomId() {
-        return billsByRoomId;
-    }
-
-    public void setBillsByRoomId(Collection<Bill> billsByRoomId) {
-        this.billsByRoomId = billsByRoomId;
-    }
-
-    public Collection<CustomerCheckin> getCustomerCheckinsById() {
-        return customerCheckinsById;
-    }
-
-    public void setCustomerCheckinsById(Collection<CustomerCheckin> customerCheckinsById) {
-        this.customerCheckinsById = customerCheckinsById;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Checkin that = (Checkin) o;
+        Booking that = (Booking) o;
         return Objects.equals(id, that.id);
     }
 
@@ -106,5 +73,4 @@ public class Checkin extends BaseEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }

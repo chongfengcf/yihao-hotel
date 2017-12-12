@@ -101,7 +101,6 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	@Action(value="/sys/customer/updata")
 	public void updata()
 	{
-		String vipid = request.getParameter("vipID");
 		customerService.updataCustomer(customer);
 	}
 	

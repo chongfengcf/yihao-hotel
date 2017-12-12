@@ -49,9 +49,9 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
 
     @Override
     public void delroom(RoomType roomType) {
-        Collection<Room> rooms = roomType.getRoomsByroomTypeId();
+        Collection<Room> rooms = roomType.getRoomsByRoomTypeId();
         for(Room temp : rooms) {
-            temp.setRoomTypeByroomTypeId(null);
+            temp.setRoomTypeByRoomTypeId(null);
         }
     }
 

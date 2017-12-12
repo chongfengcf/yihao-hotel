@@ -73,11 +73,11 @@ public class RoomManageAction extends ActionSupport{
         String typeid;
         Room room = roomManageService.get(id);
         ServletActionContext.getContext().put("room", room);
-        if(room.getRoomTypeByroomTypeId()==null) {
+        if(room.getRoomTypeByRoomTypeId()==null) {
             typeid = "";
         }
         else {
-            typeid = room.getRoomTypeByroomTypeId().getId();
+            typeid = room.getRoomTypeByRoomTypeId().getId();
         }
         ServletActionContext.getContext().put("typeid", typeid);
         return "getoneroom";

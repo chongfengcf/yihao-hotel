@@ -20,11 +20,11 @@ public class RoomVo {
         this.roomState = room.getRoomState();
         this.roomAble = room.getRoomAble();
         this.notes = room.getNotes();
-        if(room.getRoomTypeByroomTypeId()==null) {
+        if(room.getRoomTypeByRoomTypeId()==null) {
             this.roomType = "";
         }
         else {
-            this.roomType = room.getRoomTypeByroomTypeId().getRoomTypeName();
+            this.roomType = room.getRoomTypeByRoomTypeId().getRoomTypeName();
         }
     }
 

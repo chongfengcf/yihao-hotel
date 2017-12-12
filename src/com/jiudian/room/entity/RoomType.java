@@ -31,9 +31,14 @@ public class RoomType extends BaseEntity {
     @Column(name = "roomTypeDescription")
     private String roomTypeDescription;
 
+    /**
+     * 图片地址
+     */
+    @Column(name = "roomTypeUrl")
+    private String roomTypeUrl;
 
-    @OneToMany(mappedBy = "roomTypeByroomTypeId")
-    private Collection<Room> roomsByroomTypeId;
+    @OneToMany(mappedBy = "roomTypeByRoomTypeId")
+    private Collection<Room> roomsByRoomTypeId;
 
     public String getRoomTypeName() {
         return roomTypeName;
@@ -51,12 +56,20 @@ public class RoomType extends BaseEntity {
         this.roomTypeDescription = roomTypeDescription;
     }
 
-    public Collection<Room> getRoomsByroomTypeId() {
-        return roomsByroomTypeId;
+    public Collection<Room> getRoomsByRoomTypeId() {
+        return roomsByRoomTypeId;
     }
 
-    public void setRoomsByroomTypeId(Collection<Room> roomsByroomTypeId) {
-        this.roomsByroomTypeId = roomsByroomTypeId;
+    public void setRoomsByRoomTypeId(Collection<Room> roomsByRoomTypeId) {
+        this.roomsByRoomTypeId = roomsByRoomTypeId;
+    }
+
+    public String getRoomTypeUrl() {
+        return roomTypeUrl;
+    }
+
+    public void setRoomTypeUrl(String roomTypeUrl) {
+        this.roomTypeUrl = roomTypeUrl;
     }
 
     @Override

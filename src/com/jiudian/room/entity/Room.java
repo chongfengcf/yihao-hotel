@@ -1,7 +1,7 @@
 package com.jiudian.room.entity;
 
+import com.jiudian.bean.Booking;
 import com.jiudian.bean.Checkin;
-import com.jiudian.bean.Maintain;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;
@@ -35,11 +35,11 @@ public class Room extends BaseEntity {
     private Collection<Checkin> checkinsByRoomId;
 
     @OneToMany(mappedBy = "roomByRoomId")
-    private Collection<Maintain> maintainsByRoomId;
+    private Collection<Booking> bookingsByRoomId;
 
     @ManyToOne
     @JoinColumn(name = "roomTypeId", referencedColumnName = "id")
-    private RoomType roomTypeByroomTypeId;
+    private RoomType roomTypeByRoomTypeId;
 
 
     public String getRoomName() {
@@ -93,21 +93,12 @@ public class Room extends BaseEntity {
         this.checkinsByRoomId = checkinsByRoomId;
     }
 
-
-    public Collection<Maintain> getMaintainsByRoomId() {
-        return maintainsByRoomId;
+    public RoomType getRoomTypeByRoomTypeId() {
+        return roomTypeByRoomTypeId;
     }
 
-    public void setMaintainsByRoomId(Collection<Maintain> maintainsByRoomId) {
-        this.maintainsByRoomId = maintainsByRoomId;
-    }
-
-    public RoomType getRoomTypeByroomTypeId() {
-        return roomTypeByroomTypeId;
-    }
-
-    public void setRoomTypeByroomTypeId(RoomType roomTypeByroomTypeId) {
-        this.roomTypeByroomTypeId = roomTypeByroomTypeId;
+    public void setRoomTypeByRoomTypeId(RoomType roomTypeByRoomTypeId) {
+        this.roomTypeByRoomTypeId = roomTypeByRoomTypeId;
     }
 
     public String getRoomAble() {
@@ -116,6 +107,14 @@ public class Room extends BaseEntity {
 
     public void setRoomAble(String roomAble) {
         this.roomAble = roomAble;
+    }
+
+    public Collection<Booking> getBookingsByRoomId() {
+        return bookingsByRoomId;
+    }
+
+    public void setBookingsByRoomId(Collection<Booking> bookingsByRoomId) {
+        this.bookingsByRoomId = bookingsByRoomId;
     }
 
     @Override

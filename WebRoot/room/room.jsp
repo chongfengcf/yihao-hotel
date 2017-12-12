@@ -94,8 +94,8 @@ layui.use('table', function(){
                     dataType : "json",
                     success : function(data) {
                         if(data.msg=="success") {
-                            alert("删除成功！")
-                            layer.close(index);
+                            alert("删除成功！");
+                            location.replace(location.href);
                         }
                         else {
                             alert("删除失败！")

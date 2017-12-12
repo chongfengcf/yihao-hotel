@@ -51,7 +51,7 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
         else {
             room = get(id);
         }
-        room.setRoomTypeByroomTypeId(roomTypeDao.get(roomTypeId));
+        room.setRoomTypeByRoomTypeId(roomTypeDao.get(roomTypeId));
         room.setRoomName(roomName);
         room.setRoomPhone(roomPhone);
         room.setRoomPrice(roomPrice);

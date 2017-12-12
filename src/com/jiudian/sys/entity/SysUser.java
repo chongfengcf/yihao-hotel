@@ -1,6 +1,6 @@
 package com.jiudian.sys.entity;
 
-import com.jiudian.bean.Staff;
+import com.jiudian.bean.Bill;
 import com.jiudian.core.base.BaseEntity;
 import javax.persistence.*;
 import java.util.Collection;
@@ -26,16 +26,16 @@ public class SysUser extends BaseEntity{
     private String loginId;
 
     /**
-     * 昵称
-     */
-    @Column(name = "userName")
-    private String userName;
-
-    /**
      * 密码
      */
     @Column(name = "password")
     private String password;
+
+    /**
+     * 名称
+     */
+    @Column(name = "userName")
+    private String userName;
 
     /**
      * 用户类型，0为管理员，1为酒店前台
@@ -49,8 +49,8 @@ public class SysUser extends BaseEntity{
     @Column(name = "able")
     private int able;
 
-    @OneToMany(mappedBy = "sysUserBysysUserId")
-    private Collection<Staff> staffsByStaffId;
+    @OneToMany(mappedBy = "sysUserBySysUserId")
+    private Collection<Bill> billsBySysuserId;
 
     public String getLoginId() {
         return loginId;
@@ -92,12 +92,12 @@ public class SysUser extends BaseEntity{
         this.able = able;
     }
 
-    public Collection<Staff> getStaffsByStaffId() {
-        return staffsByStaffId;
+    public Collection<Bill> getBillsBySysuserId() {
+        return billsBySysuserId;
     }
 
-    public void setStaffsByStaffId(Collection<Staff> staffsByStaffId) {
-        this.staffsByStaffId = staffsByStaffId;
+    public void setBillsBySysuserId(Collection<Bill> billsBySysuserId) {
+        this.billsBySysuserId = billsBySysuserId;
     }
 
     @Override

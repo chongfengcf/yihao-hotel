@@ -106,6 +106,8 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			vip.setPhone(customer.getCustomerPhone());
+			vip.setPassword(customer.getCustomerPhone());
 			vip.setNums(nums);
 			vip.setVipCredit(vipCredit);
 			vip.setVipLevel(vipLevel);

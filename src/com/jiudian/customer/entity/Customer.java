@@ -1,7 +1,6 @@
 package com.jiudian.customer.entity;
 
-import com.jiudian.bean.Checkin;
-import com.jiudian.bean.Custody;
+import com.jiudian.bean.CustomerCheckin;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.vip.entity.Vip;
 
@@ -32,15 +31,12 @@ public class Customer extends BaseEntity {
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "customerByCustomerId")
-    private Collection<Checkin> checkinsByCustomerId;
-
-    @OneToMany(mappedBy = "customerByCustomerId")
-    private Collection<Custody> custodiesByCustomerId;
-
     @ManyToOne
     @JoinColumn(name = "vipID", referencedColumnName = "id")
     private Vip vipByVipId;
+
+    @OneToMany(mappedBy = "customerByCustomerId")
+    private Collection<CustomerCheckin> customerCheckinsById;
 
     public String getCustomerName() {
         return customerName;
@@ -90,28 +86,20 @@ public class Customer extends BaseEntity {
         this.notes = notes;
     }
 
-    public Collection<Checkin> getCheckinsByCustomerId() {
-        return checkinsByCustomerId;
-    }
-
-    public void setCheckinsByCustomerId(Collection<Checkin> checkinsByCustomerId) {
-        this.checkinsByCustomerId = checkinsByCustomerId;
-    }
-
-    public Collection<Custody> getCustodiesByCustomerId() {
-        return custodiesByCustomerId;
-    }
-
-    public void setCustodiesByCustomerId(Collection<Custody> custodiesByCustomerId) {
-        this.custodiesByCustomerId = custodiesByCustomerId;
-    }
-
     public Vip getVipByVipId() {
         return vipByVipId;
     }
 
     public void setVipByVipId(Vip vipByVipId) {
         this.vipByVipId = vipByVipId;
+    }
+
+    public Collection<CustomerCheckin> getCustomerCheckinsById() {
+        return customerCheckinsById;
+    }
+
+    public void setCustomerCheckinsById(Collection<CustomerCheckin> customerCheckinsById) {
+        this.customerCheckinsById = customerCheckinsById;
     }
 
     @Override
