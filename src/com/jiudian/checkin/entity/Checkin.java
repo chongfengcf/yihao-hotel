@@ -1,5 +1,6 @@
-package com.jiudian.bean;
+package com.jiudian.checkin.entity;
 
+import com.jiudian.bill.entity.Bill;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.room.entity.Room;
 import com.jiudian.vip.entity.Vip;

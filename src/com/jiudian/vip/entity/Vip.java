@@ -1,6 +1,6 @@
 package com.jiudian.vip.entity;
 
-import com.jiudian.bean.Checkin;
+import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.booking.entity.Booking;
 import com.jiudian.comment.entity.Comment;
 import com.jiudian.core.base.BaseEntity;

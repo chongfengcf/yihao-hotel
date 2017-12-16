@@ -1,5 +1,6 @@
-package com.jiudian.bean;
+package com.jiudian.bill.entity;
 
+import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.sys.entity.SysUser;
 

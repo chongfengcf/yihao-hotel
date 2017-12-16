@@ -1,6 +1,6 @@
 package com.jiudian.sys.entity;
 
-import com.jiudian.bean.Bill;
+import com.jiudian.bill.entity.Bill;
 import com.jiudian.core.base.BaseEntity;
 import javax.persistence.*;
 import java.util.Collection;
