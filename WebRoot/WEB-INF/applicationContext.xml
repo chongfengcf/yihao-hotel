@@ -114,8 +114,8 @@
     </bean>
 
     <bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator">
-        <!-- 所有BaseDao的子类被拦截监控  -->
-        <property name="targetBeanType" value="com.jiudian.core.base.BaseDao"/>
+        <!-- 所有BasaService的子类被拦截监控  -->
+        <property name="targetBeanType" value="com.jiudian.core.base.BaseService"/>
         <property name="interceptorNames">
             <list>
                 <value>druid-stat-interceptor</value>
