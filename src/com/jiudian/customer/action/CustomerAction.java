@@ -12,14 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.alibaba.fastjson.JSON;
 import com.jiudian.core.base.BaseAction;
 import com.jiudian.customer.entity.Customer;
 import com.jiudian.customer.service.CustomerService;
-import com.jiudian.util.JsonReturn;
-import com.jiudian.vip.entity.Vip;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 

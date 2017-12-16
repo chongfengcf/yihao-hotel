@@ -9,7 +9,7 @@ import com.jiudian.room.dao.RoomTypeDao;
 import com.jiudian.room.entity.Room;
 import com.jiudian.room.service.RoomManageService;
 import com.jiudian.room.vo.RoomVo;
-import com.jiudian.util.JsonReturn;
+import com.jiudian.core.util.JsonReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

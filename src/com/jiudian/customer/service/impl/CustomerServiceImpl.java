@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +15,9 @@ import com.jiudian.core.base.BaseServiceImpl;
 import com.jiudian.customer.dao.CustomerDao;
 import com.jiudian.customer.entity.Customer;
 import com.jiudian.customer.service.CustomerService;
-import com.jiudian.util.JsonReturn;
+import com.jiudian.core.util.JsonReturn;
 import com.jiudian.vip.dao.VipDao;
 import com.jiudian.vip.entity.Vip;
-import com.jiudian.vip.service.impl.VipServiceImpl;
-
-import jdk.nashorn.internal.scripts.JO;
 
 @Service("CustomerService")
 @Transactional

@@ -2,7 +2,7 @@ package com.jiudian.room.action;
 
 import com.jiudian.room.entity.Room;
 import com.jiudian.room.service.RoomManageService;
-import com.jiudian.util.JsonReturn;
+import com.jiudian.core.util.JsonReturn;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;

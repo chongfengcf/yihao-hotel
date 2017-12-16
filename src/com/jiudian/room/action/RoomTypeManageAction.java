@@ -3,7 +3,7 @@ package com.jiudian.room.action;
 import com.alibaba.fastjson.JSON;
 import com.jiudian.room.entity.RoomType;
 import com.jiudian.room.service.RoomTypeManageService;
-import com.jiudian.util.JsonReturn;
+import com.jiudian.core.util.JsonReturn;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;

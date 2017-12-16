@@ -3,7 +3,7 @@ package com.jiudian.sys.action;
 import com.alibaba.fastjson.JSON;
 import com.jiudian.sys.entity.SysUser;
 import com.jiudian.sys.service.LoginService;
-import com.jiudian.util.JsonReturn;
+import com.jiudian.core.util.JsonReturn;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;

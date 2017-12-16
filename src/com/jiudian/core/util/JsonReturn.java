@@ -1,8 +1,6 @@
-package com.jiudian.util;
+package com.jiudian.core.util;
 
 import com.alibaba.fastjson.JSON;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
