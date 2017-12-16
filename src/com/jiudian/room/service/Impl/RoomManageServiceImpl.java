@@ -62,6 +62,12 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
     }
 
     @Override
+    public List<Room> findRoom(String parameter) {
+        List<Room> list = roomDao.findBySql("select * from room where roomTypeId = ?0 order by roomAble desc",parameter);
+        return list;
+    }
+
+    @Override
     public BaseDao<Room> getBaseDao() {
         return roomDao;
     }

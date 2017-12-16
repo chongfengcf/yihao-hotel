@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css" href="${basePath}/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="${basePath}/static/h-ui.admin/css/style.css" />
-<link rel="stylesheet" href="${basePath}/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="${basePath}/lib/layui/css/layui.css" media="all">
 <!--[if IE 6]>
 <script type="text/javascript" src="${basePath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -41,6 +41,7 @@
 		<th>编号</th>
 		<th>类型</th>
 		<th>描述</th>
+		<th>图片</th>
 		<th>操作</th>
 	</tr>
 	</thead>
@@ -50,6 +51,9 @@
 			<th><s:property value="#n.index+1" /></th>
 			<td><s:property value="roomTypeName" /></td>
 			<td><s:property value="roomTypeDescription" /></td>
+			<td><a href="javascript:;" class="preview" style="display:block" data-width="400" data-height="300" data-src="${basePath}/upload/<s:property value="roomTypeUrl" default="default.JPG" />" >
+				<img class="img-responsive avatar size-XXXL" src="${basePath}/upload/<s:property value="roomTypeUrl" default="default.JPG" />" />
+			</a></td>
 			<td>
 				<a title="编辑" href="javascript:;" onClick="updateroomtype('<s:property value="id" />')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 				<a title="删除" href="javascript:;" onClick="deleteroomtype('<s:property value="id" />')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
@@ -66,8 +70,10 @@
 <script type="text/javascript" src="${basePath}/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="${basePath}/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript">
+	//图片预览效果
+    $(".preview").Huipreview();
+
 	//删除房间类型
 	function deleteroomtype(id) {
             layer.confirm('删除须谨慎，确认要删除吗？',function(index){

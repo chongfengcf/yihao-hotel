@@ -24,7 +24,7 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
     private RoomTypeDao roomTypeDao;
 
     @Override
-    public void saveroomtype(String id, String roomTypeName, String roomTypeDescription) {
+    public void saveroomtype(String id, String roomTypeName, String roomTypeDescription, String roomTypeUrl) {
         RoomType roomType;
         if("".equals(id)) {
             roomType = new RoomType();
@@ -34,6 +34,10 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
         }
         roomType.setRoomTypeName(roomTypeName);
         roomType.setRoomTypeDescription(roomTypeDescription);
+        if("".equals(roomTypeUrl)) {
+            roomTypeUrl=null;
+        }
+        roomType.setRoomTypeUrl(roomTypeUrl);
         saveOrUpdate(roomType);
     }
 

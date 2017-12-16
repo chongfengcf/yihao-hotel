@@ -17,4 +17,6 @@ public interface VipService extends BaseService<Vip> {
 
 	Vip returnVip(Vip vip);
 
+	List<Vip> findVip(String vipPhone);
+
 }

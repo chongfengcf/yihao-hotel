@@ -12,33 +12,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Basic Struts 2 Application - Welcome</title>
+    <link rel="stylesheet" href="${basePath}/lib/layui/css/layui.css" media="all">
 </head>
 <body>
-<table class="layui-hide" id="test"></table>
+<button type="button" class="layui-btn" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
 
+<div class="layui-upload-drag" id="test10">
+    <i class="layui-icon">&#xe67c;</i>
+    <p>点击上传，或将文件拖拽到此处</p>
+</div>
 
 <script src="${basePath}/lib/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 <script>
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use('upload', function(){
+        var upload = layui.upload;
 
-        table.render({
-            elem: '#test'
-            ,url:'${basePath}/sys/room/findAllRoom.action'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,cols: [[
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'username', width:80, title: '用户名'}
-                ,{field:'sex', width:80, title: '性别', sort: true}
-                ,{field:'city', width:80, title: '城市'}
-                ,{field:'sign', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'experience', title: '积分', sort: true}
-                ,{field:'score', title: '评分', sort: true}
-                ,{field:'classify', title: '职业'}
-                ,{field:'wealth', width:137, title: '财富', sort: true}
-            ]]
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test10' //绑定元素
+            ,url: '${basePath}/sys/room/upload.action' //上传接口
+            ,drag: true //支持拖拽上传
+            ,accept: "images" //仅仅支持文件上传
+            ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                layer.load(); //上传loading
+            }
+            ,done: function(res, index, upload){
+                layer.closeAll('loading'); //关闭loading
+            }
+            ,error: function(index, upload){
+                layer.closeAll('loading'); //关闭loading
+            }
         });
     });
 </script>

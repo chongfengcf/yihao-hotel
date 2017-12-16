@@ -1,4 +1,4 @@
-package com.jiudian.bean;
+package com.jiudian.comment.entity;
 
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.vip.entity.Vip;

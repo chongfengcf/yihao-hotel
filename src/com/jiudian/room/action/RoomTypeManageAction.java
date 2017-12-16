@@ -26,7 +26,7 @@ public class RoomTypeManageAction {
     private String id;
     private String roomTypeName;
     private String roomTypeDescription;
-
+    private String roomTypeUrl;
     /**
      * 显示所有房间类型
      * */
@@ -54,7 +54,7 @@ public class RoomTypeManageAction {
     @Action(value = "/sys/room/saveroomtype",
             results = {@Result(name = "ok", location = "/sys/ok.jsp")})
     public String saveroomtype() {
-        roomTypeManageService.saveroomtype(id, roomTypeName, roomTypeDescription);
+        roomTypeManageService.saveroomtype(id, roomTypeName, roomTypeDescription, roomTypeUrl);
         return "ok";
     }
 
@@ -120,5 +120,9 @@ public class RoomTypeManageAction {
 
     public void setRoomTypeDescription(String roomTypeDescription) {
         this.roomTypeDescription = roomTypeDescription;
+    }
+
+    public void setRoomTypeUrl(String roomTypeUrl) {
+        this.roomTypeUrl = roomTypeUrl;
     }
 }

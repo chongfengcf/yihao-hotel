@@ -69,4 +69,10 @@ public class VipServiceImpl extends BaseServiceImpl<Vip> implements VipService{
 		return vip;
 	}
 
+	@Override
+	public List<Vip> findVip(String vipPhone) {
+		List<Vip> list = vipDao.findBySql("select * from vip where phone = ?0 ",vipPhone);
+		return list;
+	}
+
 }

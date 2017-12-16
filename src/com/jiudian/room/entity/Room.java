@@ -1,7 +1,7 @@
 package com.jiudian.room.entity;
 
-import com.jiudian.bean.Booking;
 import com.jiudian.bean.Checkin;
+import com.jiudian.booking.entity.Booking;
 import com.jiudian.core.base.BaseEntity;
 
 import javax.persistence.*;

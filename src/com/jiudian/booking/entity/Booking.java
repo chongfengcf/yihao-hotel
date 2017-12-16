@@ -1,4 +1,4 @@
-package com.jiudian.bean;
+package com.jiudian.booking.entity;
 
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.room.entity.Room;

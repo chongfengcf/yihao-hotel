@@ -97,10 +97,10 @@
             </dd>
         </dl>
         <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 维修管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe613;</i> 入住预定管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">维修管理</a></li>
+                    <li><a data-href="${basePath}/sys/booking/findAll.action" data-title="入住预定管理" href="javascript:void(0)">入住预定管理</a></li>
                 </ul>
             </dd>
         </dl>
