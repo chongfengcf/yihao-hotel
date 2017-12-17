@@ -96,19 +96,19 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 入住预定管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+        <dl id="menu-booking">
+            <dt><i class="Hui-iconfont">&#xe613;</i> 预定管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="${basePath}/sys/booking/findAll.action" data-title="入住预定管理" href="javascript:void(0)">入住预定管理</a></li>
+                    <li><a data-href="${basePath}/sys/booking/findAll.action" data-title="预定管理" href="javascript:void(0)">预定管理</a></li>
                 </ul>
             </dd>
         </dl>
         <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 员工管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe620;</i> 入住管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="product-brand.html" data-title="品牌管理" href="javascript:void(0)">员工管理</a></li>
+                    <li><a data-href="product-brand.html" data-title="快速入住" href="javascript:void(0)">快速入住</a></li>
                 </ul>
             </dd>
         </dl>

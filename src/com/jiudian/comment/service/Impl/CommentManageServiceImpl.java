@@ -46,4 +46,11 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }
+
+    @Override
+    public void savecomment(String id, String content) {
+        Comment comment = get(id);
+        comment.setContent(content);
+        saveOrUpdate(comment);
+    }
 }

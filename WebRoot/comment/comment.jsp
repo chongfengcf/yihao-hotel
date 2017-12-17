@@ -115,7 +115,7 @@
                 });
             } else if(layEvent === 'edit'){ //编辑
                 //do something
-                layer_show("房间修改", "${basePath}/sys/room/getoneroom.action?id="+data.id, "800", "600");
+                layer_show("评论修改", "${basePath}/sys/comment/getonecomment.action?id="+data.id, "500", "300");
             }
         });
 
