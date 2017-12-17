@@ -3,12 +3,14 @@ package com.jiudian.customer.entity;
 import com.jiudian.checkin.entity.CustomerCheckin;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.vip.entity.Vip;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "customer")
 public class Customer extends BaseEntity {
     private static final long serialVersionUID = 1L;

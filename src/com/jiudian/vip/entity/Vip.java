@@ -5,6 +5,7 @@ import com.jiudian.booking.entity.Booking;
 import com.jiudian.comment.entity.Comment;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.customer.entity.Customer;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "vip")
 public class Vip extends BaseEntity {
 

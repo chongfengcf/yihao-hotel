@@ -2,6 +2,8 @@ package com.jiudian.sys.entity;
 
 import com.jiudian.bill.entity.Bill;
 import com.jiudian.core.base.BaseEntity;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -11,6 +13,7 @@ import java.util.Objects;
  */
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "sysuser")
 public class SysUser extends BaseEntity{
 

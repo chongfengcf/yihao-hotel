@@ -1,6 +1,7 @@
 package com.jiudian.room.entity;
 
 import com.jiudian.core.base.BaseEntity;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.Objects;
 
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "room_type")
 public class RoomType extends BaseEntity {
     /**

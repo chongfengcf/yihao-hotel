@@ -2,11 +2,13 @@ package com.jiudian.checkin.entity;
 
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.customer.entity.Customer;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "customer_checkin")
 public class CustomerCheckin extends BaseEntity {
     private static final long serialVersionUID = 1L;

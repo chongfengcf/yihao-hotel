@@ -58,6 +58,11 @@
                 <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/hoteldb</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+
+                <!--开启缓存-->
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
             </props>
         </property>
         <!--自动扫描注解方式配置的hibernate类文件-->
@@ -71,6 +76,7 @@
     <!--设置hibernateTemplate模版-->
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory" />
+        <property name="cacheQueries" value="true" />
     </bean>
 
     <!--配置事物管理器-->

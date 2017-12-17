@@ -42,10 +42,12 @@
           <element id="library" level="module" name="struts2-json-plugin-2.5.13.jar" module-name="hotel" />
           <element id="library" level="module" name="struts2-spring-plugin-2.5.13.jar" module-name="hotel" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/struts2-convention-plugin-2.5.13.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-6.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-5.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/asm-commons-5.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/fastjson-1.2.41.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/hibernate-ehcache-5.2.12.Final.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/slf4j-api-1.7.25.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/ehcache-2.10.4.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="hotel/web/Web" />

@@ -3,12 +3,15 @@ package com.jiudian.room.entity;
 import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.booking.entity.Booking;
 import com.jiudian.core.base.BaseEntity;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "room")
 public class Room extends BaseEntity {
     private static final long serialVersionUID = 1L;
