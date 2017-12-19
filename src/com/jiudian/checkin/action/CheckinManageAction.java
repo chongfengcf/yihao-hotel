@@ -1,6 +1,7 @@
 package com.jiudian.checkin.action;
 
 import com.jiudian.checkin.service.CheckinManageService;
+import com.jiudian.customer.entity.Customer;
 import com.jiudian.room.entity.Room;
 import com.jiudian.room.service.RoomManageService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -12,6 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @ParentPackage("struts-default")
@@ -33,6 +37,7 @@ public class CheckinManageAction extends ActionSupport {
     private String[] customerPhone;
     private String[] customerSex;
     private String notes;
+    private String vipphone;
 
     /**
      * 显示所有可入住的房间
@@ -60,7 +65,19 @@ public class CheckinManageAction extends ActionSupport {
     @Action(value = "/sys/checkin/addcheckin",
             results = {@Result(name = "addcheckin", location = "/sys/ok.jsp")})
     public String addcheckin() {
-        System.out.println(customerName.length);
+
+        //将customer组合成列表
+        List<Customer> customers = new ArrayList<>();
+        for(int i=0;i<customerName.length;i++) {
+            Customer temp = new Customer();
+            temp.setCustomerName(customerName[i]);
+            temp.setCustomerSex(customerSex[i]);
+            temp.setCustomerPhone(customerPhone[i]);
+            temp.setCustomerCard(customerCard[i]);
+            temp.setCustomerAddress(customerAddress[i]);
+            customers.add(temp);
+        }
+        checkinManageService.addcheckin(roomid, accesscardID, notes, vipphone, customers);
         return "addcheckin";
     }
 
@@ -94,5 +111,9 @@ public class CheckinManageAction extends ActionSupport {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void setVipphone(String vipphone) {
+        this.vipphone = vipphone;
     }
 }

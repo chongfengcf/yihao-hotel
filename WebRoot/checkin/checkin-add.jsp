@@ -50,6 +50,12 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">VIP手机号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="没有VIP就不填" name="vipphone">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-6 col-sm-6">
 				<textarea name="notes" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入2个字符" required></textarea>
