@@ -1,5 +1,6 @@
 package com.jiudian.room.entity;
 
+import com.jiudian.booking.entity.Booking;
 import com.jiudian.core.base.BaseEntity;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 
 @Entity
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "room_type")
 public class RoomType extends BaseEntity {
     /**
@@ -41,6 +42,9 @@ public class RoomType extends BaseEntity {
 
     @OneToMany(mappedBy = "roomTypeByRoomTypeId")
     private Collection<Room> roomsByRoomTypeId;
+
+    @OneToMany(mappedBy = "roomTypeByRoomTypeId")
+    private Collection<Booking> bookingsByRoomId;
 
     public String getRoomTypeName() {
         return roomTypeName;

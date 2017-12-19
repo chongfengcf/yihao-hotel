@@ -102,7 +102,6 @@ pageContext.setAttribute("basePath", basePath);
                           <label>房间类型</label>
                           <div class="theme-select">
                             <select id="roomtype" name="roomTypeId" class="form-control __plannerSelect">
-                              <option value="">选择房间类型</option>
                             </select>
                           </div>
                       </div>

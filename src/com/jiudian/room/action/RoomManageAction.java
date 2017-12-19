@@ -19,7 +19,7 @@ import java.io.IOException;
 @ParentPackage("struts-default")
 @Namespace("/")
 @Scope("prototype")
-public class RoomManageAction extends ActionSupport{
+public class RoomManageAction extends ActionSupport {
 
     @Autowired
     private RoomManageService roomManageService;

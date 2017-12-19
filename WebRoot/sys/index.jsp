@@ -108,7 +108,7 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 入住管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="product-brand.html" data-title="快速入住" href="javascript:void(0)">快速入住</a></li>
+                    <li><a data-href="${basePath}/sys/checkin/checkin.action" data-title="到店入住" href="javascript:void(0)">快速入住</a></li>
                 </ul>
             </dd>
         </dl>

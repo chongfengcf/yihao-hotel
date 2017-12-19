@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 
+import com.jiudian.room.entity.RoomType;
+import com.jiudian.room.service.RoomTypeManageService;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -35,9 +37,6 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 	
 	@Autowired
 	private CustomerService customerService;
-	
-	@Autowired
-	private RoomManageService roomManageService;
 	
 	@Autowired
 	private VipService vipService;
@@ -97,10 +96,14 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 	@Action(value = "/sys/booking/bookingRoom")
 	public void bookingRoom()
 	{
-		List<Room> list = roomManageService.findRoom(roomTypeId);
 		List<Vip> vipList = vipService.findVip(vipPhone);
-		Vip vip = vipList.get(0);
-		bookingService.saveBooking(booking,list,vip);
+		if(vipList.isEmpty()){
+
+		}
+		else {
+			Vip vip = vipList.get(0);
+			bookingService.saveBooking(booking, roomTypeId, vip);
+		}
 	}
 	
 }

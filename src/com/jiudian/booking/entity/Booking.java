@@ -1,7 +1,7 @@
 package com.jiudian.booking.entity;
 
 import com.jiudian.core.base.BaseEntity;
-import com.jiudian.room.entity.Room;
+import com.jiudian.room.entity.RoomType;
 import com.jiudian.vip.entity.Vip;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "booking")
 public class Booking extends BaseEntity{
     private static final long serialVersionUID = 1L;
@@ -28,8 +28,8 @@ public class Booking extends BaseEntity{
     private Vip vipByVipId;
 
     @ManyToOne
-    @JoinColumn(name = "roomID", referencedColumnName = "id")
-    private Room roomByRoomId;
+    @JoinColumn(name = "roomTypeID", referencedColumnName = "id")
+    private RoomType roomTypeByRoomTypeId;
 
     public Date getArrivalDate() {
         return arrivalDate;
@@ -55,12 +55,12 @@ public class Booking extends BaseEntity{
         this.vipByVipId = vipByVipId;
     }
 
-    public Room getRoomByRoomId() {
-        return roomByRoomId;
+    public RoomType getRoomTypeByRoomTypeId() {
+        return roomTypeByRoomTypeId;
     }
 
-    public void setRoomByRoomId(Room roomByRoomId) {
-        this.roomByRoomId = roomByRoomId;
+    public void setRoomTypeByRoomTypeId(RoomType roomTypeByRoomTypeId) {
+        this.roomTypeByRoomTypeId = roomTypeByRoomTypeId;
     }
 
     @Override

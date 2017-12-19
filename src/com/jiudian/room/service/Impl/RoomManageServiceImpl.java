@@ -7,7 +7,9 @@ import com.jiudian.core.base.BaseServiceImpl;
 import com.jiudian.room.dao.RoomDao;
 import com.jiudian.room.dao.RoomTypeDao;
 import com.jiudian.room.entity.Room;
+import com.jiudian.room.entity.RoomType;
 import com.jiudian.room.service.RoomManageService;
+import com.jiudian.room.service.RoomTypeManageService;
 import com.jiudian.room.vo.RoomVo;
 import com.jiudian.core.util.JsonReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +47,23 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
     @Override
     public void saveroom(String id, String roomName, String roomPhone, String roomTypeId, Double roomPrice, String roomAble, String notes) {
         Room room;
+        RoomType roomType;
+
         if("".equals(id)) {
             room = new Room();
         }
         else {
             room = get(id);
         }
-        room.setRoomTypeByRoomTypeId(roomTypeDao.get(roomTypeId));
+
+        if(roomTypeId==null) {
+            roomType = new RoomType();
+            roomType.setRoomTypeName("未分类");
+            roomTypeDao.save(roomType);
+        }else {
+            roomType = roomTypeDao.get(roomTypeId);
+        }
+        room.setRoomTypeByRoomTypeId(roomType);
         room.setRoomName(roomName);
         room.setRoomPhone(roomPhone);
         room.setRoomPrice(roomPrice);

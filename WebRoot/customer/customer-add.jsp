@@ -40,7 +40,7 @@ pageContext.setAttribute("basePath", basePath);
 		<article class="page-container">
 			<form action="${basePath}/sys/customer/save.action" method="post" class="form form-horizontal" id="form-member-add">
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+					<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<input type="text" class="input-text" value="" placeholder="" id="username" name="customerName">
 					</div>

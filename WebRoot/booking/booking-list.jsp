@@ -54,7 +54,7 @@ pageContext.setAttribute("basePath", basePath);
 						<tr class="text-c">
 							<td><input type="checkbox" value="1" name=""></td>
 							<td><s:property value="#c.id"/> </td>
-							<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<s:property value="#c.customerName"/>','${basePath}sys/custoemr/showMessage.action?id=<s:property value="#c.id"/>','<s:property value="#c.id"/>','360','400')"><s:property value="#c.vipByVipId.customersByVipId[0].customerName"/></u></td>
+							<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<s:property value="#c.customerName"/>','${basePath}sys/custoemr/showMessage.action?id=<s:property value="#c.vipByVipId.customersByVipId[0].id"/>','<s:property value="#c.id"/>','360','400')"><s:property value="#c.vipByVipId.customersByVipId[0].customerName"/></u></td>
 							<td><s:property value="#c.vipByVipId.customersByVipId[0].customerSex"/></td>
 							<td><s:property value="#c.vipByVipId.phone"/> </td>
 							<td><s:property value="#c.vipByVipId.customersByVipId[0].customerCard"/> </td>

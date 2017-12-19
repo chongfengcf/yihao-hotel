@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "customer")
 public class Customer extends BaseEntity {
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class Customer extends BaseEntity {
     @Column(name = "customerAddress")
     private String customerAddress;
 
-    @Column(name = "customerCard")
+    @Column(name = "customerCard", unique = true)
     private String customerCard;
 
     @Column(name = "customerSex")

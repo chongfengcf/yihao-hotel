@@ -57,7 +57,6 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
             temp.setRoomTypeByRoomTypeId(null);
         }
     }
-
     @Override
     public BaseDao<RoomType> getBaseDao() {
         return roomTypeDao;

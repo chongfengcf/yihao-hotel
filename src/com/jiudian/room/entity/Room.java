@@ -1,7 +1,6 @@
 package com.jiudian.room.entity;
 
 import com.jiudian.checkin.entity.Checkin;
-import com.jiudian.booking.entity.Booking;
 import com.jiudian.core.base.BaseEntity;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,7 +10,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "room")
 public class Room extends BaseEntity {
     private static final long serialVersionUID = 1L;
@@ -36,9 +35,6 @@ public class Room extends BaseEntity {
 
     @OneToMany(mappedBy = "roomByRoomId")
     private Collection<Checkin> checkinsByRoomId;
-
-    @OneToMany(mappedBy = "roomByRoomId")
-    private Collection<Booking> bookingsByRoomId;
 
     @ManyToOne
     @JoinColumn(name = "roomTypeId", referencedColumnName = "id")
@@ -110,14 +106,6 @@ public class Room extends BaseEntity {
 
     public void setRoomAble(String roomAble) {
         this.roomAble = roomAble;
-    }
-
-    public Collection<Booking> getBookingsByRoomId() {
-        return bookingsByRoomId;
-    }
-
-    public void setBookingsByRoomId(Collection<Booking> bookingsByRoomId) {
-        this.bookingsByRoomId = bookingsByRoomId;
     }
 
     @Override
