@@ -55,10 +55,6 @@
 	<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="pay">结账</a>
 </script>
 
-<script type="text/html" id="usernameTpl">
-	<a onclick="member_show('','${basePath}/sys/checkin/getOneRoomCustomers.action?id={{ d.id }}','','360','400')" class="layui-table-link">点击查看</a>
-</script>
-
 <script type="text/javascript">
     layui.use('table', function(){
         var table = layui.table
