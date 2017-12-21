@@ -108,7 +108,7 @@
     <!-- 配置事务切面 -->
 <!--    <aop:config>
         <aop:pointcut expression="execution(* com.jiudian.core.base.BaseServiceImpl.*(..))" id="baseServiceOperation"/>
-        <aop:pointcut expression="execution(* com.jiudian..*.service.impl.*ServiceImpl.*(..))" id="serviceOperation"/>
+        <aop:pointcut expression="execution(* com.jiudian..*.service.Impl.*ServiceImpl.*(..))" id="serviceOperation"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="baseServiceOperation"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
     </aop:config>-->

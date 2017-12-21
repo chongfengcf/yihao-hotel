@@ -57,7 +57,7 @@ layui.use('table', function(){
 	table.render({
 		elem: '#room'
 		,height: 480
-		,url: '${basePath}/sys/room/findAllRoom.action' //数据接口
+		,url: '${basePath}/sys/room/findNullRoom.action' //数据接口
 		,page: true //开启分页
         ,id: 'roomtable'
 		,cols: [[ //表头

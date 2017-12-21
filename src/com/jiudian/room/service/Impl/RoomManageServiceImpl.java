@@ -51,6 +51,7 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
 
         if("".equals(id)) {
             room = new Room();
+            room.setRoomState("空房");
         }
         else {
             room = get(id);
@@ -69,7 +70,6 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
         room.setRoomPrice(roomPrice);
         room.setRoomAble(roomAble);
         room.setNotes(notes);
-        room.setRoomState("空房");
         saveOrUpdate(room);
     }
 
@@ -77,6 +77,46 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
     public List<Room> findRoom(String parameter) {
         List<Room> list = roomDao.findBySql("select * from room where roomTypeId = ?0 order by roomAble desc",parameter);
         return list;
+    }
+
+    @Override
+    public String nullroomPagination(int page, int limit) {
+        JsonReturn jsonReturn = new JsonReturn();
+        List<Room> rooms = pagingBySql("SELECT * FROM room WHERE roomState=?0 ORDER BY roomName", (page-1)*10, limit, "空房");
+        List<RoomVo> roomVos = new ArrayList<>();
+        for(Room temp : rooms) {
+            roomVos.add(new RoomVo(temp));
+        }
+        jsonReturn.setData(roomVos);
+        jsonReturn.setCount(rooms.size());
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
+    }
+
+    @Override
+    public String getonetyperooms(String roomtypeid) {
+        JsonReturn jsonReturn = new JsonReturn();
+        List<RoomVo> roomVos = new ArrayList<>();
+        List<Room> rooms = roomDao.getonetyperooms(roomtypeid);
+        for(Room temp : rooms) {
+            roomVos.add(new RoomVo(temp));
+        }
+        jsonReturn.setData(roomVos);
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
+    }
+
+    @Override
+    public String getnullrooms() {
+        JsonReturn jsonReturn = new JsonReturn();
+        List<RoomVo> roomVos = new ArrayList<>();
+        List<Room> rooms = roomDao.getnullrooms();
+        for(Room temp : rooms) {
+            roomVos.add(new RoomVo(temp));
+        }
+        jsonReturn.setData(roomVos);
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.jiudian.room.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.core.base.BaseEntity;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -34,6 +35,7 @@ public class Room extends BaseEntity {
     private String notes;
 
     @OneToMany(mappedBy = "roomByRoomId")
+    @JSONField(serialize = false)
     private Collection<Checkin> checkinsByRoomId;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.jiudian.sys.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.bill.entity.Bill;
 import com.jiudian.core.base.BaseEntity;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -53,6 +54,7 @@ public class SysUser extends BaseEntity{
     private int able;
 
     @OneToMany(mappedBy = "sysUserBySysUserId")
+    @JSONField(serialize = false)
     private Collection<Bill> billsBySysuserId;
 
     public String getLoginId() {

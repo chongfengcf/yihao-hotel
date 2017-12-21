@@ -70,6 +70,14 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		return "findAll";
 	}
 
+	@Action(value = "/sys/booking/bookchecking",results = {@Result(name = "bookchecking",location = "/booking/booking-checkin.jsp")})
+	public String bookchecking()
+	{
+		List<Booking> list = bookingService.getAll();
+		ActionContext.getContext().getValueStack().set("list", list);
+		return "bookchecking";
+	}
+
 	@Action(value = "/sys/booking/edit",results = {@Result(name = "edit",location = "/booking/booking-edit.jsp")})
 	public String edit()
 	{

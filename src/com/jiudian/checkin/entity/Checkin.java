@@ -1,5 +1,6 @@
 package com.jiudian.checkin.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.bill.entity.Bill;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.room.entity.Room;
@@ -36,9 +37,11 @@ public class Checkin extends BaseEntity {
     private Room roomByRoomId;
 
     @OneToMany(mappedBy = "checkinByCheckinId")
+    @JSONField(serialize = false)
     private Collection<Bill> billsByRoomId;
 
     @OneToMany(mappedBy = "checkinByCheckinId")
+    @JSONField(serialize = false)
     private Collection<CustomerCheckin> customerCheckinsById;
 
     public Date getArrivalDate() {

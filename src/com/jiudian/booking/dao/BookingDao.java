@@ -12,7 +12,7 @@ import java.util.Date;
 public class BookingDao extends BaseDao<Booking> {
 
     public int bookingNum(Date arrivalDate, RoomType roomType) {
-        String hql = "SELECT count(*) FROM Booking b WHERE b.arrivalDate=? AND roomTypeByRoomTypeId=?";
+        String hql = "SELECT count(*) FROM Booking b WHERE b.arrivalDate=? AND b.roomTypeByRoomTypeId=?";
         Long count = (Long) this.getHibernateTemplate().find(hql, arrivalDate, roomType).listIterator().next();
         return count.intValue();
     }

@@ -1,5 +1,6 @@
 package com.jiudian.customer.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.checkin.entity.CustomerCheckin;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.vip.entity.Vip;
@@ -38,6 +39,7 @@ public class Customer extends BaseEntity {
     private Vip vipByVipId;
 
     @OneToMany(mappedBy = "customerByCustomerId")
+    @JSONField(serialize = false)
     private Collection<CustomerCheckin> customerCheckinsById;
 
     public String getCustomerName() {

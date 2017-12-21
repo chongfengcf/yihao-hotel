@@ -1,7 +1,6 @@
-package com.jiudian.booking.service.impl;
+package com.jiudian.booking.service.Impl;
 
 import java.util.Date;
-import java.util.List;
 
 import com.jiudian.room.dao.RoomTypeDao;
 import com.jiudian.room.entity.RoomType;

@@ -30,45 +30,37 @@ pageContext.setAttribute("basePath", basePath);
 		<title>用户查看</title>
 	</head>
 	<body>
+	<s:iterator value="#customers" status="n">
 		<div class="cl pd-20" style=" background-color:#5bacb6">
-			<img class="avatar size-XL l" src="${basePath}/static/h-ui/images/ucnter/avatar-default.jpg">
-			<dl style="margin-left:80px; color:#fff">
-				<dt>
-					<span class="f-18"><s:property value="%{model.customerName}"/> </span>
-				</dt>
-				<dd class="pt-10 f-12" style="margin-left:0">黄金VIP，终身会员</dd>
-			</dl>
+			<div class="text-c">第<s:property value="#n.index+1" />位住客</div>
 		</div>
 		<div class="pd-20">
 			<table class="table">
 				<tbody>
 					<tr>
 						<th class="text-r" width="80">性别：</th>
-						<td><s:property value="%{model.customerSex}"/> </td>
+						<td><s:property value="%{customerSex}"/> </td>
 					</tr>
 					<tr>
 						<th class="text-r">手机：</th>
-						<td><s:property value="%{model.customerPhone}"/> </td>
+						<td><s:property value="%{customerPhone}"/> </td>
 					</tr>
 					<tr>
 						<th class="text-r">地址：</th>
-						<td><s:property value="%{model.customerAddress}"/> </td>
+						<td><s:property value="%{customerAddress}"/> </td>
 					</tr>
 					<tr>
 						<th class="text-r">身份证：</th>
-						<td><s:property value="%{model.customerCard}"/> </td>
-					</tr>
-					<tr>
-						<th class="text-r">注册时间：</th>
-						<td>2014.12.20</td>
+						<td><s:property value="%{customerCard}"/> </td>
 					</tr>
 					<tr>
 						<th class="text-r">备注：</th>
-						<td><s:property value="%{model.notes}"/></td>
+						<td><s:property value="%{notes}"/></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+	</s:iterator>
 		<!--_footer 作为公共模版分离出去-->
 		<script type="text/javascript" src="${basePath}/lib/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="${basePath}/lib/layer/2.4/layer.js"></script>

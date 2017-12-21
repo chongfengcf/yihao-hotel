@@ -1,4 +1,4 @@
-package com.jiudian.vip.service.impl;
+package com.jiudian.vip.service.Impl;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
-import com.jiudian.customer.dao.CustomerDao;
 import com.jiudian.customer.entity.Customer;
 import com.jiudian.vip.dao.VipDao;
 import com.jiudian.vip.entity.Vip;
@@ -17,7 +16,7 @@ import com.jiudian.vip.service.VipService;
 
 @Service("vipService")
 @Transactional
-public class VipServiceImpl extends BaseServiceImpl<Vip> implements VipService{
+public class VipServiceImpl extends BaseServiceImpl<Vip> implements VipService {
 
 	@Autowired
 	private VipDao vipDao;

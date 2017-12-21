@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 pageContext.setAttribute("basePath", basePath);
 %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="S" uri="/struts-tags" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -45,7 +46,7 @@ pageContext.setAttribute("basePath", basePath);
 						<th width="">会员积分</th>
 						<th width="">预定时间</th>
 						<th width="">预计到达时间</th>
-						<th width="100">操作</th>
+						<th width="100">入住</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,7 +62,7 @@ pageContext.setAttribute("basePath", basePath);
 							<td><s:property value="#c.vipByVipId.vipCredit"/> </td>
 							<td><s:property value="#c.bookingDate"/></td>
 							<td><s:property value="#c.arrivalDate"/></td>
-							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','${basePath}/sys/booking/edit.action?id=<s:property value="#c.id"/>','4','400','200')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del('<s:property value="#c.id"/>')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="td-manage"><a title="入住" href="javascript:;" onclick="member_edit('编辑','${basePath}/sys/checkin/bookingcheckin.action?vipphone=<s:property value="#c.vipByVipId.phone" />&roomtypeid=<s:property value="#c.roomTypeByRoomTypeId.id" />&bookingid=<S:property value="#c.id" />','4','400','200')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe604;</i></a> </td>
 						</tr>
 					</s:iterator>
 				</tbody>
@@ -90,68 +91,13 @@ pageContext.setAttribute("basePath", basePath);
 			});
 			
 		});
-		/*添加*/
-		function member_add(title,url,w,h){
-			layer.open({
-			type: 2,
-			area: [w+'px', h +'px'],
-			fix: false, //不固定
-			maxmin: true,
-			shade:0.4,
-			title: title,
-			content: url,
-			end:function()
-			{
-				location.reload("${basePage}sys/customer/findAllCustomer.action");
-			}
-		});
-		}
 		/*查看*/
 		function member_show(title,url,id,w,h){
 			layer_show(title,url,w,h);
 		}
-		/*停用*/
-		function member_stop(obj,id){
-			layer.confirm('确认要停用吗？',function(index){
-				$.ajax({
-					type: 'POST',
-					url: '',
-					dataType: 'json',
-					success: function(data){
-						$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-						$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-						$(obj).remove();
-						layer.msg('已停用!',{icon: 5,time:1000});
-					},
-					error:function(data) {
-						console.log(data.msg);
-					},
-				});		
-			});
-		}
-		
-		/*启用*/
-		function member_start(obj,id){
-			layer.confirm('确认要启用吗？',function(index){
-				$.ajax({
-					type: 'POST',
-					url: '',
-					dataType: 'json',
-					success: function(data){
-						$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-						$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-						$(obj).remove();
-						layer.msg('已启用!',{icon: 6,time:1000});
-					},
-					error:function(data) {
-						console.log(data.msg);
-					},
-				});
-			});
-		}
 		/*编辑*/
 		function member_edit(title,url,id,w,h){
-			layer.open({
+			var index = layer.open({
 			type: 2,
 			area: [w+'px', h +'px'],
 			fix: false, //不固定
@@ -161,19 +107,10 @@ pageContext.setAttribute("basePath", basePath);
 			content: url,
 			end:function()
 			{
-				location.reload("${basePage}/sys/booking/findAll.action");
+				location.reload("${basePage}/sys/booking/bookchecking.action");
 			}
 		});
-		}
-		/*密码-修改*/
-		function change_password(title,url,id,w,h){
-			layer_show(title,url,w,h);	
-		}
-		/*删除*/
-		function member_del(id){
-			layer.confirm('确认要删除吗？',function(){
-				location.href="${basePath}/sys/booking/delete.action?id="+id;
-			});
+		layer.full(index)
 		}
 		</script> 
 	</body>

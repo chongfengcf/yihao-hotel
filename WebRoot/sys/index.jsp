@@ -30,12 +30,12 @@
     <script type="text/javascript" src="${basePath}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>H-ui.admin v3.1</title>
+    <title>一豪酒店后台</title>
 </head>
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="#">酒店管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="#">酒店管理系统</a>
+        <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="#">一豪酒店管理</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="#">酒店管理系统</a>
             <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
@@ -97,7 +97,7 @@
             </dd>
         </dl>
         <dl id="menu-booking">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 预定管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe603;</i> 预定管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="${basePath}/sys/booking/findAll.action" data-title="预定管理" href="javascript:void(0)">预定管理</a></li>
@@ -108,12 +108,14 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 入住管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="${basePath}/sys/checkin/checkin.action" data-title="到店入住" href="javascript:void(0)">快速入住</a></li>
+                    <li><a data-href="${basePath}/sys/checkin/checkin.action" data-title="到店入住" href="javascript:void(0)">到店入住</a></li>
+                    <li><a data-href="${basePath}/sys/booking/bookchecking.action" data-title="预定入住" href="javascript:void(0)">预定入住</a></li>
+                    <li><a data-href="${basePath}/sys/checkin/allcheckin.action" data-title="入住管理" href="javascript:void(0)">入住管理</a></li>
                 </ul>
             </dd>
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe6b4;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="${basePath}/sys/vip/findAll.action" data-title="会员列表" href="javascript:;">会员列表</a></li>
@@ -121,23 +123,17 @@
             </dd>
         </dl>
         <dl id="menu-comment">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe6b3;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li><a data-href="${basePath}/sys/comment/comment.action" data-title="评论管理" href="javascript:void(0)">评论管理</a></li>
             </dd>
         </dl>
         <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe6b5;</i> 账单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>
-                    <li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>
-                    <li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>
-                    <li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
-                    <li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>
-                    <li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>
-                    <li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li>
+                    <li><a data-href="charts-1.html" data-title="账单管理" href="javascript:void(0)">账单管理</a></li>
                 </ul>
             </dd>
         </dl>

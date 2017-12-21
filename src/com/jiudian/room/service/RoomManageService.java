@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface RoomManageService extends BaseService<Room>{
     public String roomPagination(int page, int limit);
-
     public void saveroom(String id, String roomName, String roomPhone, String roomTypeId, Double roomPrice, String roomAble, String notes);
-
     public List<Room> findRoom(String parameter);
+    public String nullroomPagination(int page, int limit);
+    public String getonetyperooms(String roomtypeid);
+    public String getnullrooms();
 }

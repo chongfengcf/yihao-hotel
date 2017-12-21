@@ -1,5 +1,6 @@
 package com.jiudian.vip.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.booking.entity.Booking;
 import com.jiudian.comment.entity.Comment;
@@ -44,15 +45,19 @@ public class Vip extends BaseEntity {
     private int nums;
 
     @OneToMany(mappedBy = "vipByVipId")
+    @JSONField(serialize = false)
     private Collection<Checkin> checkinsByVipId;
 
     @OneToMany(mappedBy = "vipByVipId")
+    @JSONField(serialize = false)
     private Collection<Customer> customersByVipId;
 
     @OneToMany(mappedBy = "vipByVipId")
+    @JSONField(serialize = false)
     private Collection<Booking> bookingsByVipId;
 
     @OneToMany(mappedBy = "vipByVipId")
+    @JSONField(serialize = false)
     private Collection<Comment> commentsByVipId;
 
 

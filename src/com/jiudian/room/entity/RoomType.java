@@ -1,5 +1,6 @@
 package com.jiudian.room.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.booking.entity.Booking;
 import com.jiudian.core.base.BaseEntity;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -41,9 +42,11 @@ public class RoomType extends BaseEntity {
     private String roomTypeUrl;
 
     @OneToMany(mappedBy = "roomTypeByRoomTypeId")
+    @JSONField(serialize = false)
     private Collection<Room> roomsByRoomTypeId;
 
     @OneToMany(mappedBy = "roomTypeByRoomTypeId")
+    @JSONField(serialize = false)
     private Collection<Booking> bookingsByRoomId;
 
     public String getRoomTypeName() {

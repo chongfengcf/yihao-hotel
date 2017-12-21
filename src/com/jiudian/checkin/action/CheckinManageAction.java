@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,9 @@ public class CheckinManageAction extends ActionSupport {
     @Autowired
     private RoomManageService roomManageService;
 
+
     private String roomid;
+    private String checkinid;
     private String accesscardID;
     private String[] customerAddress;
     private String[] customerCard;
@@ -38,6 +41,10 @@ public class CheckinManageAction extends ActionSupport {
     private String[] customerSex;
     private String notes;
     private String vipphone;
+    private String roomtypeid;
+    private String bookingid;
+    private int page;
+    private int limit;
 
     /**
      * 显示所有可入住的房间
@@ -46,6 +53,15 @@ public class CheckinManageAction extends ActionSupport {
             results = {@Result(name = "index", location = "/checkin/select-room.jsp")})
     public String index() {
         return "index";
+    }
+
+    /**
+     * 显示所有入住记录
+     * */
+    @Action(value = "/sys/checkin/allcheckin",
+            results = {@Result(name = "allcheckin", location = "/checkin/checkin.jsp")})
+    public String allcheckin() {
+        return "allcheckin";
     }
 
     /**
@@ -60,15 +76,55 @@ public class CheckinManageAction extends ActionSupport {
     }
 
     /**
-     * 新增入住信息
+     * 新增到店入住信息
      * */
     @Action(value = "/sys/checkin/addcheckin",
-            results = {@Result(name = "addcheckin", location = "/sys/ok.jsp")})
+            results = {@Result(name = "addcheckin", location = "/sys/ok.jsp"),
+                        @Result(name = "fullroom", location = "/checkin/fullroom.jsp")})
     public String addcheckin() {
 
+        if(checkinManageService.ablecheckin(roomid)) {
+            //将customer组合成列表
+            List<Customer> customers = new ArrayList<>();
+            for (int i = 0; i < customerName.length; i++) {
+                Customer temp = new Customer();
+                temp.setCustomerName(customerName[i]);
+                temp.setCustomerSex(customerSex[i]);
+                temp.setCustomerPhone(customerPhone[i]);
+                temp.setCustomerCard(customerCard[i]);
+                temp.setCustomerAddress(customerAddress[i]);
+                customers.add(temp);
+            }
+
+            checkinManageService.addcheckin(roomid, accesscardID, notes, vipphone, customers);
+            return "addcheckin";
+        }
+        else {
+            return "fullroom";
+        }
+    }
+
+    /**
+     * 跳转到预定入住页面
+     * */
+    @Action(value = "/sys/checkin/bookingcheckin",
+            results = {@Result(name = "bookingcheckin", location = "/checkin/bookingcheckin-add.jsp")})
+    public String bookingcheckin() {
+        ServletActionContext.getContext().put("vipphone", vipphone);
+        ServletActionContext.getContext().put("roomTypeId", roomtypeid);
+        ServletActionContext.getContext().put("bookingid", bookingid);
+        return "bookingcheckin";
+    }
+
+    /**
+     * 新增预定入住
+     * */
+    @Action(value = "/sys/checkin/addbookingcheckin",
+            results = {@Result(name = "addbookingcheckin", location = "/sys/ok.jsp")})
+    public String addbookingcheckin() {
         //将customer组合成列表
         List<Customer> customers = new ArrayList<>();
-        for(int i=0;i<customerName.length;i++) {
+        for (int i = 0; i < customerName.length; i++) {
             Customer temp = new Customer();
             temp.setCustomerName(customerName[i]);
             temp.setCustomerSex(customerSex[i]);
@@ -78,7 +134,43 @@ public class CheckinManageAction extends ActionSupport {
             customers.add(temp);
         }
         checkinManageService.addcheckin(roomid, accesscardID, notes, vipphone, customers);
-        return "addcheckin";
+        checkinManageService.delbooking(bookingid);
+        return "addbookingcheckin";
+    }
+
+    /**
+     * 评论分页返回json
+     *
+     */
+    @Action(value = "/sys/checkin/checkinlist")
+    public void checkinlist() throws IOException {
+        String jsonstring = this.checkinManageService.checkinPagination(page, limit);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 跳转到换房页面
+     * */
+    @Action(value = "/sys/checkin/exchange",
+            results = {@Result(name = "exchange", location = "/checkin/exchange.jsp")})
+    public String exchange() {
+        ServletActionContext.getContext().put("checkinid", checkinid);
+        return "exchange";
+    }
+
+    /**
+     * 提交换房信息
+     * */
+    @Action(value = "/sys/checkin/updateexchange",
+            results = {@Result(name = "updateexchange", location = "/sys/ok.jsp")})
+    public String updateexchange() {
+        checkinManageService.updateexchange(checkinid, roomid);
+        return "updateexchange";
+    }
+
+    public void setCheckinid(String checkinid) {
+        this.checkinid = checkinid;
     }
 
     public void setRoomid(String roomid) {
@@ -115,5 +207,21 @@ public class CheckinManageAction extends ActionSupport {
 
     public void setVipphone(String vipphone) {
         this.vipphone = vipphone;
+    }
+
+    public void setRoomtypeid(String roomtypeid) {
+        this.roomtypeid = roomtypeid;
+    }
+
+    public void setBookingid(String bookingid) {
+        this.bookingid = bookingid;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

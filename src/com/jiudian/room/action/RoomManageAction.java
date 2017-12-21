@@ -55,6 +55,17 @@ public class RoomManageAction extends ActionSupport {
     }
 
     /**
+     * 分页返回空房json
+     *
+     */
+    @Action(value = "/sys/room/findNullRoom")
+    public void findNullRoom() throws IOException {
+        String jsonstring = this.roomManageService.nullroomPagination(page, limit);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
      * 保存或新增房间类型
      * */
     @Action(value = "/sys/room/saveroom",
@@ -110,6 +121,28 @@ public class RoomManageAction extends ActionSupport {
             ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
             ServletActionContext.getResponse().getWriter().write(jsonReturn.tojson());
         }
+    }
+
+    /**
+     * 返回一种房型所有空房的json
+     *
+     */
+    @Action(value = "/sys/room/getonetyperooms")
+    public void getonetyperooms() throws IOException {
+        String jsonstring = this.roomManageService.getonetyperooms(roomTypeId);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 返回所有空房的json
+     *
+     */
+    @Action(value = "/sys/room/getnullrooms")
+    public void getnullrooms() throws IOException {
+        String jsonstring = this.roomManageService.getnullrooms();
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
     }
 
     public void setLimit(int limit) {
