@@ -1,5 +1,6 @@
 package com.jiudian.checkin.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.customer.entity.Customer;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -15,10 +16,12 @@ public class CustomerCheckin extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "customerID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Customer customerByCustomerId;
 
     @ManyToOne
     @JoinColumn(name = "checkinID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Checkin checkinByCheckinId;
 
     public Customer getCustomerByCustomerId() {

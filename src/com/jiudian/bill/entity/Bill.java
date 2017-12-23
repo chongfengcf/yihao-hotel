@@ -1,5 +1,6 @@
 package com.jiudian.bill.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.sys.entity.SysUser;
@@ -27,10 +28,12 @@ public class Bill extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "checkinID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Checkin checkinByCheckinId;
 
     @ManyToOne
     @JoinColumn(name = "loginId", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private SysUser sysUserBySysUserId;
 
     public Date getDepartureDate() {

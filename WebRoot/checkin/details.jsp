@@ -30,13 +30,13 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 
-<title>账单管理</title>
+<title>正在入住</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 账单管理 <span class="c-gray en">&gt;</span> 账单管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 账单管理 <span class="c-gray en">&gt;</span> 入住详情 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="mt-20">
-		<table id="bill" lay-filter="test"></table>
+		<table id="checkin" lay-filter="test"></table>
 	</div>
 </div>
 
@@ -50,40 +50,43 @@
 
 <script type="text/javascript" src="${basePath}/lib/layui/layui.js"></script>
 
+<script type="text/html" id="checkboxTpl">
+	{{ d.ispay == "1" ? '<span class="label label-primary radius">历史入住</span>' : '<span class="label label-default radius">正在入住</span>' }}
+</script>
+
 <script type="text/html" id="usernameTpl">
-	<a onclick="detailsshow('${basePath}/sys/checkin/checkindetails.action?checkinid={{ d.checkinid }}')" class="layui-table-link">点击查看</a>
+	<a onclick="member_show('','${basePath}/sys/checkin/getOneRoomCustomers.action?id={{ d.id }}','','360','400')" class="layui-table-link">点击查看</a>
 </script>
 
 <script type="text/javascript">
-    layui.use('table', function(){
+
+    layer.ready(function(){
+        layui.use('table', function(){
         var table = layui.table
             ,form = layui.form;
         table.render({
-            elem: '#bill'
+            elem: '#checkin'
             ,height: 480
-            ,url: '${basePath}/sys/bill/findBill.action' //数据接口
+            ,url: '${basePath}/sys/checkin/onecheckin.action?checkinid=<s:property value="#checkinid" />' //数据接口
             ,page: true //开启分页
             ,id: 'checkintable'
             ,cols: [[ //表头
                 {field: 'id', title: 'ID', width:'10%', sort: true, unresize:true}
-                ,{field: 'arrivalDate', title: '到达日期', width:'20%', sort:true, unresize:true}
-                ,{field: 'departureDate', title: '离开日期', width:'20%', sort:true, unresize:true}
-                ,{field: 'days', title: '入住天数', width:'20%', sort: true, unresize:true}
-                ,{ title: '入住信息', width:'20%', sort:true, templet: '#usernameTpl', unresize:true}
-                ,{field: 'totalCosts', title: '总共花费', width:'10%', sort:true, unresize:true}
+				,{field: 'accesscardId', title: '房卡号', width:'10%', sort: true, unresize:true}
+                ,{field: 'roomname', title: '房间名称', width:'10%', sort:true, unresize:true}
+                ,{ title: '入住信息', width:'10%', sort:true, templet: '#usernameTpl', unresize:true}
+                ,{field: 'arrivalDate', title: '入住时间', width:'15%', sort:true, unresize:true}
+                ,{field: 'vipphone', title: '会员号码', width:'15%', sort:true, unresize:true}
+                ,{field: 'notes', title: '备注', width:'20%', unresize:true}
+                ,{title: '状态', width: '10%', templet: '#checkboxTpl', sort:true,unresize:true}
             ]]
         });
     });
 
+    });
 
-    function detailsshow(title){
-        layer.open({
-            type: 2,
-            area: ['100%', '100%'],
-            title: "查看详情",
-            content: title,
-            anim: 5,
-        });
+    function member_show(title,url,id,w,h){
+        layer_show(title,url,w,h);
     }
 </script>
 </body>

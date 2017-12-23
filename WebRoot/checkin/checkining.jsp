@@ -50,8 +50,9 @@
 
 <script type="text/javascript" src="${basePath}/lib/layui/layui.js"></script>
 
-<script type="text/html" id="checkboxTpl">
-	{{ d.ispay == "1" ? '<span class="label label-primary radius">历史入住</span>' : '<span class="label label-default radius">正在入住</span>' }}
+<script type="text/html" id="bar">
+	<a class="layui-btn layui-btn-mini" lay-event="edit">换房</a>
+	<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="pay">结账</a>
 </script>
 
 <script type="text/html" id="usernameTpl">
@@ -65,7 +66,7 @@
         table.render({
             elem: '#checkin'
             ,height: 480
-            ,url: '${basePath}/sys/checkin/checkinlist.action' //数据接口
+            ,url: '${basePath}/sys/checkin/checkininglist.action' //数据接口
             ,page: true //开启分页
             ,id: 'checkintable'
             ,cols: [[ //表头
@@ -75,10 +76,48 @@
                 ,{ title: '入住信息', width:'10%', sort:true, templet: '#usernameTpl', unresize:true}
                 ,{field: 'arrivalDate', title: '入住时间', width:'15%', sort:true, unresize:true}
                 ,{field: 'vipphone', title: '会员号码', width:'15%', sort:true, unresize:true}
-                ,{field: 'notes', title: '备注', width:'20%', unresize:true}
-                ,{title: '状态', width: '10%', templet: '#checkboxTpl', sort:true,unresize:true}
+                ,{field: 'notes', title: '备注', width:'10%', unresize:true}
+                ,{ title: '入住管理', width:'20%', toolbar: '#bar'}
             ]]
         });
+
+        //监听工具条
+        table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+            if(layEvent === 'detail'){ //查看
+                //do somehing
+            } else if(layEvent === 'pay'){ //删除
+                layer.confirm('真的要结算吗', function(index){
+                        $.ajax({
+                            type : "post",
+                            url : "${basePath}/sys/bill/payBill.action",
+                            data : {
+                                "checkinid" : data.id,
+                            },
+                            dataType : "json",
+                            success : function(data) {
+                                if(data.msg=="success") {
+                                    layer.alert("入住日期:"+data.data[0].arrivalDate+"<br />离开日期:"+data.data[0].departureDate+"<br />入住天数:"+data.data[0].days+"<br />需要支付:"+data.data[0].totalCosts,function () {
+                                        window.location.href="${basePath}/sys/bill/bill.action";
+                                    })
+                                }
+                                else {
+                                    alert("用户名密码错误！")
+                                }
+                            },
+                            error : function() {
+                                alert("系统异常请稍后重试");
+                            }
+                        })
+                });
+            } else if(layEvent === 'edit'){ //编辑
+                //do something
+                layer_show("入住换房", "${basePath}/sys/checkin/exchange.action?checkinid="+data.id, "500", "300");
+            }
+        });
+
     });
 
 

@@ -1,5 +1,6 @@
 package com.jiudian.booking.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.room.entity.RoomType;
 import com.jiudian.vip.entity.Vip;
@@ -25,10 +26,12 @@ public class Booking extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "vipPhone", referencedColumnName = "phone")
+    @JSONField(serialize = false)
     private Vip vipByVipId;
 
     @ManyToOne
     @JoinColumn(name = "roomTypeID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private RoomType roomTypeByRoomTypeId;
 
     public Date getArrivalDate() {

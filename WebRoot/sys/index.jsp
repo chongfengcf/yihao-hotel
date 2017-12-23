@@ -110,7 +110,16 @@
                 <ul>
                     <li><a data-href="${basePath}/sys/checkin/checkin.action" data-title="到店入住" href="javascript:void(0)">到店入住</a></li>
                     <li><a data-href="${basePath}/sys/booking/bookchecking.action" data-title="预定入住" href="javascript:void(0)">预定入住</a></li>
+                    <li><a data-href="${basePath}/sys/checkin/checkining.action" data-title="正在入住" href="javascript:void(0)">正在入住</a></li>
                     <li><a data-href="${basePath}/sys/checkin/allcheckin.action" data-title="入住管理" href="javascript:void(0)">入住管理</a></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl id="menu-bill">
+            <dt><i class="Hui-iconfont">&#xe6b5;</i> 账单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a data-href="${basePath}/sys/bill/bill.action" data-title="账单管理" href="javascript:void(0)">账单管理</a></li>
                 </ul>
             </dd>
         </dl>
@@ -127,14 +136,6 @@
             <dd>
                 <ul>
                     <li><a data-href="${basePath}/sys/comment/comment.action" data-title="评论管理" href="javascript:void(0)">评论管理</a></li>
-            </dd>
-        </dl>
-        <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe6b5;</i> 账单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="charts-1.html" data-title="账单管理" href="javascript:void(0)">账单管理</a></li>
-                </ul>
             </dd>
         </dl>
         <dl id="menu-druid">

@@ -65,6 +65,15 @@ public class CheckinManageAction extends ActionSupport {
     }
 
     /**
+     * 显示正在入住记录
+     * */
+    @Action(value = "/sys/checkin/checkining",
+            results = {@Result(name = "checkining", location = "/checkin/checkining.jsp")})
+    public String checkining() {
+        return "checkining";
+    }
+
+    /**
      * 跳转到办理入住页面
      * */
     @Action(value = "/sys/checkin/firstcheckin",
@@ -139,7 +148,7 @@ public class CheckinManageAction extends ActionSupport {
     }
 
     /**
-     * 评论分页返回json
+     * 分页返回入住json
      *
      */
     @Action(value = "/sys/checkin/checkinlist")
@@ -147,6 +156,39 @@ public class CheckinManageAction extends ActionSupport {
         String jsonstring = this.checkinManageService.checkinPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
         ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 分页返回正在入住json
+     *
+     */
+    @Action(value = "/sys/checkin/checkininglist")
+    public void checkininglist() throws IOException {
+        String jsonstring = this.checkinManageService.checkiningPagination(page, limit);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 返回一个入住详情信息json
+     *
+     */
+    @Action(value = "/sys/checkin/onecheckin")
+    public void onecheckin() throws IOException {
+        String jsonstring = this.checkinManageService.onecheckin(checkinid);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 跳转到一个入住详情信息页面
+     *
+     */
+    @Action(value = "/sys/checkin/checkindetails",
+            results = {@Result(name = "checkindetails", location = "/checkin/details.jsp")})
+    public String checkindetails() {
+        ServletActionContext.getContext().put("checkinid", checkinid);
+        return "checkindetails";
     }
 
     /**

@@ -48,6 +48,8 @@
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/hibernate-ehcache-5.2.12.Final.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/slf4j-api-1.7.25.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/ehcache-2.10.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/slf4j-log4j12-1.7.25.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/slf4j-simple-1.7.25.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="hotel/web/Web" />

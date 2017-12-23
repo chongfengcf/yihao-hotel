@@ -1,5 +1,6 @@
 package com.jiudian.comment.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.jiudian.core.base.BaseEntity;
 import com.jiudian.vip.entity.Vip;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -16,6 +17,7 @@ public class Comment extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "vipID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Vip vipByVipId;
 
     @Column(name = "time")

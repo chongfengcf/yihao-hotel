@@ -28,12 +28,17 @@ public class Checkin extends BaseEntity {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "ispay")
+    private String ispay;
+
     @ManyToOne
     @JoinColumn(name = "vipID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Vip vipByVipId;
 
     @ManyToOne
     @JoinColumn(name = "roomID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Room roomByRoomId;
 
     @OneToMany(mappedBy = "checkinByCheckinId")
@@ -82,6 +87,14 @@ public class Checkin extends BaseEntity {
 
     public void setRoomByRoomId(Room roomByRoomId) {
         this.roomByRoomId = roomByRoomId;
+    }
+
+    public String getIspay() {
+        return ispay;
+    }
+
+    public void setIspay(String ispay) {
+        this.ispay = ispay;
     }
 
     public Collection<Bill> getBillsByRoomId() {

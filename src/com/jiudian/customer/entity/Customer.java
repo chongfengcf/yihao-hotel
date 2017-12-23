@@ -36,6 +36,7 @@ public class Customer extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "vipID", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private Vip vipByVipId;
 
     @OneToMany(mappedBy = "customerByCustomerId")

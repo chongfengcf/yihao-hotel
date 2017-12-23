@@ -40,6 +40,7 @@ public class Room extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "roomTypeId", referencedColumnName = "id")
+    @JSONField(serialize = false)
     private RoomType roomTypeByRoomTypeId;
 
 

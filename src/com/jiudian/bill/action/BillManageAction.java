@@ -22,6 +22,7 @@ public class BillManageAction extends ActionSupport {
     @Autowired
     private BillService billService;
 
+    private String checkinid;
     private int page;
     private int limit;
 
@@ -39,10 +40,25 @@ public class BillManageAction extends ActionSupport {
      *
      */
     @Action(value = "/sys/bill/findBill")
-    public void findAllRoom() throws IOException {
+    public void findBill() throws IOException {
         String jsonstring = this.billService.billsPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
         ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    /**
+     * 结账
+     *
+     */
+    @Action(value = "/sys/bill/payBill")
+    public void payBill() throws IOException {
+        String jsonstring = this.billService.paybill(checkinid);
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
+    }
+
+    public void setCheckinid(String checkinid) {
+        this.checkinid = checkinid;
     }
 
     public void setPage(int page) {

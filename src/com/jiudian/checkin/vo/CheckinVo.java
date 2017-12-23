@@ -7,13 +7,14 @@ import com.jiudian.checkin.entity.Checkin;
 import java.util.Date;
 
 public class CheckinVo {
-    @JSONField(format="yyyy-MM-dd")
     private String id;
+    @JSONField(format="yyyy-MM-dd")
     private Date arrivalDate;
     private String accesscardId;
     private String notes;
     private String vipphone;
     private String roomname;
+    private String ispay;
 
     public CheckinVo(Checkin checkin) {
         this.id = checkin.getId();
@@ -24,6 +25,7 @@ public class CheckinVo {
         if(checkin.getVipByVipId()!=null) {
             this.vipphone = checkin.getVipByVipId().getPhone();
         }
+        this.ispay = checkin.getIspay();
     }
 
     public String getId() {
@@ -72,5 +74,13 @@ public class CheckinVo {
 
     public void setRoomname(String roomname) {
         this.roomname = roomname;
+    }
+
+    public String getIspay() {
+        return ispay;
+    }
+
+    public void setIspay(String ispay) {
+        this.ispay = ispay;
     }
 }

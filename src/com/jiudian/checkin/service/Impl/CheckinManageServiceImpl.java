@@ -97,6 +97,7 @@ public class CheckinManageServiceImpl extends BaseServiceImpl<Checkin> implement
         checkin.setNotes(notes);
         checkin.setRoomByRoomId(room);
         checkin.setVipByVipId(vip);
+        checkin.setIspay("0");
         save(checkin);
 
         //关联入住记录和顾客信息
@@ -150,10 +151,39 @@ public class CheckinManageServiceImpl extends BaseServiceImpl<Checkin> implement
             checkinVos.add(new CheckinVo(temp));
         }
         jsonReturn.setData(checkinVos);
-        jsonReturn.setCount(rowCount("checkin"));
+        jsonReturn.setCount(checkins.size());
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }
+
+    @Override
+    public String checkiningPagination(int page, int limit) {
+        JsonReturn jsonReturn = new JsonReturn();
+        List<Checkin> checkins;
+        checkins = pagingBySql("SELECT * FROM checkin WHERE ispay=?0", (page-1)*10, limit, "0");
+        List<CheckinVo> checkinVos = new ArrayList<>();
+        for(Checkin temp : checkins) {
+            checkinVos.add(new CheckinVo(temp));
+        }
+        jsonReturn.setData(checkinVos);
+        jsonReturn.setCount(checkins.size());
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
+    }
+
+    @Override
+    public String onecheckin(String checkinid) {
+        JsonReturn jsonReturn = new JsonReturn();
+        Checkin checkin = get(checkinid);
+        CheckinVo checkinVo = new CheckinVo(checkin);
+        List<CheckinVo> checkinVos = new ArrayList<>();
+        checkinVos.add(checkinVo);
+        jsonReturn.setData(checkinVos);
+        jsonReturn.setCount(1);
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
+    }
+
 
     @Override
     public void updateexchange(String checkinid, String roomid) {
