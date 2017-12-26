@@ -99,12 +99,18 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	{
 		customerService.updataCustomer(customer);
 	}
-	
-	@Action(value="/sys/customer/save")
-	public void save()
+
+	@Action(value="/sys/customer/save",results = {@Result(name = "save", type="redirectAction", location = "../../front/index.action"),
+												@Result(name = "error", location = "/front/signup-fail.jsp")})
+	public String save()
 	{
 		String birthday = request.getParameter("birthday");
-		customerService.addCustomer(customer,birthday);
+		try {
+			customerService.addCustomer(customer, birthday);
+		}catch (Exception e) {
+			return "error";
+		}
+		return "save";
 	}
 	
 	@Action(value="/sys/customer/delete",results = {@Result(name = "delete" ,type="redirectAction",location = "findAllCustomer.action")})

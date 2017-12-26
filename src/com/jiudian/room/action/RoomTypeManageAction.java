@@ -54,7 +54,7 @@ public class RoomTypeManageAction {
     @Action(value = "/sys/room/saveroomtype",
             results = {@Result(name = "ok", location = "/sys/ok.jsp")})
     public String saveroomtype() {
-        roomTypeManageService.saveroomtype(id, roomTypeName, roomTypeDescription, roomTypeUrl);
+            roomTypeManageService.saveroomtype(id, roomTypeName, roomTypeDescription, roomTypeUrl);
         return "ok";
     }
 
@@ -77,7 +77,6 @@ public class RoomTypeManageAction {
         try {
             RoomType roomType = roomTypeManageService.get(id);
             roomTypeManageService.delroom(roomType);
-            roomTypeManageService.delete(roomType);
             jsonReturn.setMsg("success");
         }catch (Exception e) {
             jsonReturn.setMsg("error");

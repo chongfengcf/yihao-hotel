@@ -101,17 +101,21 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		bookingService.deleteBooking(booking);
 		return "delete";
 	}
-	@Action(value = "/sys/booking/bookingRoom")
-	public void bookingRoom()
+	
+	@Action(value = "/sys/booking/bookingRoom",results={@Result(name="success",location="/front/booking-success.jsp")
+														,@Result(name="fail",location="/front/booking-fail.jsp")})
+	public String bookingRoom()
 	{
+		String state = "fail";
 		List<Vip> vipList = vipService.findVip(vipPhone);
 		if(vipList.isEmpty()){
-
 		}
+		
 		else {
 			Vip vip = vipList.get(0);
-			bookingService.saveBooking(booking, roomTypeId, vip);
+			state = bookingService.saveBooking(booking, roomTypeId, vip);
 		}
+		return state;
 	}
 	
 }

@@ -55,7 +55,7 @@ pageContext.setAttribute("basePath", basePath);
 							<td><s:property value="#c.id" /></td>
 							<td><u style="cursor:pointer" class="text-primary" onclick="member_show('','${basePath}sys/custoemr/showMessage.action?id=<s:property value="#c.customersByVipId[0].id" />','','360','400')"><s:property value="#c.customersByVipId[0].customerName" /></u></td>
 							<td><s:property value="#c.nums" /></td>
-							<td><s:property value="#c.customersByVipId[0].customerPhone" /></td>
+							<td><s:property value="#c.phone" /></td>
 							<td><s:date name="#c.birthday" format="yyyy-MM-dd" />  </td>
 							<td class="text-primary"><s:property value="#c.vipLevel" /> </td>
 							<td><s:property value="#c.vipCredit" /></td>

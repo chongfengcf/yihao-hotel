@@ -1,9 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
 pageContext.setAttribute("basePath", basePath);
 %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,56 +22,28 @@ pageContext.setAttribute("basePath", basePath);
 	  <link rel="stylesheet" href="${basePath}/static/front/css/style.css">
 	  <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
 </head>
+<script type="text/javascript">
+	function yuding(obj) {
+         //判断是否已登录
+	     var s="<%=session.getAttribute("user")%>"; 
+	     var c = document.getElementById("myfrom");
+	       if(s== "null"){
+	           if(confirm("请先登录!")){
+	            window.location.href  ="${basePath}/front/login.jsp";
+	          }else{
+	             return false;
+	        }  
+	       }else{
+	      	 c.submit();
+	
+         } 
+	}   
+</script>
 <body>
   <!-- main wrapper -->
   <div class="wrapper">
     <!-- header -->
-    <header class="header">
-      <div class="header-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-              <div class="header-location"><i class="fa fa-home"></i> <a href="#">东莞市寮步镇文昌路2号</a></div>
-              <div class="header-email"><i class="fa fa-envelope-o"></i> <a href="mailto:support@email.com">yuhao@email.com</a></div>
-              <div class="header-phone"><i class="fa fa-phone"></i> <a href="#">0769 - 88888888</a></div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-              <div class="header-social pull-right">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="header-bottom">
-        <nav class="navbar navbar-universal navbar-custom">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-3">
-                <div class="logo"><a href="index.html" class="navbar-brand page-scroll"><img src="${basePath}/static/front/images/logo/logo.png" alt="logo"></a></div>
-              </div>
-              <div class="col-lg-9">
-                <div class="navbar-header">
-                  <button type="button" data-toggle="collapse" data-target=".navbar-main-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse navbar-main-collapse">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${basePath}/front/index.jsp">主页</a></li>
-                     <li><a href="${basePath}/front/rooms.jsp">房间</a></li>
-                    <li><a href="${basePath}/front/login.jsp">登录</a></li>
-                    <li><a href="${basePath}/front/signup.jsp">注册</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
+     <%@ include file="baseJsp.jsp" %>
     <!-- /header -->
     <!-- parallax -->
       <section class="bg-parallax parallax-window">
@@ -87,12 +60,12 @@ pageContext.setAttribute("basePath", basePath);
             <!-- planner-->
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 planner">
               <div class="planner-block">
-                <form action="${basePath}/sys/booking/bookingRoom.action" method="post" class="form-planner form-horizontal">
+                <form id="myfrom" action="${basePath}/sys/booking/bookingRoom.action" method="post" class="form-planner form-horizontal">
                   <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                       <div class="form-group">
                         <label>入住时间</label>
-                        <input class="form-control __plannerInput" id="datetimepicker1" type="text" name="arrivalDate">
+                        <input class="form-control __plannerInput" id="time" type="text" name="arrivalDate">
                       </div>
                     </div>
                   </div>
@@ -132,7 +105,7 @@ pageContext.setAttribute("basePath", basePath);
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <div >
-                        <input type="submit" class="btn btn-default " value="&nbsp;&nbsp;&nbsp;&nbsp;预定房间&nbsp;&nbsp;&nbsp;&nbsp;">
+                        <input type="button" class="btn btn-default " onclick="yuding(this)" value="&nbsp;&nbsp;&nbsp;&nbsp;预定房间&nbsp;&nbsp;&nbsp;&nbsp;">
                       </div>
                     </div>
                   </div>
@@ -151,103 +124,10 @@ pageContext.setAttribute("basePath", basePath);
           <h2 class="h2">一豪酒店<span class="title-secondary">特色客房</span></h2>
         </div>
         <div class="best-room-carousel">
-          <ul class="row best-room_ul">
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/1.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="best-rooms-detail.html">商务套房</a></div>
-                <div class="best-room_desc">优雅的商务套房享有50平方米私人空间，更配有独立客厅，东城南城的亮丽的景致尽收眼底。
-                </div>
-                <div class="best-room_price">
-                  <span>￥399</span> / 天
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/2.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">水疗房</a></div>
-                <div class="best-room_desc">该客房提供水疗服务，让您褪去劳累一天后的工作与生活中的疲惫，放松身心，感受无尽的快乐。
-                </div>
-                <div class="best-room_price">
-                  <span>￥499</span> / 天
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/3.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="best-rooms-detail.html">总统套房</a></div>
-                <div class="best-room_desc">总统套房有书房，会议室，饱览迷人风光的全景天窗，可容纳12人的豪华小餐厅，厨具一应俱全，主客两间卧室各设会客区和浴室。
-                </div>
-                <div class="best-room_price">
-                  <span>￥999</span> / 天
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/4.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">行政套房</a></div>
-                <div class="best-room_desc">行政套房采用开放式设计，让您坐拥极致瑰丽的珠江美景。房间尊享独立客厅设计，宽敞的客厅以现代、简约、环保的风格精心搭配，让视野所及之处都令您的身心倍感舒畅与温暖。
-                </div>
-                <div class="best-room_price">
-                  <span>￥599</span> / 天
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/5.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">经济客房</a></div>
-                <div class="best-room_desc">客房采用现代、简约、环保的设计理念结合别具岭南特色的设计风格，让您倍感宽敞舒适。房间内设有现代中式家具和平面电视，为您的商务出行提供温馨及舒适的居停体验。
-                </div>
-                <div class="best-room_price">
-                  <span>￥199</span> / 天
-                </div>
-              </div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/6.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">欧式套房</a></div>
-                <div class="best-room_desc">客房采用欧陆风格设计结合温馨舒适的起居配置，在突显高贵雅致的情调同时让您舒缓在忙碌工作后的疲劳。宽敞的玻璃窗及高楼层开阔的视野，为您呈奉美丽的东莞景。
-                </div>
-                <div class="best-room_price">
-                  <span>￥499</span> / 天
-                </div>
-              </div>
-            </li>
+          <ul class="row best-room_ul" id="tsrooms">
+            
+            
+            
           </ul>
         </div>
       </div>
@@ -281,16 +161,18 @@ pageContext.setAttribute("basePath", basePath);
       <div class="container">
         <div class="title-main"><h2 class="h2">客人评价<span class="title-secondary">People Says About Us</span></h2></div>
         <div class="owl-carousel">
+        <s:iterator value="#comments" status="n">
           <div class="item">
             <div class="testimonials-block_i">
               <div class="testimonials-block_t">Great <span>Service</span></div>
-              <p>好好吃的麻薯哦怎么会有这么好吃的麻薯</p>
+              <p><s:property value="content" /></p>
             </div>
             <div class="testimonials-block_user">
                 <div class="user_img"><img src="${basePath}/static/front/images/testimonials/mike.jpg" alt=""></div>
-                <div class="user_n">沈鑫</div>
+                <div class="user_n"><s:property value="vipName" /></div>
             </div>
           </div>
+        </s:iterator>
           <div class="item">
             <div class="testimonials-block_i">
               <div class="testimonials-block_t">Thank You Very Much <span>I Am Happy!</span></div>
@@ -309,94 +191,7 @@ pageContext.setAttribute("basePath", basePath);
     <!-- /map -->
   <!-- /main wrapper -->
   <!-- footer -->
-  <footer class="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="footer-top_logo"><a href="index.html"><img src="${basePath}/static/front/images/logo/logo.png" alt="Footer logo"></a></div>
-            <div class="footer-top_txt">
-              <p>一豪大酒店是一间五星级精品商务综合型酒店。屹立于东莞市寮步镇，地处海珠广场商业繁华地带，购物、娱乐方便快捷。酒店位于各交通网络之交汇点，是商旅人士云集之处。</p>
-            </div>
-            <div class="footer-top_address">
-                <div><i class="fa fa-phone"></i> 电话： <span>0769 - 8888888</span></div>
-                <div><i class="fa fa-envelope-o"></i> E-mail: <span><a href="mailto:support@email.com">yihao@email.com</a></span></div>
-                <div><i class="fa fa-home"></i> 地址: <span>东莞市寮步镇文昌路2号</span></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="footer-top_rooms">
-              <ul>
-                <li>
-                  <div class="rooms_img">
-                    <a href="blog-detail.html"><img src="${basePath}/static/front/images/footer/1.jpg" alt=""></a>
-                  </div>
-                  <div class="rooms_info">
-                    <div class="rooms_t"><a href="blog-detail.html">豪华套房</a></div>
-                    <div class="rooms_props">3 床  /  Wi-Fi  /  2 - 洗手间<span>￥399</span></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="rooms_img">
-                    <a href="blog-detail.html"><img src="${basePath}/static/front/images/footer/2.jpg" alt=""></a>
-                  </div>
-                  <div class="rooms_info">
-                    <div class="rooms_t"><a href="blog-detail.html">总统套房</a></div>
-                    <div class="rooms_props">4 床  /  Wi-Fi  /  3 - 洗手间<span>￥999</span></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="rooms_img">
-                    <a href="blog-detail.html"><img src="${basePath}/static/front/images/footer/3.jpg" alt=""></a>
-                  </div>
-                  <div class="rooms_info">
-                    <div class="rooms_t"><a href="blog-detail.html">水疗房</a></div>
-                    <div class="rooms_props">2 床  /  Wi-Fi  /  2 - 洗手间<span>￥599</span></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-12 marg-sm-50 col-xs-12">
-            <div class="footer-top_contact_form">
-              <div class="contact_form_t">留言表</div>
-                  <form action="mail.php" method="POST" class="row form-horizontal form-wizzard">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" name="name" class="form-control" placeholder="您的名字 ">
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <textarea rows="6" name="message" class="form-control" placeholder="留言信息"></textarea>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-                      <input type="submit" value="提交" class="btn btn-default">
-                    </div>
-                  </form>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="footer-bottom_copy">Copyright &copy; 2017.Company name All rights reserved.</div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="footer-bottom_links">
-              <a class="active" href="index.html">主页</a>
-              <a href="blog.html">新浪微博</a>
-              <a href="wizzard-step1.html">预订</a>
-              <a href="#">联系我们</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <%@ include file="footer.jsp" %>
 </div>
   <!-- /footer -->
   <!-- Scripts -->
@@ -412,10 +207,31 @@ pageContext.setAttribute("basePath", basePath);
   <!---<script type="text/javascript" src="http://ditu.google.cn/maps/api/js"></script>--->
   <script type="text/javascript" src="${basePath}/static/front/js/map.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/main.js"></script>
+  <script type="text/javascript" src="${basePath}/static/layDate/layDate/laydate/laydate.js"></script>
   <!-- /Scripts -->
   <script type="text/javascript">
+  
+	  laydate.render({
+	  				min: 0,
+				  max:30,
+				  elem: '#time' 
+				  
+				});
+  	$(document).ready(function(){
+  		judgeLogin();
+  		var birthday = "<s:property value="#birthday" />";
+  		var today=new Date();
+  		birthday2 = birthday.split("-")[1]+"-"+birthday.split("-")[2];
+  		var time = (today.getMonth()+1)+"-"+today.getDate();
+  		if(birthday2  == time)
+  		{
+  			alert("<%=session.getAttribute("user") %>,生日快乐!");
+  		}
+  	})
+  
   	$(function(){
         var roomtype = $("#roomtype");
+        var tsrooms = $("#tsrooms")
         $.ajax({
             type: "post",//请求方式
             url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
@@ -424,10 +240,45 @@ pageContext.setAttribute("basePath", basePath);
 				data = jsondata.data;
                 for(var i=0;i<data.length;i++){
                     $("<option value='" + data[i].id + "'>" + data[i].roomTypeName + "</option>").appendTo(roomtype)//动态添加Option子项
+                    if(data[i].roomTypeUrl===undefined)
+                    {
+                        data[i].roomTypeUrl="default.JPG";
+                    }
+                    $(" <li class='col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li'>"+
+                    "<div class='best-room_img'><a href='#'><img src='${basePath}/upload/"+data[i].roomTypeUrl+"'></a>"
+                    +"<div class='best-room_overlay'>"+
+                    "<div class='overlay_icn'><a href='${basePath}/sys/showroom/show.action?id="+data[i].id+"'></a></div>"
+                    +" </div> </div> <div class='best-room-info'><div class='best-room_t'>"+"<a href='best-rooms-detail.html'>"+data[i].roomTypeName+"</a></div>"+
+                    " <div class='best-room_desc'>"+data[i].roomTypeDescription+"</div> "+
+                    "<div class='best-room_price'><span>"+data[i].price+"</span> / 天 </div></div></li>").appendTo(tsrooms)
                 }
             }
         });
     });
+    
+    function judgeLogin(){
+            //判断是否已登录
+	        var s="<%=session.getAttribute("user")%>"; 
+            if(s != "null"){
+	             //$("#login-ad").children("button").remove();
+	              document.getElementById('denglu').style.display="none";
+	              document.getElementById('zhuce').style.display="none";
+	               document.getElementById('mingzi').style.display="inline";
+	               document.getElementById("dingdan").style.display="inline";
+	            
+	       }else{
+               return false;
+           }
+          }
+
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

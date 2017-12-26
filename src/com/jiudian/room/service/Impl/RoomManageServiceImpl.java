@@ -2,6 +2,8 @@
 package com.jiudian.room.service.Impl;
 
 import com.alibaba.fastjson.JSON;
+import com.jiudian.checkin.dao.CheckinDao;
+import com.jiudian.checkin.entity.Checkin;
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
 import com.jiudian.room.dao.RoomDao;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -29,6 +33,9 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
 
     @Autowired
     private RoomTypeDao roomTypeDao;
+
+    @Autowired
+    private CheckinDao checkinDao;
 
     @Override
     public String roomPagination(int page, int limit) {
@@ -117,6 +124,16 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
         jsonReturn.setData(roomVos);
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
+    }
+
+    @Override
+    public void deleteroom(Room room) {
+        Collection<Checkin> checkins = room.getCheckinsByRoomId();
+        for(Checkin temp : checkins) {
+            temp.setRoomByRoomId(null);
+            checkinDao.update(temp);
+        }
+        delete(room);
     }
 
     @Override

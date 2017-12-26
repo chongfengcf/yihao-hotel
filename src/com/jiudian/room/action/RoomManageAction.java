@@ -113,7 +113,7 @@ public class RoomManageAction extends ActionSupport {
         JsonReturn jsonReturn = new JsonReturn();
         try {
             Room room = roomManageService.get(id);
-            roomManageService.delete(room);
+            roomManageService.deleteroom(room);
             jsonReturn.setMsg("success");
         }catch (Exception e) {
             jsonReturn.setMsg("error");

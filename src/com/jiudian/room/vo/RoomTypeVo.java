@@ -6,11 +6,21 @@ public class RoomTypeVo {
     private String id;
     private String roomTypeName;
     private String roomTypeUrl;
+    private String roomTypeDescription;
+    private double price;
 
     public RoomTypeVo(RoomType roomType) {
         this.id = roomType.getId();
         this.roomTypeName = roomType.getRoomTypeName();
         this.roomTypeUrl = roomType.getRoomTypeUrl();
+        this.roomTypeDescription = roomType.getRoomTypeDescription();
+        if(roomType.getRoomsByRoomTypeId().size()>0) {
+            this.price = roomType.getRoomsByRoomTypeId().iterator().next().getRoomPrice();
+        }
+        else {
+            this.price = 1000;
+        }
+        
     }
 
     public RoomTypeVo(String id, String roomTypeName) {
@@ -40,5 +50,21 @@ public class RoomTypeVo {
 
     public void setRoomTypeUrl(String roomTypeUrl) {
         this.roomTypeUrl = roomTypeUrl;
+    }
+
+	public String getRoomTypeDescription() {
+		return roomTypeDescription;
+	}
+
+	public void setRoomTypeDescription(String roomTypeDescription) {
+		this.roomTypeDescription = roomTypeDescription;
+	}
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

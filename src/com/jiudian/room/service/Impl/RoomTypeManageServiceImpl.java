@@ -2,6 +2,7 @@ package com.jiudian.room.service.Impl;
 
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
+import com.jiudian.room.dao.RoomDao;
 import com.jiudian.room.dao.RoomTypeDao;
 import com.jiudian.room.entity.Room;
 import com.jiudian.room.entity.RoomType;
@@ -21,6 +22,9 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
 
     @Autowired
     private RoomTypeDao roomTypeDao;
+
+    @Autowired
+    private RoomDao roomDao;
 
     @Override
     public void saveroomtype(String id, String roomTypeName, String roomTypeDescription, String roomTypeUrl) {
@@ -52,11 +56,14 @@ public class RoomTypeManageServiceImpl extends BaseServiceImpl<RoomType> impleme
 
     @Override
     public void delroom(RoomType roomType) {
-        Collection<Room> rooms = roomType.getRoomsByRoomTypeId();
-        for(Room temp : rooms) {
-            temp.setRoomTypeByRoomTypeId(null);
-        }
+            Collection<Room> rooms = roomType.getRoomsByRoomTypeId();
+            for(Room temp : rooms) {
+                temp.setRoomTypeByRoomTypeId(null);
+                roomDao.update(temp);
+            }
+            delete(roomType);
     }
+
     @Override
     public BaseDao<RoomType> getBaseDao() {
         return roomTypeDao;

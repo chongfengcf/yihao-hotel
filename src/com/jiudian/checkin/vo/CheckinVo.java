@@ -21,7 +21,9 @@ public class CheckinVo {
         this.arrivalDate = checkin.getArrivalDate();
         this.accesscardId = checkin.getAccesscardId();
         this.notes = checkin.getNotes();
-        this.roomname = checkin.getRoomByRoomId().getRoomName();
+        if(checkin.getRoomByRoomId()!=null) {
+            this.roomname = checkin.getRoomByRoomId().getRoomName();
+        }
         if(checkin.getVipByVipId()!=null) {
             this.vipphone = checkin.getVipByVipId().getPhone();
         }

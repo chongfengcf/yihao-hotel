@@ -12,4 +12,5 @@ public interface RoomManageService extends BaseService<Room>{
     public String nullroomPagination(int page, int limit);
     public String getonetyperooms(String roomtypeid);
     public String getnullrooms();
+    public void deleteroom(Room room);
 }

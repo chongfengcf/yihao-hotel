@@ -19,4 +19,6 @@ public interface VipService extends BaseService<Vip> {
 
 	List<Vip> findVip(String vipPhone);
 
+	Vip logincheck(String username, String password);
+
 }

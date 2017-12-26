@@ -32,7 +32,7 @@ public class Vip extends BaseEntity {
     private String password;
 
     @Column(name = "vipCredit")
-    private int vipCredit;
+    private Integer vipCredit;
     
     @Column(name = "birthday")
     @Temporal(TemporalType.DATE)
@@ -42,7 +42,7 @@ public class Vip extends BaseEntity {
     private String vipLevel;
     
     @Column(name = "nums")
-    private int nums;
+    private Integer nums;
 
     @OneToMany(mappedBy = "vipByVipId")
     @JSONField(serialize = false)
@@ -77,19 +77,19 @@ public class Vip extends BaseEntity {
 		this.vipLevel = vipLevel;
 	}
 
-	public int getNums() {
-		return nums;
-	}
+    public Integer getNums() {
+        return nums;
+    }
 
-	public void setNums(int nums) {
-		this.nums = nums;
-	}
+    public void setNums(Integer nums) {
+        this.nums = nums;
+    }
 
-	public int getVipCredit() {
+    public Integer getVipCredit() {
         return vipCredit;
     }
 
-    public void setVipCredit(int vipCredit) {
+    public void setVipCredit(Integer vipCredit) {
         this.vipCredit = vipCredit;
     }
 

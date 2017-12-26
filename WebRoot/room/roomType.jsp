@@ -87,11 +87,11 @@
                         window.location.href="${basePath}/sys/room/roomtype.action";
                     }
                     else {
-                        alert("删除失败！")
+                        layer.alert("删除失败！")
                     }
                 },
                 error : function() {
-                    alert("系统异常请稍后重试");
+                    layer.alert("系统异常请稍后重试");
                 }
             });
         });

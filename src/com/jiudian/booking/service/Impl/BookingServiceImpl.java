@@ -13,6 +13,7 @@ import com.jiudian.booking.service.BookingService;
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
 import com.jiudian.vip.entity.Vip;
+import com.opensymphony.xwork2.ActionContext;
 
 @Service("BookingService")
 public class BookingServiceImpl extends BaseServiceImpl<Booking> implements BookingService {
@@ -35,7 +36,7 @@ public class BookingServiceImpl extends BaseServiceImpl<Booking> implements Book
 	}
 
 	@Override
-	public void saveBooking(Booking booking, String roomTypeId, Vip vip) {
+	public String saveBooking(Booking booking, String roomTypeId, Vip vip) {
 		Date arrivalDate = booking.getArrivalDate();
 		RoomType roomType = roomTypeDao.get(roomTypeId);
 
@@ -51,6 +52,14 @@ public class BookingServiceImpl extends BaseServiceImpl<Booking> implements Book
 			booking.setVipByVipId(vip);
 			booking.setBookingDate(new Date());
 			save(booking);
+			ActionContext.getContext().getValueStack().set("roomType", roomType);
+			ActionContext.getContext().getValueStack().set("vip", vip);
+			ActionContext.getContext().getValueStack().set("booking",booking );
+			return "success";
+		}
+		else
+		{
+			return "fail";
 		}
 	}
 

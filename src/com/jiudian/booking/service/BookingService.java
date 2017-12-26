@@ -10,8 +10,8 @@ import com.jiudian.vip.entity.Vip;
 
 public interface BookingService extends BaseService<Booking> {
 
-	void deleteBooking(Booking booking);
+	public void deleteBooking(Booking booking);
 
-	void saveBooking(Booking booking, String roomTypeId, Vip vip);
+	public String saveBooking(Booking booking, String roomTypeId, Vip vip);
 
 }
