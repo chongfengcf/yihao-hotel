@@ -58,7 +58,7 @@ pageContext.setAttribute("basePath", basePath);
         <div class="row">
             <div style="text-align:center;width:300px;margin:-30px auto;">
                 <span style="color:#be0000;font-size:60px;">×</span>
-                <div>由于某些原因，此次预定失败。</div>
+                <div>本房型已被预定满，请更换房型或日期后重试。</div>
             </div>
         </div>
       </div>

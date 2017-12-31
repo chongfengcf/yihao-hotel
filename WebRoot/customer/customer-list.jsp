@@ -60,7 +60,7 @@ pageContext.setAttribute("basePath", basePath);
 							<td class="text-l"><s:property value="#c.customerAddress"/> </td>
 							<td><s:property value="#c.notes"/> </td>
 							<td class="td-status"><span class="label label-success radius">已启用</span></td>
-							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','${basePath}sys/custoemr/edit.action?id=<s:property value="#c.id"/>','4','800','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del('<s:property value="#c.id"/>')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','${basePath}sys/custoemr/edit.action?id=<s:property value="#c.id"/>','4','800','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> </td>
 						</tr>
 					</s:iterator>
 				</tbody>

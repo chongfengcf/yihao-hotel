@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,13 +17,14 @@ import com.opensymphony.xwork2.ModelDriven;
 
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class CustomerAction extends BaseAction implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
-	
+
+	@Override
 	public Customer getModel() {
 		return customer;
 	}
@@ -50,15 +48,8 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	}
 
 
-
-	/*public void findAll() throws IOException
-	{
-		String josnString = customerService.findByPage(page,limit);
-		ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
-		ServletActionContext.getResponse().getWriter().write(josnString);
-	}*/
-
-	@Action(value="/sys/customer/findAll")
+	@Action(value="/sys/customer/findAll",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")})
 	public void findAll() throws IOException
 	{
 		String josnString = customerService.findByPage();
@@ -66,7 +57,9 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 		ServletActionContext.getResponse().getWriter().write(josnString);
 	}
 	
-	@Action(value="/sys/customer/findAllCustomer",results = {@Result(name = "findAll", location = "/customer/customer-list.jsp")})
+	@Action(value="/sys/customer/findAllCustomer",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "findAll", location = "/customer/customer-list.jsp")})
 	public String finddAllCustomer()
 	{
 		List<Customer> list = customerService.findAll();
@@ -74,7 +67,9 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 		return "findAll";
 	}
 	
-	@Action(value="/sys/custoemr/showMessage",results = {@Result(name = "showMessage", location = "/customer/customer-show.jsp")})
+	@Action(value="/sys/custoemr/showMessage",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "showMessage", location = "/customer/customer-show.jsp")})
 	public String showMessage()
 	{
 		
@@ -82,7 +77,9 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 		return "showMessage";
 	}
 	
-	@Action(value="/sys/custoemr/edit",results = {@Result(name = "edit", location = "/customer/customer-edit.jsp")})
+	@Action(value="/sys/custoemr/edit",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "edit", location = "/customer/customer-edit.jsp")})
 	public String edit()
 	{
 		customer = customerService.findbyId(customer.getId());
@@ -94,14 +91,17 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 		return "edit";
 	}
 	
-	@Action(value="/sys/customer/updata")
+	@Action(value="/sys/customer/updata",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")})
 	public void updata()
 	{
 		customerService.updataCustomer(customer);
 	}
 
-	@Action(value="/sys/customer/save",results = {@Result(name = "save", type="redirectAction", location = "../../front/index.action"),
-												@Result(name = "error", location = "/front/signup-fail.jsp")})
+	@Action(value="/sys/customer/save",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "save", location = "/front/index.jsp"),
+						@Result(name = "error", location = "/front/signup-fail.jsp")})
 	public String save()
 	{
 		String birthday = request.getParameter("birthday");
@@ -113,7 +113,9 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 		return "save";
 	}
 	
-	@Action(value="/sys/customer/delete",results = {@Result(name = "delete" ,type="redirectAction",location = "findAllCustomer.action")})
+	@Action(value="/sys/customer/delete",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "delete" ,type="redirectAction",location = "findAllCustomer.action")})
 	public String delete()
 	{
 		customer = customerService.findbyId(request.getParameter("id"));

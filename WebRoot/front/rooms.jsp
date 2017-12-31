@@ -56,232 +56,6 @@ pageContext.setAttribute("basePath", basePath);
             </ul>
       <div class="container best-room-carousel">
         <div id="grid" class="row best-room_ul best-rooms-isotope-page">
-          <div data-groups="[&quot;economic&quot;, &quot;standard&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/1.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">商务套房</a></div>
-                <div class="best-room_desc">优雅的商务套房享有50平方米私人空间，更配有独立客厅，东城南城的亮丽的景致尽收眼底。
-                </div>
-                <div class="best-room_price">
-                  <span>￥399</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-
-          <div data-groups="[&quot;double&quot;, &quot;standard&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/4.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">水疗房</a></div>
-                <div class="best-room_desc">该客房提供水疗服务，让您褪去劳累一天后的工作与生活中的疲惫，放松身心，感受无尽的快乐。
-                </div>
-                <div class="best-room_price">
-                  <span>￥499</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;double&quot;, &quot;lux&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/3.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">总统套房</a></div>
-                <div class="best-room_desc">总统套房有书房，会议室，饱览迷人风光的全景天窗，可容纳12人的豪华小餐厅，厨具一应俱全。
-                </div>
-                <div class="best-room_price">
-                  <span>￥999</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;economic&quot;, &quot;double&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/2.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">行政套房</a></div>
-                <div class="best-room_desc">行政套房坐拥极致瑰丽的东莞美景。房间尊享独立客厅设计，让视野所及之处都令您的身心倍感舒畅。
-                </div>
-                <div class="best-room_price">
-                  <span>￥599</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-
-          <div data-groups="[&quot;economic&quot;, &quot;lux&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/6.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">经济客房</a></div>
-                <div class="best-room_desc">经济客房采用现代、简约、环保的设计理念结合别具岭南特色的设计风格，让您倍感宽敞舒适。
-                </div>
-                <div class="best-room_price">
-                  <span>￥199</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;double&quot;, &quot;standard&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/5.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">欧式套房</a></div>
-                <div class="best-room_desc">客房采用欧陆风格设计结合温馨舒适的起居配置，在突显高贵雅致的情调同时让您舒缓在忙碌工作后的疲劳。
-                </div>
-                <div class="best-room_price">
-                  <span>￥499</span> / 天
-                </div>
-              </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;lux&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/1.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">Grand super LUX</a></div>
-                <div class="best-room_desc">Mr do raising article general norland my hastily. Its companions say uncommonly pianoforte favourable. Education affection consulted by mr attending he therefore.</div>
-                <div class="best-room_price">
-                  <span>$499</span> / night
-                </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;standard&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/3.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">President double LUXE</a></div>
-                <div class="best-room_desc">Mr do raising article general norland my hastily. Its companions say uncommonly pianoforte favourable. Education affection consulted by mr attending he therefore.</div>
-                <div class="best-room_price">
-                  <span>$99</span> / night
-                </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
-
-          <div data-groups="[&quot;economic&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-              <div class="best-room_img">
-                <a href="#"><img src="${basePath}/static/front/images/best-rooms/2.jpg" alt=""></a>
-                <div class="best-room_overlay">
-                  <div class="overlay_icn"><a href="${basePath}/front/room-detail.jsp"></a></div>
-                </div>
-              </div>
-              <div class="best-room-info">
-                <div class="best-room_t"><a href="${basePath}/front/room-detail.jsp">Special spa room</a></div>
-                <div class="best-room_desc">Mr do raising article general norland my hastily. Its companions say uncommonly pianoforte favourable. Education affection consulted by mr attending he therefore.</div>
-                <div class="best-room_price">
-                  <span>$349</span> / night
-                </div>
-                <div class="best-room_footer">
-                  <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-                  <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-                  <div class="footer_el __wifi">Free WiFi</div>
-                  <div class="footer_el __area">60 sqm</div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-          </div>
           </ul>
         </div>
       </div>
@@ -293,6 +67,61 @@ pageContext.setAttribute("basePath", basePath);
   <!-- /footer -->
   <!-- Scripts -->
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
+
+  <script id="roomtypeshow" type="text/html">
+    <div data-groups="[&quot;{{d.group}}&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
+      <div class="best-room_img">
+        <a href="#"><img src="${basePath}/upload/{{d.roomTypeUrl}}" alt=""></a>
+        <div class="best-room_overlay">
+          <div class="overlay_icn"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}"></a></div>
+        </div>
+      </div>
+      <div class="best-room-info">
+        <div class="best-room_t"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}">{{d.roomTypeName}}</a></div>
+        <div class="best-room_desc">{{d.roomTypeDescription}}</div>
+        <div class="best-room_price">
+          <span>¥{{d.price}}</span> / night
+        </div>
+        <div class="best-room_footer">
+          <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
+          <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
+          <div class="footer_el __wifi">Free WiFi</div>
+          <div class="footer_el __area">60 sqm</div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/javascript">
+      layui.use('laytpl', function(){
+          var laytpl = layui.laytpl;
+          group = new Array("economic", "standard", "double", "lux");
+          $.ajax({
+              type: "post",//请求方式
+              url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
+              dataType: "json",//数据类型可以为 text xml json  script  jsonp
+              success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
+                  data = jsondata.data;
+                  for (var i = 0; i < 9 && i < data.length; i++) {
+                      if (data[i].roomTypeUrl === undefined) {
+                          data[i].roomTypeUrl = "default.JPG";
+                      }
+                      data[i].group = group[i % 4];
+                      var getTpl = roomtypeshow.innerHTML
+                          ,view = document.getElementById("grid");
+                      laytpl(getTpl).render(data[i], function(html){
+                          $("#grid").append(html);
+                      });
+                  }
+              }
+
+          });
+      });
+  </script>
+
+
   <script type="text/javascript" src="${basePath}/static/front/js/tether.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/jquery-ui.min.js"></script>
@@ -303,5 +132,6 @@ pageContext.setAttribute("basePath", basePath);
   <script type="text/javascript" src="${basePath}/static/front/js/owl.carousel.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/main.js"></script>
   <!-- /Scripts -->
+
 </body>
 </html>

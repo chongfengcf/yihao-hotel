@@ -5,10 +5,7 @@ import com.jiudian.comment.service.CommentManageService;
 import com.jiudian.core.util.JsonReturn;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class CommentManageAction extends ActionSupport{
@@ -34,6 +31,7 @@ public class CommentManageAction extends ActionSupport{
      * 显示所有房间类型
      * */
     @Action(value = "/sys/comment/comment",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "index", location = "/comment/comment.jsp")})
     public String index() {
         return "index";
@@ -43,7 +41,8 @@ public class CommentManageAction extends ActionSupport{
      * 评论分页返回json
      *
      */
-    @Action(value = "/sys/comment/commentlist")
+    @Action(value = "/sys/comment/commentlist",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void findAllcomment() throws IOException {
         String jsonstring = this.commentManageService.commentPagination(page, limit, keyword);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -53,7 +52,8 @@ public class CommentManageAction extends ActionSupport{
     /**
      * 删除评论
      * */
-    @Action(value = "/sys/comment/deletecomment")
+    @Action(value = "/sys/comment/deletecomment",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void deletecomment() throws IOException {
         JsonReturn jsonReturn = new JsonReturn();
         try {
@@ -72,6 +72,7 @@ public class CommentManageAction extends ActionSupport{
      * 跳转到修改评论页面
      * */
     @Action(value = "/sys/comment/getonecomment",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "getonecomment", location = "/comment/comment-add.jsp")})
     public String getonecomment() {
         Comment comment = commentManageService.get(id);
@@ -83,10 +84,23 @@ public class CommentManageAction extends ActionSupport{
      * 保存或新增评论
      * */
     @Action(value = "/sys/comment/savecomment",
-            results = {@Result(name = "ok", location = "/sys/ok.jsp")})
+            interceptorRefs = {@InterceptorRef("defaultStack")},
+            results = {@Result(name = "ok", location = "/front/comment-ok.jsp")})
     public String savecomment() {
         commentManageService.savecomment(id, content);
         return "ok";
+    }
+
+    /**
+     * 返回最新评论json
+     *
+     */
+    @Action(value = "/sys/comment/newercomment",
+            interceptorRefs = {@InterceptorRef("defaultStack")})
+    public void newercomment() throws IOException {
+        String jsonstring = this.commentManageService.newercomment();
+        ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
+        ServletActionContext.getResponse().getWriter().write(jsonstring);
     }
 
     public void setLimit(int limit) {

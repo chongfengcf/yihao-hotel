@@ -46,39 +46,17 @@
         1000);
     });
 
-    $('.owl_gallery').owlCarousel({
-        items:1,
-        loop:true,
-        margin:0,
-        nav:false,
-        dots:false,
-        autoplay:true,
-        autoplayTimeout:6500,
-        smartSpeed:1200,
-        autoHeight: true,
-    });
-
-    $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:30,
-        nav:false,
-        autoplay:true,
-        autoplayTimeout:6500,
-        smartSpeed:1200,
-        autoHeight: true,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:2
-            },
-            1000:{
-                items:2
-            }
-        }
-    });
-
+        $('.owl_gallery').owlCarousel({
+            items:1,
+            loop:true,
+            margin:0,
+            nav:false,
+            dots:false,
+            autoplay:true,
+            autoplayTimeout:6500,
+            smartSpeed:1200,
+            autoHeight: true,
+        });
 
         $('.bg-parallax').parallax("100%", .15);
         $('.bg-parallax2').parallax("50%", .3);

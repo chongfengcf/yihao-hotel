@@ -52,11 +52,11 @@ pageContext.setAttribute("basePath", basePath);
             <div class="row reservation-top">
               <div class="module __reservation">
                 <div class="module-block">
-                  <form class="form-planner form-horizontal">
+                  <form id="myfrom" action="${basePath}/sys/booking/bookingRoom.action" method="post" class="form-planner form-horizontal">
                       <div class="col-md-3 col-xs-12">
                         <div class="form-group">
-                            <label>预定时间</label>
-                            <input class="form-control __plannerInput" id="time" type="text" placeholder="10-05-2015">
+                            <label>入住时间</label>
+                            <input class="form-control __plannerInput" name="arrivalDate" id="time" type="text" placeholder="2017-12-25" required>
                         </div>
                       </div>
                       <div class="col-md-2 col-xs-6">
@@ -73,15 +73,11 @@ pageContext.setAttribute("basePath", basePath);
                             </div>
                         </div>
                       </div>
-                      <div class="col-md-3 col-xs-12">
-                        <div class="form-group">
-                            <label>电话</label>
-                            <input type="text" class="form-control">
-                        </div>
-                      </div>
+                    <input type="hidden" name="vipPhone" value="<%=session.getAttribute("user")%>">
+                    <input type="hidden" name="roomTypeId" value="<%=request.getParameter("id")%>">
                       <div class="col-md-2 col-xs-12">
                         <div class="form-group">
-                            <a href="wizzard-step2.html" class="btn btn-default wizzard-search-btn">预定</a>
+                            <input type="button" onclick="yuding(this)" class="btn btn-default wizzard-search-btn" value="预定" />
                         </div>
                       </div>
                   </form>
@@ -89,10 +85,10 @@ pageContext.setAttribute("basePath", basePath);
               </div>
             </div>
           </div>
-          <div class="col-lg-12 marg50"><h2 class="h2">房间类型</h2></div>
+          <div class="col-lg-12 marg50"><h2 class="h2">房间类型:<s:property value="roomType.roomTypeName" /></h2></div>
           <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="owl-carousel owl_gallery">
-                <div class="item"><img class="img-responsive" src="${basePath}/upload/<s:property value="roomType.roomTypeUrl"/>">
+                <div class="item"><img class="img-responsive" src="${basePath}/upload/<s:property value="roomType.roomTypeUrl" default="default.JPG"/>">
                 </div>
 
               </div>
@@ -102,7 +98,7 @@ pageContext.setAttribute("basePath", basePath);
               <table class="simple">
                 <tr>
                   <td><strong>价格:</strong></td>
-                  <td><span>￥ 500</span> / 天</td>
+                  <td><span>￥ <s:property value="roomType.price"  /></span> / 天</td>
                 </tr>
                 <tr>
                   <td><strong>面积:</strong></td>
@@ -165,6 +161,7 @@ pageContext.setAttribute("basePath", basePath);
 				  min: 0,
 				  max:30
 				});
+
   </script>
   <!-- /Scripts -->
   

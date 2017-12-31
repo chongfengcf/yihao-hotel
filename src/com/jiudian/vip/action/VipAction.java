@@ -2,10 +2,7 @@ package com.jiudian.vip.action;
 
 import java.util.List;
 
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -17,7 +14,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class VipAction extends BaseAction implements ModelDriven<Vip> {
@@ -34,7 +31,9 @@ public class VipAction extends BaseAction implements ModelDriven<Vip> {
 	private VipService vipService;
 	
 	
-	@Action(value="/sys/vip/findAll",results = {@Result(name = "findAll", location = "/vip/vip-list.jsp")})
+	@Action(value="/sys/vip/findAll",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "findAll", location = "/vip/vip-list.jsp")})
 	public String findAll()
 	{
 		List<Vip> list = vipService.findAll();
@@ -42,14 +41,18 @@ public class VipAction extends BaseAction implements ModelDriven<Vip> {
 		return "findAll";
 	}
 	
-	@Action(value="/sys/vip/edit",results = {@Result(name = "edit",location = "/vip/vip-edit.jsp")})
+	@Action(value="/sys/vip/edit",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "edit",location = "/vip/vip-edit.jsp")})
 	public String edit()
 	{
 		vip = vipService.findById(vip.getId());
 		return "edit";
 	}
 	
-	@Action(value="/sys/vip/updata",results = {@Result(name = "updata" ,type="redirectAction",location = "findAll.action")})
+	@Action(value="/sys/vip/updata",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "updata" ,type="redirectAction",location = "findAll.action")})
 	public String updata()
 	{
 		vipService.updataVip(vip);
@@ -57,7 +60,9 @@ public class VipAction extends BaseAction implements ModelDriven<Vip> {
 		
 	}
 	
-	@Action(value="/sys/vip/delete",results = {@Result(name = "delete" ,type="redirectAction",location = "findAll.action")})
+	@Action(value="/sys/vip/delete",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "delete" ,type="redirectAction",location = "findAll.action")})
 	public String delete()
 	{
 		vip = vipService.findById(vip.getId());

@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>注册失败</title>
+    <title>评论成功</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="${basePath}/static/front/css/font-awesome.min.css">
     <link rel="stylesheet" href="${basePath}/static/front/css/owl.carousel.min.css">
@@ -39,12 +39,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="h1">注册失败</h1>
+                    <h1 class="h1">评论成功</h1>
                 </div>
                 <div class="col-md-6">
                     <ol class="breadcrumb">
-                        <li><a href="#">注册</a><i class="fa fa-angle-right"></i></li>
-                        <li class="active">注册失败</li>
+                        <li><a href="#">评论</a><i class="fa fa-angle-right"></i></li>
+                        <li class="active">评论成功</li>
                     </ol>
                 </div>
             </div>
@@ -54,11 +54,11 @@
     <!-- about -->
     <section class="about">
         <div class="container">
-            <h2 class="h2">注册失败</h2>
+            <h2 class="h2">评论成功</h2>
             <div class="row">
                 <div style="text-align:center;width:300px;margin:-30px auto;">
-                    <span style="color:#be0000;font-size:60px;">×</span>
-                    <div>该手机号或身份证号已经被注册</div>
+                    <span style="color:#00be13;font-size:60px;">√ </span>
+                    <div>感谢您为我们提出的建议</div>
                 </div>
             </div>
         </div>

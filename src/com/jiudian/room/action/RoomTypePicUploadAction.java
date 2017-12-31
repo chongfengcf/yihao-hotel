@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.context.annotation.Scope;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class RoomTypePicUploadAction {
@@ -26,7 +27,8 @@ public class RoomTypePicUploadAction {
     //文件名
     private String fileFileName;
 
-    @Action(value = "/sys/room/upload")
+    @Action(value = "/sys/room/upload",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void upload() throws Exception{
         HttpServletRequest request= ServletActionContext.getRequest();
         //获得项目中upload的路径

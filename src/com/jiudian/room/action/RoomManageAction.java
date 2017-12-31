@@ -5,10 +5,7 @@ import com.jiudian.room.service.RoomManageService;
 import com.jiudian.core.util.JsonReturn;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class RoomManageAction extends ActionSupport {
@@ -38,6 +35,8 @@ public class RoomManageAction extends ActionSupport {
      * 显示所有房间类型
      * */
     @Action(value = "/sys/room/room",
+
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "index", location = "/room/room.jsp")})
     public String index() {
         return "index";
@@ -47,7 +46,8 @@ public class RoomManageAction extends ActionSupport {
      * 房间分页返回json
      *
      */
-    @Action(value = "/sys/room/findAllRoom")
+    @Action(value = "/sys/room/findAllRoom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void findAllRoom() throws IOException {
         String jsonstring = this.roomManageService.roomPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -58,7 +58,8 @@ public class RoomManageAction extends ActionSupport {
      * 分页返回空房json
      *
      */
-    @Action(value = "/sys/room/findNullRoom")
+    @Action(value = "/sys/room/findNullRoom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void findNullRoom() throws IOException {
         String jsonstring = this.roomManageService.nullroomPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -69,6 +70,7 @@ public class RoomManageAction extends ActionSupport {
      * 保存或新增房间类型
      * */
     @Action(value = "/sys/room/saveroom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "ok", location = "/sys/ok.jsp")})
     public String saveroom() {
         roomManageService.saveroom(id, roomName, roomPhone, roomTypeId, roomPrice, roomAble, notes);
@@ -79,6 +81,7 @@ public class RoomManageAction extends ActionSupport {
      * 跳转到修改房间页面
      * */
     @Action(value = "/sys/room/getoneroom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "getoneroom", location = "/room/room-add.jsp")})
     public String getoneroom() {
         String typeid;
@@ -98,6 +101,7 @@ public class RoomManageAction extends ActionSupport {
      * 跳转到新增一个房间页面
      * */
     @Action(value = "/sys/room/addroom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "toaddroom", location = "/room/room-add.jsp")})
     public String toaddroom() {
         ServletActionContext.getContext().put("room", null);
@@ -108,7 +112,8 @@ public class RoomManageAction extends ActionSupport {
     /**
      * 删除房间类型
      * */
-    @Action(value = "/sys/room/deleteroom")
+    @Action(value = "/sys/room/deleteroom",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void deleteroom() throws IOException {
         JsonReturn jsonReturn = new JsonReturn();
         try {
@@ -127,7 +132,8 @@ public class RoomManageAction extends ActionSupport {
      * 返回一种房型所有空房的json
      *
      */
-    @Action(value = "/sys/room/getonetyperooms")
+    @Action(value = "/sys/room/getonetyperooms",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void getonetyperooms() throws IOException {
         String jsonstring = this.roomManageService.getonetyperooms(roomTypeId);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -138,7 +144,8 @@ public class RoomManageAction extends ActionSupport {
      * 返回所有空房的json
      *
      */
-    @Action(value = "/sys/room/getnullrooms")
+    @Action(value = "/sys/room/getnullrooms",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void getnullrooms() throws IOException {
         String jsonstring = this.roomManageService.getnullrooms();
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");

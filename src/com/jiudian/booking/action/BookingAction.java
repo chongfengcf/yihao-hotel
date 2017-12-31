@@ -7,10 +7,7 @@ import java.util.List;
 
 import com.jiudian.room.entity.RoomType;
 import com.jiudian.room.service.RoomTypeManageService;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -27,7 +24,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class BookingAction extends BaseAction implements ModelDriven<Booking> {
@@ -62,7 +59,9 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		return booking;
 	}
 	
-	@Action(value = "/sys/booking/findAll",results = {@Result(name = "findAll",location = "/booking/booking-list.jsp")})
+	@Action(value = "/sys/booking/findAll",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "findAll",location = "/booking/booking-list.jsp")})
 	public String findAll()
 	{
 		List<Booking> list = bookingService.getAll();
@@ -70,7 +69,19 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		return "findAll";
 	}
 
-	@Action(value = "/sys/booking/bookchecking",results = {@Result(name = "bookchecking",location = "/booking/booking-checkin.jsp")})
+	@Action(value = "/sys/booking/frontFindAll",
+			interceptorRefs = {@InterceptorRef("defaultStack")},
+			results = {@Result(name = "frontFindAll",location = "/front/booking-find.jsp")})
+	public String frontFindAll()
+	{
+		List<Booking> list = bookingService.getAll();
+		ActionContext.getContext().getValueStack().set("frontList", list);
+		return "frontFindAll";
+	}
+
+	@Action(value = "/sys/booking/bookchecking",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "bookchecking",location = "/booking/booking-checkin.jsp")})
 	public String bookchecking()
 	{
 		List<Booking> list = bookingService.getAll();
@@ -78,14 +89,17 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		return "bookchecking";
 	}
 
-	@Action(value = "/sys/booking/edit",results = {@Result(name = "edit",location = "/booking/booking-edit.jsp")})
+	@Action(value = "/sys/booking/edit",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "edit",location = "/booking/booking-edit.jsp")})
 	public String edit()
 	{
 		booking = bookingService.get(booking.getId());
 		return "edit";
 	}
 	
-	@Action(value = "/sys/booking/update")
+	@Action(value = "/sys/booking/update",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")})
 	public void update() throws ParseException
 	{
 		booking = bookingService.get(booking.getId());
@@ -94,7 +108,9 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		bookingService.update(booking);
 	}
 
-	@Action(value = "/sys/booking/delete",results = {@Result(name = "delete",type="redirectAction",location = "findAll")})
+	@Action(value = "/sys/booking/delete",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "delete",type="redirectAction",location = "findAll")})
 	public String delete()
 	{
 		booking = bookingService.get(booking.getId());
@@ -102,8 +118,10 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		return "delete";
 	}
 	
-	@Action(value = "/sys/booking/bookingRoom",results={@Result(name="success",location="/front/booking-success.jsp")
-														,@Result(name="fail",location="/front/booking-fail.jsp")})
+	@Action(value = "/sys/booking/bookingRoom",
+			interceptorRefs = {@InterceptorRef("defaultStack")},
+			results={@Result(name="success",location="/front/booking-success.jsp")
+					,@Result(name="fail",location="/front/booking-fail.jsp")})
 	public String bookingRoom()
 	{
 		String state = "fail";

@@ -22,23 +22,7 @@ pageContext.setAttribute("basePath", basePath);
 	  <link rel="stylesheet" href="${basePath}/static/front/css/style.css">
 	  <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
 </head>
-<script type="text/javascript">
-	function yuding(obj) {
-         //判断是否已登录
-	     var s="<%=session.getAttribute("user")%>"; 
-	     var c = document.getElementById("myfrom");
-	       if(s== "null"){
-	           if(confirm("请先登录!")){
-	            window.location.href  ="${basePath}/front/login.jsp";
-	          }else{
-	             return false;
-	        }  
-	       }else{
-	      	 c.submit();
-	
-         } 
-	}   
-</script>
+
 <body>
   <!-- main wrapper -->
   <div class="wrapper">
@@ -95,13 +79,7 @@ pageContext.setAttribute("basePath", basePath);
                           </div>
                         </div>
                       </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                      <div class="form-group">
-                          <label>电话号码</label>
-                          <input type="text" name="vipPhone" class="form-control">
-                        </div>
-                      </div>
-                  </div>
+                  <input type="hidden" name="vipPhone" value="<%=session.getAttribute("phone")%>">
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <div >
@@ -160,29 +138,7 @@ pageContext.setAttribute("basePath", basePath);
     <section class="testimonials">
       <div class="container">
         <div class="title-main"><h2 class="h2">客人评价<span class="title-secondary">People Says About Us</span></h2></div>
-        <div class="owl-carousel">
-        <s:iterator value="#comments" status="n">
-          <div class="item">
-            <div class="testimonials-block_i">
-              <div class="testimonials-block_t">Great <span>Service</span></div>
-              <p><s:property value="content" /></p>
-            </div>
-            <div class="testimonials-block_user">
-                <div class="user_img"><img src="${basePath}/static/front/images/testimonials/mike.jpg" alt=""></div>
-                <div class="user_n"><s:property value="vipName" /></div>
-            </div>
-          </div>
-        </s:iterator>
-          <div class="item">
-            <div class="testimonials-block_i">
-              <div class="testimonials-block_t">Thank You Very Much <span>I Am Happy!</span></div>
-              <p>好好吃的麻薯哦怎么会有这么好吃的麻薯</p>
-            </div>
-            <div class="testimonials-block_user">
-                <div class="user_img"><img src="${basePath}/static/front/images/testimonials/mila.png" alt=""></div>
-                <div class="user_n">纯纯</div>
-            </div>
-          </div>
+        <div id="commentitem" class="owl-carousel">
         </div>
       </div>
     </section>
@@ -195,7 +151,33 @@ pageContext.setAttribute("basePath", basePath);
 </div>
   <!-- /footer -->
   <!-- Scripts -->
+
+  <script id="commentshow" type="text/html">
+    <div class="item">
+      <div class="testimonials-block_i">
+        <div class="testimonials-block_t">完美的 <span>体验!</span></div>
+        <p>{{d.content}}</p>
+      </div>
+      <div class="testimonials-block_user">
+        <div class="user_img"><img src="${basePath}/static/front/images/testimonials/mila.png" alt=""></div>
+        <div class="user_n">{{d.vipName}}</div>
+      </div>
+    </div>
+  </script>
+
+  <script id="roomtypeshow" type="text/html">
+    <li class='col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li'>
+      <div class='best-room_img'><a href='${basePath}/sys/showroom/show.action?id={{d.id}}'><img src='${basePath}/upload/{{d.roomTypeUrl}}'></a>
+        <div class='best-room_overlay'>
+          <div class='overlay_icn'><a href='${basePath}/sys/showroom/show.action?id={{d.id}}'></a></div>
+          </div> </div> <div class='best-room-info'><div class='best-room_t'><a href='${basePath}/sys/showroom/show.action?id={{d.id}}'>{{d.roomTypeName}}</a></div>
+        <div class='best-room_desc'>{{d.roomTypeDescription}}</div>
+        <div class='best-room_price'><span>{{d.price}}</span> / 天 </div></div></li>
+  </script>
+
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
+  <script type="text/javascript" src="${basePath}/static/front/js/owl.carousel.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/tether.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/jquery-ui.min.js"></script>
@@ -203,75 +185,102 @@ pageContext.setAttribute("basePath", basePath);
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.smartmenus.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.parallax.min.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.shuffle.min.js"></script>
-  <script type="text/javascript" src="${basePath}/static/front/js/owl.carousel.min.js"></script>
-  <!---<script type="text/javascript" src="http://ditu.google.cn/maps/api/js"></script>--->
-  <script type="text/javascript" src="${basePath}/static/front/js/map.js"></script>
   <script type="text/javascript" src="${basePath}/static/front/js/main.js"></script>
-  <script type="text/javascript" src="${basePath}/static/layDate/layDate/laydate/laydate.js"></script>
-  <!-- /Scripts -->
-  <script type="text/javascript">
-  
-	  laydate.render({
-	  				min: 0,
-				  max:30,
-				  elem: '#time' 
-				  
-				});
-  	$(document).ready(function(){
-  		judgeLogin();
-  		var birthday = "<s:property value="#birthday" />";
-  		var today=new Date();
-  		birthday2 = birthday.split("-")[1]+"-"+birthday.split("-")[2];
-  		var time = (today.getMonth()+1)+"-"+today.getDate();
-  		if(birthday2  == time)
-  		{
-  			alert("<%=session.getAttribute("user") %>,生日快乐!");
-  		}
-  	})
-  
-  	$(function(){
-        var roomtype = $("#roomtype");
-        var tsrooms = $("#tsrooms")
-        $.ajax({
-            type: "post",//请求方式
-            url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
-            dataType: "json",//数据类型可以为 text xml json  script  jsonp
-            success: function(jsondata){//返回的参数就是 action里面所有的有get和set方法的参数
-				data = jsondata.data;
-                for(var i=0;i<data.length;i++){
-                    $("<option value='" + data[i].id + "'>" + data[i].roomTypeName + "</option>").appendTo(roomtype)//动态添加Option子项
-                    if(data[i].roomTypeUrl===undefined)
-                    {
-                        data[i].roomTypeUrl="default.JPG";
-                    }
-                    $(" <li class='col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li'>"+
-                    "<div class='best-room_img'><a href='#'><img src='${basePath}/upload/"+data[i].roomTypeUrl+"'></a>"
-                    +"<div class='best-room_overlay'>"+
-                    "<div class='overlay_icn'><a href='${basePath}/sys/showroom/show.action?id="+data[i].id+"'></a></div>"
-                    +" </div> </div> <div class='best-room-info'><div class='best-room_t'>"+"<a href='best-rooms-detail.html'>"+data[i].roomTypeName+"</a></div>"+
-                    " <div class='best-room_desc'>"+data[i].roomTypeDescription+"</div> "+
-                    "<div class='best-room_price'><span>"+data[i].price+"</span> / 天 </div></div></li>").appendTo(tsrooms)
-                }
-            }
-        });
-    });
-    
-    function judgeLogin(){
-            //判断是否已登录
-	        var s="<%=session.getAttribute("user")%>"; 
-            if(s != "null"){
-	             //$("#login-ad").children("button").remove();
-	              document.getElementById('denglu').style.display="none";
-	              document.getElementById('zhuce').style.display="none";
-	               document.getElementById('mingzi').style.display="inline";
-	               document.getElementById("dingdan").style.display="inline";
-	            
-	       }else{
-               return false;
-           }
-          }
 
+  <script type="text/javascript">
+
+      $('.owl-carousel').owlCarousel({
+          loop:true,
+          margin:30,
+          nav:false,
+          autoplay:true,
+          autoplayTimeout:6500,
+          smartSpeed:1200,
+          autoHeight: true,
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:2
+              },
+              1000:{
+                  items:2
+              }
+          }
+      });
+
+
+      layui.use('laytpl', function(){
+          var laytpl = layui.laytpl;
+          $.ajax({
+              type: "post",//请求方式
+              url: "${basePath}/sys/comment/newercomment.action",//地址，就是json文件的请求路径
+              dataType: "json",//数据类型可以为 text xml json  script  jsonp
+              success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
+                  data = jsondata.data;
+                  for (var i = 0; i < 5 && i < data.length; i++) {
+                      var getTpl = commentshow.innerHTML;
+                      laytpl(getTpl).render(data[i], function(html){
+                          $('.owl-carousel').owlCarousel('add', html).owlCarousel('update');
+                          //$("#commentitem").append(html);
+                      });
+                  }
+              }
+
+          });
+      });
+
+
+      layui.use('laytpl', function(){
+          var laytpl = layui.laytpl;
+          var roomtype = $("#roomtype");
+          $.ajax({
+              type: "post",//请求方式
+              url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
+              dataType: "json",//数据类型可以为 text xml json  script  jsonp
+              success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
+                  data = jsondata.data;
+                  for (var i = 0; i < data.length; i++) {
+                      $("<option value='" + data[i].id + "'>" + data[i].roomTypeName + "</option>").appendTo(roomtype)//动态添加Option子项
+                      if (data[i].roomTypeUrl === undefined) {
+                          data[i].roomTypeUrl = "default.JPG";
+                      }
+                      var getTpl = roomtypeshow.innerHTML;
+                      laytpl(getTpl).render(data[i], function(html){
+                          $("#tsrooms").append(html);
+                      });
+                  }
+              }
+
+          });
+      });
+
+
+      layui.use('laydate', function() {
+          var laydate = layui.laydate;
+          laydate.render({
+              min: 0,
+              max: 30,
+              elem: '#time'
+
+          });
+      });
+
+
+/*      function initcomment() {
+          $("#commentitem").owlCarousel({
+              items:2,
+              margin:30,
+              loop:true,
+              autoplay:true,
+              autoplayTimeout:5000,
+          });
+      }*/
   </script>
+
+
+  <!-- /Scripts -->
 </body>
 </html>
 

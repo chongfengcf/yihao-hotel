@@ -1,5 +1,6 @@
 package com.jiudian.room.action;
 
+import com.jiudian.room.vo.RoomTypeVo;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -27,7 +28,8 @@ public class ShowRoomDetail extends BaseAction {
 	{
 		System.out.println(request.getParameter("id"));
 		RoomType roomType = roomTypeManageService.get(request.getParameter("id"));
-		ActionContext.getContext().getValueStack().set("roomType", roomType);
+
+		ActionContext.getContext().getValueStack().set("roomType", new RoomTypeVo(roomType));
 		return "show";
 	}
 	

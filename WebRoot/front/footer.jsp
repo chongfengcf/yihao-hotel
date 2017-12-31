@@ -57,7 +57,7 @@
                                 <input type="text" name="name" class="form-control" placeholder="您的名字 ">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                <input type="text" name="email" class="form-control" placeholder="Email">
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <textarea rows="6" name="content" class="form-control" placeholder="留言信息"></textarea>
@@ -91,16 +91,26 @@
     </div>
 </footer>
 <script type="text/javascript">
+
+    var testlogin="<%=session.getAttribute("user")%>";
+    if(testlogin != "null"){
+        //$("#login-ad").children("button").remove();
+        document.getElementById('denglu').style.display="none";
+        document.getElementById('zhuce').style.display="none";
+        document.getElementById('mingzi').style.display="inline";
+        document.getElementById("dingdan").style.display="inline";
+
+    }
+
+
     function comment(obj) {
         //判断是否已登录
         var s="<%=session.getAttribute("vip")%>";
         var c = document.getElementById("commentform");
-        if(s== "null"){
-            if(confirm("请先登录!")){
-                window.location.href  ="${basePath}/front/login.jsp";
-            }else{
-                return false;
-            }
+        if(s == "null"){
+            alert("请先登录!");
+            window.location.href  ="${basePath}/front/login.jsp";
+            return;
         }else{
             c.submit();
 

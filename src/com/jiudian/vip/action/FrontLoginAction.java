@@ -56,6 +56,7 @@ public class FrontLoginAction extends BaseAction {
 				}
 				ServletActionContext.getRequest().getSession().setAttribute("user", name);
 				ServletActionContext.getRequest().getSession().setAttribute("vip", vip.getId());
+				ServletActionContext.getRequest().getSession().setAttribute("phone", vip.getPhone());
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String birthday = sdf.format(vip.getBirthday());
 				jsonReturn.setMsg(birthday);

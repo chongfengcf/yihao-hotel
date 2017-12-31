@@ -6,10 +6,7 @@ import com.jiudian.room.entity.Room;
 import com.jiudian.room.service.RoomManageService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class CheckinManageAction extends ActionSupport {
@@ -50,6 +47,7 @@ public class CheckinManageAction extends ActionSupport {
      * 显示所有可入住的房间
      * */
     @Action(value = "/sys/checkin/checkin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "index", location = "/checkin/select-room.jsp")})
     public String index() {
         return "index";
@@ -59,6 +57,7 @@ public class CheckinManageAction extends ActionSupport {
      * 显示所有入住记录
      * */
     @Action(value = "/sys/checkin/allcheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "allcheckin", location = "/checkin/checkin.jsp")})
     public String allcheckin() {
         return "allcheckin";
@@ -68,6 +67,7 @@ public class CheckinManageAction extends ActionSupport {
      * 显示正在入住记录
      * */
     @Action(value = "/sys/checkin/checkining",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "checkining", location = "/checkin/checkining.jsp")})
     public String checkining() {
         return "checkining";
@@ -77,6 +77,7 @@ public class CheckinManageAction extends ActionSupport {
      * 跳转到办理入住页面
      * */
     @Action(value = "/sys/checkin/firstcheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "firstcheckin", location = "/checkin/checkin-add.jsp")})
     public String firstcheckin() {
         Room room = roomManageService.get(roomid);
@@ -88,6 +89,7 @@ public class CheckinManageAction extends ActionSupport {
      * 新增到店入住信息
      * */
     @Action(value = "/sys/checkin/addcheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "addcheckin", location = "/sys/ok.jsp"),
                         @Result(name = "fullroom", location = "/checkin/fullroom.jsp")})
     public String addcheckin() {
@@ -117,6 +119,7 @@ public class CheckinManageAction extends ActionSupport {
      * 跳转到预定入住页面
      * */
     @Action(value = "/sys/checkin/bookingcheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "bookingcheckin", location = "/checkin/bookingcheckin-add.jsp")})
     public String bookingcheckin() {
         ServletActionContext.getContext().put("vipphone", vipphone);
@@ -129,6 +132,7 @@ public class CheckinManageAction extends ActionSupport {
      * 新增预定入住
      * */
     @Action(value = "/sys/checkin/addbookingcheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "addbookingcheckin", location = "/sys/ok.jsp")})
     public String addbookingcheckin() {
         //将customer组合成列表
@@ -151,7 +155,8 @@ public class CheckinManageAction extends ActionSupport {
      * 分页返回入住json
      *
      */
-    @Action(value = "/sys/checkin/checkinlist")
+    @Action(value = "/sys/checkin/checkinlist",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void checkinlist() throws IOException {
         String jsonstring = this.checkinManageService.checkinPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -162,7 +167,8 @@ public class CheckinManageAction extends ActionSupport {
      * 分页返回正在入住json
      *
      */
-    @Action(value = "/sys/checkin/checkininglist")
+    @Action(value = "/sys/checkin/checkininglist",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void checkininglist() throws IOException {
         String jsonstring = this.checkinManageService.checkiningPagination(page, limit);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -173,7 +179,8 @@ public class CheckinManageAction extends ActionSupport {
      * 返回一个入住详情信息json
      *
      */
-    @Action(value = "/sys/checkin/onecheckin")
+    @Action(value = "/sys/checkin/onecheckin",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void onecheckin() throws IOException {
         String jsonstring = this.checkinManageService.onecheckin(checkinid);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
@@ -185,6 +192,7 @@ public class CheckinManageAction extends ActionSupport {
      *
      */
     @Action(value = "/sys/checkin/checkindetails",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "checkindetails", location = "/checkin/details.jsp")})
     public String checkindetails() {
         ServletActionContext.getContext().put("checkinid", checkinid);
@@ -195,6 +203,7 @@ public class CheckinManageAction extends ActionSupport {
      * 跳转到换房页面
      * */
     @Action(value = "/sys/checkin/exchange",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "exchange", location = "/checkin/exchange.jsp")})
     public String exchange() {
         ServletActionContext.getContext().put("checkinid", checkinid);
@@ -205,6 +214,7 @@ public class CheckinManageAction extends ActionSupport {
      * 提交换房信息
      * */
     @Action(value = "/sys/checkin/updateexchange",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "updateexchange", location = "/sys/ok.jsp")})
     public String updateexchange() {
         checkinManageService.updateexchange(checkinid, roomid);

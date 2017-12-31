@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Controller
-@ParentPackage("struts-default")
+@ParentPackage("my-default")
 @Namespace("/")
 @Scope("prototype")
 public class RoomTypeManageAction {
@@ -31,6 +31,7 @@ public class RoomTypeManageAction {
      * 显示所有房间类型
      * */
     @Action(value = "/sys/room/roomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
     results = {@Result(name = "index", location = "/room/roomType.jsp")})
     public String index() {
         List<RoomType> roomtypes = roomTypeManageService.getAll();
@@ -42,6 +43,7 @@ public class RoomTypeManageAction {
      * 跳转到新增一个房间类型页面
      * */
     @Action(value = "/sys/room/addroomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "toaddroomtype", location = "/room/roomType-add.jsp")})
     public String toaddroomtype() {
         ServletActionContext.getContext().put("roomtype", null);
@@ -52,6 +54,7 @@ public class RoomTypeManageAction {
      * 保存或新增房间类型
      * */
     @Action(value = "/sys/room/saveroomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "ok", location = "/sys/ok.jsp")})
     public String saveroomtype() {
             roomTypeManageService.saveroomtype(id, roomTypeName, roomTypeDescription, roomTypeUrl);
@@ -62,7 +65,8 @@ public class RoomTypeManageAction {
     /**
      * 修改房间类型
      * */
-    @Action(value = "/sys/room/updateroomtype")
+    @Action(value = "/sys/room/updateroomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void updateroomtype() {
         List<RoomType> roomtypes = roomTypeManageService.getAll();
         ServletActionContext.getContext().put("roomtypes", roomtypes);
@@ -71,7 +75,8 @@ public class RoomTypeManageAction {
     /**
      * 删除房间类型
      * */
-    @Action(value = "/sys/room/deleteroomtype")
+    @Action(value = "/sys/room/deleteroomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void deleteroomtype() throws IOException {
         JsonReturn jsonReturn = new JsonReturn();
         try {
@@ -90,6 +95,7 @@ public class RoomTypeManageAction {
      * 跳转到修改房间类型页面
      * */
     @Action(value = "/sys/room/getoneroomtype",
+            interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "getoneroomtype", location = "/room/roomType-add.jsp")})
     public String getoneroomtype() {
         RoomType roomType = roomTypeManageService.get(id);
@@ -100,7 +106,8 @@ public class RoomTypeManageAction {
     /**
      * 得到房间类型json数据
      * */
-    @Action(value = "/sys/room/getroomtypelist")
+    @Action(value = "/sys/room/getroomtypelist",
+            interceptorRefs = {@InterceptorRef("defaultStack")})
     public void getroomtypelist() throws IOException {
         JsonReturn jsonReturn = new JsonReturn();
         jsonReturn.setData(roomTypeManageService.getroomtypelist());

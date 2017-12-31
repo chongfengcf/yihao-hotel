@@ -8,11 +8,13 @@ import com.jiudian.comment.vo.CommentVo;
 import com.jiudian.core.base.BaseDao;
 import com.jiudian.core.base.BaseServiceImpl;
 import com.jiudian.core.util.JsonReturn;
+import com.jiudian.vip.dao.VipDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service("CommentManageService")
@@ -21,6 +23,9 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
 
     @Autowired
     private CommentDao commentDao;
+
+    @Autowired
+    private VipDao vipDao;
 
     @Override
     public BaseDao<Comment> getBaseDao() {
@@ -49,8 +54,25 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
 
     @Override
     public void savecomment(String id, String content) {
-        Comment comment = get(id);
+        Comment comment = new Comment();
+        comment.setVipByVipId(vipDao.get(id));
         comment.setContent(content);
+        comment.setTime(new Date());
         saveOrUpdate(comment);
+    }
+
+    @Override
+    public String newercomment() {
+        JsonReturn jsonReturn = new JsonReturn();
+        List<Comment> comments = findBySql("SELECT * FROM Comment ORDER BY time DESC");
+
+        List<CommentVo> commentVos = new ArrayList<>();
+        for(Comment temp : comments) {
+            commentVos.add(new CommentVo(temp));
+        }
+        jsonReturn.setData(commentVos);
+        jsonReturn.setCount(rowCount("comment"));
+        String jsonstring = JSON.toJSONString(jsonReturn);
+        return jsonstring;
     }
 }

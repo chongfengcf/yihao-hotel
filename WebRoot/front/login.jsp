@@ -62,6 +62,9 @@ pageContext.setAttribute("basePath", basePath);
           <%@ include file="footer.jsp" %>
         </div>
     </body>
+
+    <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
+
     <script type="text/javascript">
     	$("#login").click(function() {
         var username = $("#username").val();
@@ -89,15 +92,39 @@ pageContext.setAttribute("basePath", basePath);
                 	alert("用户名密码错误！")
                 }
                 else {
-                	var birthday = data.msg
-                	var form = $("<form method='post' action='${basePath}/front/index.action'></form>");
-                    input = $("<input type='hidden'>");
-                    input.attr({"name":"birthday"});
-                    input.val(birthday);
-                    form.append(input);
-                    $(document.body).append(form);
-                	form.submit();
-                    //window.location.href="${basePath}/front/index.action?birthday="+birthday;
+                	var birthday = data.msg;
+
+                    var today=new Date();
+                    birthday2 = birthday.split("-")[1]+"-"+birthday.split("-")[2];
+                    var time = (today.getMonth()+1)+"-"+today.getDate();
+                    console.log(birthday2);
+                    console.log(time);
+                    console.log(birthday2==time);
+                    if(birthday2  == time)
+                    {
+                        layer.open({
+                            type: 2,
+                            title: false,
+                            closeBtn: 0, //不显示关闭按钮
+                            shade: [0],
+                            area: ['340px', '215px'],
+                            offset: 'rb', //右下角弹出
+                            time: 3000, //3秒后自动关闭
+                            anim: 2,
+                            content: ['${basePath}/front/brithday.jsp', 'no'], //iframe的url，no代表不显示滚动条
+                            end: function(){ //此处用于演示
+                                window.location.href="${basePath}/front/index.jsp";
+                            }
+                        });
+                    }
+                    else {
+                        layer.msg('登录成功，跳转至首页', {
+                            icon: 1,
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            window.location.href="${basePath}/front/index.jsp";
+                        });
+                    }
                 }
             },
             error : function() {
