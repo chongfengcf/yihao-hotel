@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     </style>
   <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
-    <link rel="stylesheet" href="${basePath}/static/front/css/layui.css">
+  <link rel="stylesheet" href="${basePath}/lib/layui/css/layui.css" media="all">
 </head>
 <body>
   <!-- main wrapper -->

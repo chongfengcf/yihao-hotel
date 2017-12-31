@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.jiudian.room.entity.RoomType;
 import com.jiudian.room.service.RoomTypeManageService;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -74,7 +75,8 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 			results = {@Result(name = "frontFindAll",location = "/front/booking-find.jsp")})
 	public String frontFindAll()
 	{
-		List<Booking> list = bookingService.getAll();
+		vipPhone = (String)ServletActionContext.getContext().getSession().get("phone");
+		List<Booking> list = bookingService.mybooking(vipPhone);
 		ActionContext.getContext().getValueStack().set("frontList", list);
 		return "frontFindAll";
 	}

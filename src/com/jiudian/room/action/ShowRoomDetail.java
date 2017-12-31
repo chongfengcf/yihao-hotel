@@ -26,7 +26,6 @@ public class ShowRoomDetail extends BaseAction {
 	@Action(value = "/sys/showroom/show",results={@Result(name="show",location = "/front/room-detail.jsp")})
 	public String show()
 	{
-		System.out.println(request.getParameter("id"));
 		RoomType roomType = roomTypeManageService.get(request.getParameter("id"));
 
 		ActionContext.getContext().getValueStack().set("roomType", new RoomTypeVo(roomType));

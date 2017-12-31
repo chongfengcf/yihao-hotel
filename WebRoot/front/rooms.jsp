@@ -19,6 +19,64 @@ pageContext.setAttribute("basePath", basePath);
       <link rel="stylesheet" href="${basePath}/static/front/css/jquery-ui.min.css">
 	  <link rel="stylesheet" href="${basePath}/static/front/css/style.css">
 	  <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
+
+  <script type="text/javascript" src="${basePath}/static/front/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
+
+  <script id="roomtypeshow" type="text/html">
+    <div data-groups="[&quot;{{d.group}}&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
+      <div class="best-room_img">
+        <a href="#"><img src="${basePath}/upload/{{d.roomTypeUrl}}" alt=""></a>
+        <div class="best-room_overlay">
+          <div class="overlay_icn"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}"></a></div>
+        </div>
+      </div>
+      <div class="best-room-info">
+        <div class="best-room_t"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}">{{d.roomTypeName}}</a></div>
+        <div class="best-room_desc">{{d.roomTypeDescription}}</div>
+        <div class="best-room_price">
+          <span>¥{{d.price}}</span> / 晚
+        </div>
+        <div class="best-room_footer">
+          <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
+          <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
+          <div class="footer_el __wifi">Free WiFi</div>
+          <div class="footer_el __area">60 sqm</div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/javascript">
+
+      layui.use('laytpl', function(){
+          var laytpl = layui.laytpl;
+          group = new Array("economic", "standard", "double", "lux");
+          $.ajax({
+              type: "post",//请求方式
+              url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
+              dataType: "json",//数据类型可以为 text xml json  script  jsonp
+              success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
+                  data = jsondata.data;
+                  for (var i = 0; i < 9 && i < data.length; i++) {
+                      if (data[i].roomTypeUrl === undefined) {
+                          data[i].roomTypeUrl = "default.JPG";
+                      }
+                      data[i].group = group[i % 4];
+                      var getTpl = roomtypeshow.innerHTML
+                          ,view = document.getElementById("grid");
+                      laytpl(getTpl).render(data[i], function(html){
+                          $("#grid").append(html);
+                      });
+                  }
+              }
+
+          });
+      });
+
+  </script>
+
 	</head>
 <body>
   <!-- main wrapper -->
@@ -66,60 +124,7 @@ pageContext.setAttribute("basePath", basePath);
 </div>
   <!-- /footer -->
   <!-- Scripts -->
-  <script type="text/javascript" src="${basePath}/static/front/js/jquery.min.js"></script>
-  <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
 
-  <script id="roomtypeshow" type="text/html">
-    <div data-groups="[&quot;{{d.group}}&quot;]" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-      <div class="best-room_img">
-        <a href="#"><img src="${basePath}/upload/{{d.roomTypeUrl}}" alt=""></a>
-        <div class="best-room_overlay">
-          <div class="overlay_icn"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}"></a></div>
-        </div>
-      </div>
-      <div class="best-room-info">
-        <div class="best-room_t"><a href="${basePath}/sys/showroom/show.action?id={{d.id}}">{{d.roomTypeName}}</a></div>
-        <div class="best-room_desc">{{d.roomTypeDescription}}</div>
-        <div class="best-room_price">
-          <span>¥{{d.price}}</span> / night
-        </div>
-        <div class="best-room_footer">
-          <div class="footer_el __bed"><i class="fa fa-bed"></i> 2</div>
-          <div class="footer_el __ppl"><i class="fa fa-user"></i> 4</div>
-          <div class="footer_el __wifi">Free WiFi</div>
-          <div class="footer_el __area">60 sqm</div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-    </div>
-  </script>
-
-  <script type="text/javascript">
-      layui.use('laytpl', function(){
-          var laytpl = layui.laytpl;
-          group = new Array("economic", "standard", "double", "lux");
-          $.ajax({
-              type: "post",//请求方式
-              url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
-              dataType: "json",//数据类型可以为 text xml json  script  jsonp
-              success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
-                  data = jsondata.data;
-                  for (var i = 0; i < 9 && i < data.length; i++) {
-                      if (data[i].roomTypeUrl === undefined) {
-                          data[i].roomTypeUrl = "default.JPG";
-                      }
-                      data[i].group = group[i % 4];
-                      var getTpl = roomtypeshow.innerHTML
-                          ,view = document.getElementById("grid");
-                      laytpl(getTpl).render(data[i], function(html){
-                          $("#grid").append(html);
-                      });
-                  }
-              }
-
-          });
-      });
-  </script>
 
 
   <script type="text/javascript" src="${basePath}/static/front/js/tether.min.js"></script>

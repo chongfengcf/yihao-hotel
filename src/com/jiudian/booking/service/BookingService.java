@@ -14,4 +14,5 @@ public interface BookingService extends BaseService<Booking> {
 
 	public String saveBooking(Booking booking, String roomTypeId, Vip vip);
 
+    public List<Booking> mybooking(String vipPhone);
 }

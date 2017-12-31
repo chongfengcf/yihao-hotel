@@ -76,7 +76,6 @@ public class VipServiceImpl extends BaseServiceImpl<Vip> implements VipService {
 
 	@Override
 	public Vip logincheck(String username, String password) {
-		System.out.println(username+" "+password);
 		List<Vip> list = vipDao.findBySql("select * from vip where phone = ?0 and password = ?1", username,password);
 		if(list.size()>0)
 		{
