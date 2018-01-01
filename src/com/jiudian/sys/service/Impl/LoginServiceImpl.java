@@ -31,7 +31,7 @@ public class LoginServiceImpl extends BaseServiceImpl<SysUser> implements LoginS
 
         //sysUser.setType(type);
         //查询
-        List<SysUser> list = this.findByHql("FROM SysUser s WHERE s.loginId=? AND s.password=? AND s.type=?", username, md5password, type);
+        List<SysUser> list = this.findByHql("FROM SysUser s WHERE s.loginId=? AND s.password=?", username, md5password);
 
         //返回查询结果
         if(list.size() > 0) {

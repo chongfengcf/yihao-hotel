@@ -1,9 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    pageContext.setAttribute("basePath", basePath);
+%>
+
 <html>
 <head>
     <title>生日快乐！</title>
 </head>
-<body>
-<div style=" line-height:200px; text-align:center;">尊敬的会员，生日快乐！</div>
+<body style="background-image: url(${basePath}/static/front/img/hb.jpg)">
 </body>
 </html>

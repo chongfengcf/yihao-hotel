@@ -37,6 +37,10 @@ pageContext.setAttribute("basePath", basePath);
 		<div class="pd-20">
 			<table class="table">
 				<tbody>
+				<tr>
+					<th class="text-r" width="80">姓名：</th>
+					<td><s:property value="%{customerName}"/> </td>
+				</tr>
 					<tr>
 						<th class="text-r" width="80">性别：</th>
 						<td><s:property value="%{customerSex}"/> </td>

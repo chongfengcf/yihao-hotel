@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Room extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "roomName")
+    @Column(name = "roomName", unique = true)
     private String roomName;
 
     @Column(name = "roomPrice", precision = 2)

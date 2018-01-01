@@ -39,7 +39,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
 	public String findByPage() {
 		List<Customer> list = getAll();
 		JsonReturn jsonReturn = new JsonReturn();
-		jsonReturn.setCount(10);
+		jsonReturn.setCount(rowCount("customer"));
 		jsonReturn.setData(list);
 		String jsonString = JSON.toJSONString(jsonReturn);
 		return jsonString;

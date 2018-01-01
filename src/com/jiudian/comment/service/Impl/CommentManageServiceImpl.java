@@ -58,7 +58,14 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
         comment.setVipByVipId(vipDao.get(id));
         comment.setContent(content);
         comment.setTime(new Date());
-        saveOrUpdate(comment);
+        save(comment);
+    }
+
+    @Override
+    public void updatecomment(String id, String content) {
+        Comment comment = get(id);
+        comment.setContent(content);
+        update(comment);
     }
 
     @Override

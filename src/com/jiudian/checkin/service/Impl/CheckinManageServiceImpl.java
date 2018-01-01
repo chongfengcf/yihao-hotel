@@ -151,7 +151,7 @@ public class CheckinManageServiceImpl extends BaseServiceImpl<Checkin> implement
             checkinVos.add(new CheckinVo(temp));
         }
         jsonReturn.setData(checkinVos);
-        jsonReturn.setCount(checkins.size());
+        jsonReturn.setCount(rowCount("checkin"));
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }
@@ -166,7 +166,7 @@ public class CheckinManageServiceImpl extends BaseServiceImpl<Checkin> implement
             checkinVos.add(new CheckinVo(temp));
         }
         jsonReturn.setData(checkinVos);
-        jsonReturn.setCount(checkins.size());
+        jsonReturn.setCount(checkinDao.checkiningNum());
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }

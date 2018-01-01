@@ -22,4 +22,10 @@ public class CheckinDao extends BaseDao <Checkin> {
         }
         return count;
     }
+
+    public int checkiningNum() {
+        String hql = "SELECT count(*) FROM Checkin c WHERE c.ispay=?";
+        Long count = (Long) this.getHibernateTemplate().find(hql, "0").listIterator().next();
+        return count.intValue();
+    }
 }

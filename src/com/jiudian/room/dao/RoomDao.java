@@ -17,5 +17,11 @@ public class RoomDao extends BaseDao<Room> {
         List<Room> rooms= this.findBySql("SELECT * FROM room WHERE roomState=?0","空房");
         return rooms;
     }
+
+    public int nullroomNum() {
+        String hql = "SELECT count(*) FROM Room r WHERE r.roomState=? ORDER BY r.roomName";
+        Long count = (Long) this.getHibernateTemplate().find(hql, "空房").listIterator().next();
+        return count.intValue();
+    }
 }
 

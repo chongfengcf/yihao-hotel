@@ -66,6 +66,11 @@ pageContext.setAttribute("basePath", basePath);
     <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>
 
     <script type="text/javascript">
+
+        function p(s) {
+            return s < 10 ? '0' + s: s;
+        }
+
     	$("#login").click(function() {
         var username = $("#username").val();
         var password = $("#password").val();
@@ -96,7 +101,7 @@ pageContext.setAttribute("basePath", basePath);
 
                     var today=new Date();
                     birthday2 = birthday.split("-")[1]+"-"+birthday.split("-")[2];
-                    var time = (today.getMonth()+1)+"-"+today.getDate();
+                    var time = p(today.getMonth()+1)+"-"+p(today.getDate());
                     console.log(birthday2);
                     console.log(time);
                     console.log(birthday2==time);
@@ -107,8 +112,8 @@ pageContext.setAttribute("basePath", basePath);
                             title: false,
                             closeBtn: 0, //不显示关闭按钮
                             shade: [0],
-                            area: ['340px', '215px'],
-                            offset: 'rb', //右下角弹出
+                            area: ['600px', '510px'],
+                            offset: 'auto', //右下角弹出
                             time: 3000, //3秒后自动关闭
                             anim: 2,
                             content: ['${basePath}/front/brithday.jsp', 'no'], //iframe的url，no代表不显示滚动条

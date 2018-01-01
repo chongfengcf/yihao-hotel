@@ -95,7 +95,7 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
             roomVos.add(new RoomVo(temp));
         }
         jsonReturn.setData(roomVos);
-        jsonReturn.setCount(rooms.size());
+        jsonReturn.setCount(roomDao.nullroomNum());
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }

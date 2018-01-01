@@ -22,6 +22,10 @@ public class LoginAction extends ActionSupport{
     @Autowired
     private LoginService loginService;
 
+    String state;
+    String username;
+    String password;
+    String type;
 
     @Action(value = "/sys/login",
             results = {@Result(name = "index", location = "/sys/login.jsp")})
@@ -29,10 +33,6 @@ public class LoginAction extends ActionSupport{
         return "index";
     }
 
-    String state;
-    String username;
-    String password;
-    String type;
     @Action(value = "/sys/login/logincheck")
     public void logincheck() throws IOException {
         JsonReturn jsonReturn = new JsonReturn();
@@ -41,7 +41,7 @@ public class LoginAction extends ActionSupport{
             //检查用户密码是否正确
             SysUser sysUser = loginService.checkUser(username, password, type);
             //检验通过
-            if (sysUser != null && sysUser.getAble() == 1) {
+            if (sysUser != null) {
                 //session记录登录信息
                 ServletActionContext.getRequest().getSession().setAttribute("sysuser", sysUser);
                 //返回登录成功标志

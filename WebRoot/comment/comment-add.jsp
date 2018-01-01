@@ -33,11 +33,11 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="${basePath}/sys/comment/savecomment.action" method="post" class="form form-horizontal">
+	<form action="${basePath}/sys/comment/updatecomment.action" method="post" class="form form-horizontal">
 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">评论内容：</label>
-			<div class="formControls col-xs-6 col-sm-6">
+			<div class="formControls col-xs-12 col-sm-12">
 				<textarea name="content" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入2个字符" required><s:property value="#comment.content" /></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/255</p>
 			</div>

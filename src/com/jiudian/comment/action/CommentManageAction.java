@@ -21,6 +21,7 @@ public class CommentManageAction extends ActionSupport{
     @Autowired
     private CommentManageService commentManageService;
 
+    private String vipid;
     private String id;
     private int limit;
     private int page;
@@ -81,13 +82,24 @@ public class CommentManageAction extends ActionSupport{
     }
 
     /**
-     * 保存或新增评论
+     * 新增评论
      * */
     @Action(value = "/sys/comment/savecomment",
             interceptorRefs = {@InterceptorRef("defaultStack")},
             results = {@Result(name = "ok", location = "/front/comment-ok.jsp")})
     public String savecomment() {
-        commentManageService.savecomment(id, content);
+        commentManageService.savecomment(vipid, content);
+        return "ok";
+    }
+
+    /**
+     * 修改评论
+     * */
+    @Action(value = "/sys/comment/updatecomment",
+            interceptorRefs = {@InterceptorRef("defaultStack")},
+            results = {@Result(name = "ok", location = "/sys/ok.jsp")})
+    public String updatecomment() {
+        commentManageService.updatecomment(id, content);
         return "ok";
     }
 
@@ -121,5 +133,9 @@ public class CommentManageAction extends ActionSupport{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setVipid(String vipid) {
+        this.vipid = vipid;
     }
 }

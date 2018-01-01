@@ -73,7 +73,7 @@ pageContext.setAttribute("basePath", basePath);
                             </div>
                         </div>
                       </div>
-                    <input type="hidden" name="vipPhone" value="<%=session.getAttribute("user")%>">
+                    <input type="hidden" name="vipPhone" value="<%=session.getAttribute("phone")%>">
                     <input type="hidden" name="roomTypeId" value="<%=request.getParameter("id")%>">
                       <div class="col-md-2 col-xs-12">
                         <div class="form-group">

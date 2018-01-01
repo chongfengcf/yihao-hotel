@@ -59,10 +59,6 @@ pageContext.setAttribute("basePath", basePath);
 						<td><s:property value="%{model.customerCard}"/> </td>
 					</tr>
 					<tr>
-						<th class="text-r">注册时间：</th>
-						<td>2014.12.20</td>
-					</tr>
-					<tr>
 						<th class="text-r">备注：</th>
 						<td><s:property value="%{model.notes}"/></td>
 					</tr>

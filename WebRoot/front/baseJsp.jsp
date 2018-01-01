@@ -39,7 +39,7 @@
                     <li  id="denglu"><a href="${basePath}/front/login.jsp">登录</a></li>
                     <li id="zhuce"><a href="${basePath}/front/signup.jsp">注册</a></li>
                     <li id="dingdan" style="display:none;"><a href="${basePath}/sys/booking/frontFindAll.action">订单查看</a></li>
-                    <li id="mingzi" style="display:none;"><a href="${basePath}/front/rooms.jsp"><%=session.getAttribute("user") %></a></li>
+                    <li id="mingzi" style="display:none;"><a href="javascript:void(0)" onclick="logout()"><%=session.getAttribute("user") %></a></li>
                   </ul>
                 </div>
               </div>
@@ -63,6 +63,12 @@
               }
               c.submit();
 
+          }
+      }
+
+      function logout() {
+          if(confirm("是否要退出登录")) {
+              window.location.href = "${basePath}/front/vipLogout.action";
           }
       }
   </script>

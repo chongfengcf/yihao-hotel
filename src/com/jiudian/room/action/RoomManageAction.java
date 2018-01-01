@@ -35,7 +35,6 @@ public class RoomManageAction extends ActionSupport {
      * 显示所有房间类型
      * */
     @Action(value = "/sys/room/room",
-
             interceptorRefs = {@InterceptorRef("MyInterceptor")},
             results = {@Result(name = "index", location = "/room/room.jsp")})
     public String index() {
@@ -71,10 +70,16 @@ public class RoomManageAction extends ActionSupport {
      * */
     @Action(value = "/sys/room/saveroom",
             interceptorRefs = {@InterceptorRef("MyInterceptor")},
-            results = {@Result(name = "ok", location = "/sys/ok.jsp")})
+            results = {@Result(name = "ok", location = "/sys/ok.jsp"),
+                        @Result(name = "exist", location = "/room/exist.jsp")})
     public String saveroom() {
-        roomManageService.saveroom(id, roomName, roomPhone, roomTypeId, roomPrice, roomAble, notes);
-        return "ok";
+        String res = "ok";
+        try {
+            roomManageService.saveroom(id, roomName, roomPhone, roomTypeId, roomPrice, roomAble, notes);
+        }catch (Exception e){
+            res = "exist";
+        }
+        return res;
     }
 
     /**

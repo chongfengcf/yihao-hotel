@@ -80,7 +80,7 @@ pageContext.setAttribute("basePath", basePath);
 				<div class="row cl" id="birthday1">
 					<label class="form-label col-xs-4 col-sm-3">生日：</label>
 					<div class="formControls col-xs-8 col-sm-9"> 
-						<input class="input-text" type="text" name="birthday" placeholder="加入会员才填">
+						<input class="input-text" type="text" id="time" name="birthday" placeholder="加入会员才填">
 					</div>
 				</div>
 				<div class="row cl">
@@ -109,8 +109,13 @@ pageContext.setAttribute("basePath", basePath);
 		<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 		<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 		<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+		<script type="text/javascript" src="${basePath}/static/layDate/layDate/laydate/laydate.js"></script>
 		<script type="text/javascript">
-		
+
+            laydate.render({
+                elem: '#time',
+            });
+
 		$(function(){
 			$('.skin-minimal input').iCheck({
 				checkboxClass: 'icheckbox-blue',

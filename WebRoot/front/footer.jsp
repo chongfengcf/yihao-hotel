@@ -62,9 +62,9 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <textarea rows="6" name="content" class="form-control" placeholder="留言信息"></textarea>
                             </div>
-                            <input type="hidden" name="id" value="<%=session.getAttribute("vip")%>">
+                            <input type="hidden" name="vipid" value="<%=session.getAttribute("vip")%>">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-                                <button onclick="comment(this)" class="btn btn-default">提交</button>
+                                <input type="button" onclick="comment(this)" class="btn btn-default" value="提交"/>
                             </div>
                         </form>
                     </div>
@@ -109,8 +109,7 @@
         var c = document.getElementById("commentform");
         if(s == "null"){
             alert("请先登录!");
-            window.location.href  ="${basePath}/front/login.jsp";
-            return;
+            window.location.href="${basePath}/front/login.jsp";
         }else{
             c.submit();
 
