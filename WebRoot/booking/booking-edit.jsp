@@ -38,12 +38,13 @@ pageContext.setAttribute("basePath", basePath);
 		</head>
 		<body>
 			<article class="page-container">
+				<s:date name="publishTime" format="yyyy-MM-dd" />
 				<form action="${basePath}/sys/booking/update.action" method="post" class="form form-horizontal" id="form-member-add">
 					<input name="id" type="hidden" value='<s:property value="%{model.id}" />' >
 					<div class="row cl">
 						<label class="form-label col-xs-4 col-sm-3">预定到达日期：</label>
 						<div class="formControls col-xs-8 col-sm-9">
-							<input type="text" value='<s:property value="%{model.arrivalDate}"/>'class="input-text" name="arrivalDate" >
+							<input type="text" id="time" value='<s:date name="%{model.arrivalDate}" format="yyy-MM-dd" />' class="input-text" name="arrivalDate" >
 						</div>
 					</div>
 					<div class="row cl">
@@ -65,10 +66,18 @@ pageContext.setAttribute("basePath", basePath);
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+			<script type="text/javascript" src="${basePath}/static/layDate/layDate/laydate/laydate.js"></script>
 			<script type="text/javascript">
-			
-			
-			$(function(){
+
+                laydate.render({
+                    elem: '#time',
+                    min: 0,
+                    max:30
+                });
+
+
+
+                $(function(){
 				$('.skin-minimal input').iCheck({
 					checkboxClass: 'icheckbox-blue',
 					radioClass: 'iradio-blue',

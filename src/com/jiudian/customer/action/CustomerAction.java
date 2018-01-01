@@ -92,10 +92,17 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	}
 	
 	@Action(value="/sys/customer/updata",
+			results = {@Result(name = "exist", location = "/customer/exist.jsp"),
+						@Result(name = "ok", location = "/sys/ok.jsp")},
 			interceptorRefs = {@InterceptorRef("MyInterceptor")})
-	public void updata()
+	public String updata()
 	{
-		customerService.updataCustomer(customer);
+		try {
+			customerService.updataCustomer(customer);
+		}catch (Exception e) {
+			return "exist";
+		}
+		return "ok";
 	}
 
 	@Action(value="/sys/customer/save",
@@ -104,13 +111,29 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 						@Result(name = "error", location = "/front/signup-fail.jsp")})
 	public String save()
 	{
+		String res = "save";
 		String birthday = request.getParameter("birthday");
 		try {
 			customerService.addCustomer(customer, birthday);
 		}catch (Exception e) {
-			return "error";
+			res = "error";
 		}
-		return "save";
+		return res;
+	}
+
+	@Action(value="/sys/customer/syssave",
+			interceptorRefs = {@InterceptorRef("MyInterceptor")},
+			results = {@Result(name = "ok", location = "/sys/ok.jsp"),
+					@Result(name = "exist", location = "/customer/exist.jsp")})
+	public String syssave()
+	{
+		String birthday = request.getParameter("birthday");
+		try {
+			customerService.addCustomer(customer, birthday);
+		}catch (Exception e) {
+			return "exist";
+		}
+		return "ok";
 	}
 	
 	@Action(value="/sys/customer/delete",

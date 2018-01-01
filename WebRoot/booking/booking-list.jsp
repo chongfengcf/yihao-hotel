@@ -59,9 +59,9 @@ pageContext.setAttribute("basePath", basePath);
 							<td><s:property value="#c.vipByVipId.customersByVipId[0].customerCard"/> </td>
 							<td><s:property value="#c.vipByVipId.vipLevel"/></td>
 							<td><s:property value="#c.vipByVipId.vipCredit"/> </td>
-							<td><s:property value="#c.bookingDate"/></td>
-							<td><s:property value="#c.arrivalDate"/></td>
-							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','${basePath}/sys/booking/edit.action?id=<s:property value="#c.id"/>','4','400','200')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del('<s:property value="#c.id"/>')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td><s:date name="#c.bookingDate" format="yyy-MM-dd" /></td>
+							<td><s:date name="#c.arrivalDate" format="yyy-MM-dd" /></td>
+							<td class="td-manage"><a title="编辑" href="javascript:;" onclick="member_edit('编辑','${basePath}/sys/booking/edit.action?id=<s:property value="#c.id"/>','4','500','400')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="member_del('<s:property value="#c.id"/>')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					</s:iterator>
 				</tbody>

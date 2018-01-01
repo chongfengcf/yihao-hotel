@@ -32,7 +32,7 @@ public class RoomManageAction extends ActionSupport {
     private int page;
 
     /**
-     * 显示所有房间类型
+     * 显示所有房间
      * */
     @Action(value = "/sys/room/room",
             interceptorRefs = {@InterceptorRef("MyInterceptor")},

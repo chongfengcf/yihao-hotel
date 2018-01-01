@@ -103,51 +103,6 @@ pageContext.setAttribute("basePath", basePath);
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 			<script type="text/javascript" src="${basePath}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-			<script type="text/javascript">
-			
-			
-			$(function(){
-				$('.skin-minimal input').iCheck({
-					checkboxClass: 'icheckbox-blue',
-					radioClass: 'iradio-blue',
-					increaseArea: '20%'
-				});
-				
-				$("#form-member-add").validate({
-					rules:{
-						username:{
-							required:true,
-							minlength:2,
-							maxlength:16
-						},
-						sex:{
-							required:true,
-						},
-						mobile:{
-							required:true,
-							isMobile:true,
-						},
-						email:{
-							required:true,
-							email:true,
-						},
-						uploadfile:{
-							required:true,
-						},
-						
-					},
-					onkeyup:false,
-					focusCleanup:true,
-					success:"valid",
-					submitHandler:function(form){
-						$(form).ajaxSubmit();
-						var index = parent.layer.getFrameIndex(window.name);
-						alert("编辑成功");
-						parent.layer.close(index);
-					}
-				});
-			});
-			</script> 
 			<!--/请在上方写此页面业务相关的脚本-->
 		</body>
 </html>

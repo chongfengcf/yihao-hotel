@@ -41,9 +41,16 @@ pageContext.setAttribute("basePath", basePath);
 				<form action="${basePath}/sys/checkin/updateexchange.action" method="post" class="form form-horizontal" id="form-member-add">
 					<input name="checkinid" type="hidden" value='<s:property value="#checkinid" />' >
 					<div class="row cl">
-						<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所有空房间：</label>
+						<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>房型：</label>
 						<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-							<select id="room" name="roomid" class="select">
+							<select id="roomtype" name="roomtypeid" class="select">
+							</select>
+							</span> </div>
+					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>可用的房间：</label>
+						<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+							<select id="room" name="roomid" class="select" required>
 							</select>
 							</span> </div>
 					</div>
@@ -64,23 +71,52 @@ pageContext.setAttribute("basePath", basePath);
 			<!--请在下方写此页面业务相关的脚本-->
 			<script type="text/javascript">
 			
-			
-			$(function(){
+
                 $(function(){
+
+                    var roomtype = $("#roomtype");
                     var room = $("#room");
                     $.ajax({
                         type: "post",//请求方式
-                        url: '${basePath}/sys/room/getnullrooms.action',//地址，就是json文件的请求路径
+                        url: "${basePath}/sys/room/getroomtypelist.action",//地址，就是json文件的请求路径
                         dataType: "json",//数据类型可以为 text xml json  script  jsonp
-                        success: function(jsondata){//返回的参数就是 action里面所有的有get和set方法的参数
+                        success: function(jsondata) {//返回的参数就是 action里面所有的有get和set方法的参数
                             data = jsondata.data;
-                            for(var i=0;i<data.length;i++){
-                                $("<option value='" + data[i].id + "'>" + data[i].roomName + "</option>").appendTo(room)//动态添加Option子项
+                            for (var i = 0; i < data.length; i++) {
+                                $("<option value='" + data[i].id + "'>" + data[i].roomTypeName + "</option>").appendTo(roomtype)//动态添加Option子项
+                                }
+
+                            $.ajax({
+                                type: "post",//请求方式
+                                url: '${basePath}/sys/room/getonetyperooms.action?roomTypeId='+$("#roomtype").val(),//地址，就是json文件的请求路径
+                                dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                                success: function(jsondata){//返回的参数就是 action里面所有的有get和set方法的参数
+                                    data = jsondata.data;
+                                    for(var i=0;i<data.length;i++){
+                                        $("<option value='" + data[i].id + "'>" + data[i].roomName + "</option>").appendTo(room)//动态添加Option子项
+                                    }
+                                }
+                            });
+
                             }
-                        }
-                    });
+                        });
+
+
+                    $("#roomtype").change(function(){
+                        $("#room").empty();
+                        $.ajax({
+                            type: "post",//请求方式
+                            url: '${basePath}/sys/room/getonetyperooms.action?roomTypeId='+$("#roomtype").val(),//地址，就是json文件的请求路径
+                            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                            success: function(jsondata){//返回的参数就是 action里面所有的有get和set方法的参数
+                                data = jsondata.data;
+                                for(var i=0;i<data.length;i++){
+                                    $("<option value='" + data[i].id + "'>" + data[i].roomName + "</option>").appendTo(room)//动态添加Option子项
+                                }
+                            }
+                        });
+					});
                 });
-			});
 			</script> 
 			<!--/请在上方写此页面业务相关的脚本-->
 		</body>

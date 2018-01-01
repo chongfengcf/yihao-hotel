@@ -12,13 +12,14 @@ pageContext.setAttribute("basePath", basePath);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Best Rooms</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="${basePath}/static/front/css/bootstrap.min.css">
   <link rel="stylesheet" href="${basePath}/static/front/css/navs.css">
-      <link rel="stylesheet" href="${basePath}/static/front/css/font-awesome.min.css">
-      <link rel="stylesheet" href="${basePath}/static/front/css/owl.carousel.min.css">
-      <link rel="stylesheet" href="${basePath}/static/front/css/bootstrap-datetimepicker.min.css">
-      <link rel="stylesheet" href="${basePath}/static/front/css/jquery-ui.min.css">
-	  <link rel="stylesheet" href="${basePath}/static/front/css/style.css">
-	  <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/style.css">
+  <link rel="stylesheet" href="${basePath}/static/front/css/responsive.css">
 
   <script type="text/javascript" src="${basePath}/static/front/js/jquery.min.js"></script>
   <script type="text/javascript" src="${basePath}/lib/layui/layui.all.js"></script>

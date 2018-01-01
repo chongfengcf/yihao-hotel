@@ -38,7 +38,7 @@ pageContext.setAttribute("basePath", basePath);
 	</head>
 	<body>
 		<article class="page-container">
-			<form action="${basePath}/sys/customer/save.action" method="post" class="form form-horizontal" id="form-member-add">
+			<form action="${basePath}/sys/customer/syssave.action" method="post" class="form form-horizontal" id="form-member-add">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
 					<div class="formControls col-xs-8 col-sm-9">
@@ -115,50 +115,6 @@ pageContext.setAttribute("basePath", basePath);
             laydate.render({
                 elem: '#time',
             });
-
-		$(function(){
-			$('.skin-minimal input').iCheck({
-				checkboxClass: 'icheckbox-blue',
-				radioClass: 'iradio-blue',
-				increaseArea: '20%'
-			});
-			
-			$("#form-member-add").validate({
-				rules:{
-					username:{
-						required:true,
-						minlength:2,
-						maxlength:16
-					},
-					sex:{
-						required:true,
-					},
-					mobile:{
-						required:true,
-						isMobile:true,
-					},
-					email:{
-						required:true,
-						email:true,
-					},
-					uploadfile:{
-						required:true,
-					},
-					
-				},
-				onkeyup:false,
-				focusCleanup:true,
-				success:"valid",
-				submitHandler:function(form){
-					$(form).ajaxSubmit();
-					var index = parent.layer.getFrameIndex(window.name);
-					alert("添加成功");
-					parent.layer.close(index);
-				}
-				
-			});
-			
-		});
 		</script> 
 		<!--/请在上方写此页面业务相关的脚本-->
 	</body>

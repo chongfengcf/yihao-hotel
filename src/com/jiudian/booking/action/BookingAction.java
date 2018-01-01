@@ -97,6 +97,7 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 	public String edit()
 	{
 		booking = bookingService.get(booking.getId());
+		ServletActionContext.getContext().put("booking", booking);
 		return "edit";
 	}
 	

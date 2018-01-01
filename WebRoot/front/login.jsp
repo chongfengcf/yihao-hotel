@@ -12,6 +12,8 @@ pageContext.setAttribute("basePath", basePath);
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>一豪酒店</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="${basePath}/static/front/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${basePath}/static/front/css/navs.css">
       <link rel="stylesheet" href="${basePath}/static/front/css/font-awesome.min.css">
       <link rel="stylesheet" href="${basePath}/static/front/css/owl.carousel.min.css">
       <link rel="stylesheet" href="${basePath}/static/front/css/bootstrap-datetimepicker.min.css">
