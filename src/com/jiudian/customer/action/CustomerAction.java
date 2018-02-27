@@ -106,15 +106,15 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	}
 
 	@Action(value="/sys/customer/save",
-			interceptorRefs = {@InterceptorRef("MyInterceptor")},
 			results = {@Result(name = "save", location = "/front/index.jsp"),
 						@Result(name = "error", location = "/front/signup-fail.jsp")})
 	public String save()
 	{
 		String res = "save";
 		String birthday = request.getParameter("birthday");
+		String password = request.getParameter("password");
 		try {
-			customerService.addCustomer(customer, birthday);
+			customerService.addCustomer(customer, birthday, password);
 		}catch (Exception e) {
 			res = "error";
 		}
@@ -128,8 +128,9 @@ public class CustomerAction extends BaseAction implements ModelDriven<Customer> 
 	public String syssave()
 	{
 		String birthday = request.getParameter("birthday");
+		String password = request.getParameter("password");
 		try {
-			customerService.addCustomer(customer, birthday);
+			customerService.addCustomer(customer, birthday, password);
 		}catch (Exception e) {
 			return "exist";
 		}

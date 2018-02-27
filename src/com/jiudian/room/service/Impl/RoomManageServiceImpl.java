@@ -38,15 +38,22 @@ public class RoomManageServiceImpl extends BaseServiceImpl<Room> implements Room
     private CheckinDao checkinDao;
 
     @Override
-    public String roomPagination(int page, int limit) {
+    public String roomPagination(int page, int limit, String keyword) {
         JsonReturn jsonReturn = new JsonReturn();
-        List<Room> rooms = pagingBySql("SELECT * FROM room ORDER BY roomName", (page-1)*10, limit);
+        List<Room> rooms;
+        if(keyword==null || keyword.isEmpty()) {
+            rooms = pagingBySql("SELECT * FROM room ORDER BY roomName", (page - 1) * 10, limit);
+            jsonReturn.setCount(rowCount("room"));
+        }
+        else {
+            rooms = pagingBySql("SELECT * FROM room WHERE LOCATE(?0, `roomName`)>0", (page - 1) * 10, limit, keyword);
+            jsonReturn.setCount(rowCount("room WHERE LOCATE('" + keyword + "', `roomName`)>0"));
+        }
         List<RoomVo> roomVos = new ArrayList<>();
         for(Room temp : rooms) {
             roomVos.add(new RoomVo(temp));
         }
         jsonReturn.setData(roomVos);
-        jsonReturn.setCount(rowCount("room"));
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }

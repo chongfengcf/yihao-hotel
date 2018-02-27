@@ -83,7 +83,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
 	}
 
 	@Override
-	public void addCustomer(Customer customer, String birthday) {
+	public void addCustomer(Customer customer, String birthday, String password) {
 		if(birthday==null||birthday.equals(""))
 		{
 			customerDao.save(customer);
@@ -103,7 +103,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer> implements Cu
 				e.printStackTrace();
 			}
 			vip.setPhone(customer.getCustomerPhone());
-			vip.setPassword(customer.getCustomerPhone());
+			vip.setPassword(password);
 			vip.setNums(nums);
 			vip.setVipCredit(vipCredit);
 			vip.setVipLevel(vipLevel);

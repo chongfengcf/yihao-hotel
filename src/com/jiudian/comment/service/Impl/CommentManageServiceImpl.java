@@ -38,16 +38,17 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
         List<Comment> comments;
         if(keyword!=null) {
             comments = commentDao.keywordFind(page, limit, keyword);
+            jsonReturn.setCount(rowCount("comment WHERE LOCATE('"+ keyword + "', `content`)>0"));
         }
         else {
             comments = pagingBySql("SELECT * FROM comment ORDER BY time", (page-1)*10, limit);
+            jsonReturn.setCount(rowCount("comment"));
         }
         List<CommentVo> commentVos = new ArrayList<>();
         for(Comment temp : comments) {
             commentVos.add(new CommentVo(temp));
         }
         jsonReturn.setData(commentVos);
-        jsonReturn.setCount(rowCount("comment"));
         String jsonstring = JSON.toJSONString(jsonReturn);
         return jsonstring;
     }

@@ -14,7 +14,7 @@ public interface CustomerService extends BaseService<Customer> {
 	Customer findbyId(String customerId);
 
 
-	void addCustomer(Customer customer, String birthday);
+	void addCustomer(Customer customer, String birthday, String password);
 
 	void deleteCustomer(Customer customer);
 

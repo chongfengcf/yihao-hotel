@@ -34,6 +34,13 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 房间管理 <span class="c-gray en">&gt;</span> 房间管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
+	<div class="demoTable">
+		搜索房间：
+		<div class="layui-inline">
+			<input class="layui-input" name="keyword" id="demoReload" autocomplete="off">
+		</div>
+		<button class="layui-btn" data-type="reload">搜索</button>
+	</div>
 	<div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" id="deldata" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="add()"><i class="Hui-iconfont">&#xe600;</i> 添加房间</a> </span></div>
 	<table id="room" lay-filter="test"></table>
 </div>
@@ -110,6 +117,24 @@ layui.use('table', function(){
             //do something
             layer_show("房间修改", "${basePath}/sys/room/getoneroom.action?id="+data.id, "800", "600");
         }
+    });
+
+
+    var $ = layui.$, active = {
+        reload: function(){
+            var demoReload = $('#demoReload');
+
+            table.reload('roomtable', {
+                where: {
+                    keyword: demoReload.val()
+                }
+            });
+        }
+    };
+
+    $('.demoTable .layui-btn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
 
     //监听锁定操作

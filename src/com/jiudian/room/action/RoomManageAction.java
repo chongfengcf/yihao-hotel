@@ -48,7 +48,8 @@ public class RoomManageAction extends ActionSupport {
     @Action(value = "/sys/room/findAllRoom",
             interceptorRefs = {@InterceptorRef("MyInterceptor")})
     public void findAllRoom() throws IOException {
-        String jsonstring = this.roomManageService.roomPagination(page, limit);
+        String keyword = ServletActionContext.getRequest().getParameter("keyword");
+        String jsonstring = this.roomManageService.roomPagination(page, limit, keyword);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
         ServletActionContext.getResponse().getWriter().write(jsonstring);
     }
