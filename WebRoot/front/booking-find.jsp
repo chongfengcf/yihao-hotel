@@ -66,7 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <thead>
                 <tr>
                   <th>订单人</th>
-                  <th>订单时间</th>
+                  <th>入住时间</th>
+                  <th>离开时间</th>
                   <th>房间类型</th>
                 </tr> 
               </thead>
@@ -74,7 +75,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <s:iterator value="frontList" var="c">
                 <tr>
                   <td><s:property value="#c.vipByVipId.customersByVipId[0].customerName"/></td>
-                  <td><s:property value="#c.bookingDate"/></td>
+                  <td><span><s:date name="#c.arrivalDate" format="yyy-MM-dd" /></td>
+                  <td><s:date name="#c.endDate" format="yyy-MM-dd" /></td>
                   <td><s:property value="#c.roomTypeByRoomTypeId.roomTypeName"/></td>
                 </tr>
                </s:iterator>

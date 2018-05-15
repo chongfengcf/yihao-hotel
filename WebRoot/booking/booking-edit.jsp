@@ -48,6 +48,12 @@ pageContext.setAttribute("basePath", basePath);
 						</div>
 					</div>
 					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3">预定离开日期：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input type="text" id="time1" value='<s:date name="%{model.endDate}" format="yyy-MM-dd" />' class="input-text" name="endDate" >
+						</div>
+					</div>
+					<div class="row cl">
 						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 							<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 						</div>
@@ -72,9 +78,14 @@ pageContext.setAttribute("basePath", basePath);
                 laydate.render({
                     elem: '#time',
                     min: 0,
-                    max:30
+                    max:60
                 });
 
+                laydate.render({
+                    elem: '#time1',
+                    min: 0,
+                    max:60
+                });
 
 
                 $(function(){

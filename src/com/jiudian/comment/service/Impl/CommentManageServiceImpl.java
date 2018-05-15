@@ -72,7 +72,7 @@ public class CommentManageServiceImpl extends BaseServiceImpl<Comment> implement
     @Override
     public String newercomment() {
         JsonReturn jsonReturn = new JsonReturn();
-        List<Comment> comments = findBySql("SELECT * FROM Comment ORDER BY time DESC");
+        List<Comment> comments = findBySql("SELECT * FROM comment ORDER BY time DESC");
 
         List<CommentVo> commentVos = new ArrayList<>();
         for(Comment temp : comments) {

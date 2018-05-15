@@ -46,6 +46,7 @@ pageContext.setAttribute("basePath", basePath);
 						<th width="">会员积分</th>
 						<th width="">预定时间</th>
 						<th width="">预计到达时间</th>
+						<th width="">预计离开时间</th>
 						<th width="100">入住</th>
 					</tr>
 				</thead>
@@ -60,8 +61,9 @@ pageContext.setAttribute("basePath", basePath);
 							<td><s:property value="#c.vipByVipId.customersByVipId[0].customerCard"/> </td>
 							<td><s:property value="#c.vipByVipId.vipLevel"/></td>
 							<td><s:property value="#c.vipByVipId.vipCredit"/> </td>
-							<td><s:property value="#c.bookingDate"/></td>
-							<td><s:property value="#c.arrivalDate"/></td>
+							<td><s:date name="#c.bookingDate" format="yyy-MM-dd" /></td>
+							<td><s:date name="#c.arrivalDate" format="yyy-MM-dd" /></td>
+							<td><s:date name="#c.endDate" format="yyy-MM-dd" /></td>
 							<td class="td-manage"><a title="入住" href="javascript:;" onclick="member_edit('编辑','${basePath}/sys/checkin/bookingcheckin.action?vipphone=<s:property value="#c.vipByVipId.phone" />&roomtypeid=<s:property value="#c.roomTypeByRoomTypeId.id" />&bookingid=<S:property value="#c.id" />','4','400','200')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe604;</i></a> </td>
 						</tr>
 					</s:iterator>

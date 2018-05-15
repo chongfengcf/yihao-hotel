@@ -108,6 +108,7 @@ public class BookingAction extends BaseAction implements ModelDriven<Booking> {
 		booking = bookingService.get(booking.getId());
 		SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
 		booking.setArrivalDate(sdf.parse(request.getParameter("arrivalDate")));
+		booking.setEndDate(sdf.parse(request.getParameter("endDate")));
 		bookingService.update(booking);
 	}
 

@@ -48,17 +48,31 @@
         </nav>
       </div>
   <script type="text/javascript">
+
+      function CompareDate(d1,d2)
+      {
+          return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
+      }
+
+
       function yuding(obj) {
           //判断是否已登录
           var s="<%=session.getAttribute("user")%>";
           var c = document.getElementById("myfrom");
+          var start = $("#time").val();
+          var end = $("#time1").val();
+
           if(s== "null"){
               alert("请先登录");
               window.location.href ="${basePath}/front/login.jsp";
           }else{
-              if($("#time").val() ==''){
+              if($("#time").val() =='' || $("#time1").val() ==''){
                   alert('时间不能为空！');
                   $("#time").focus();
+                  return false;
+              }
+              if(!CompareDate(end,start)) {
+                  alert('离开时间应该在入住时间之前！');
                   return false;
               }
               c.submit();

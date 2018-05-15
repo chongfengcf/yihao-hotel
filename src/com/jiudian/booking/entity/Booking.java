@@ -20,7 +20,11 @@ public class Booking extends BaseEntity{
     @Temporal(TemporalType.DATE)
     private Date arrivalDate;
 
-    @Column(name = "bookingDate")
+    @Column(name = "endDate")
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+
+   @Column(name = "bookingDate")
     @Temporal(TemporalType.DATE)
     private Date bookingDate;
 
@@ -64,6 +68,14 @@ public class Booking extends BaseEntity{
 
     public void setRoomTypeByRoomTypeId(RoomType roomTypeByRoomTypeId) {
         this.roomTypeByRoomTypeId = roomTypeByRoomTypeId;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Override

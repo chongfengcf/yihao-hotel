@@ -55,6 +55,14 @@ pageContext.setAttribute("basePath", basePath);
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                      <div class="form-group">
+                        <label>离开时间</label>
+                        <input class="form-control __plannerInput" id="time1" type="text" name="endDate">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <div class="form-group">
                           <label>房间类型</label>
@@ -264,6 +272,16 @@ pageContext.setAttribute("basePath", basePath);
               min: 0,
               max: 30,
               elem: '#time'
+
+          });
+      });
+
+      layui.use('laydate', function() {
+          var laydate = layui.laydate;
+          laydate.render({
+              min: 0,
+              max: 60,
+              elem: '#time1'
 
           });
       });

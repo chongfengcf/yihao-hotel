@@ -60,6 +60,12 @@ pageContext.setAttribute("basePath", basePath);
                             <input class="form-control __plannerInput" name="arrivalDate" id="time" type="text" placeholder="2017-12-25" required>
                         </div>
                       </div>
+                    <div class="col-md-3 col-xs-12">
+                      <div class="form-group">
+                        <label>离开时间</label>
+                        <input class="form-control __plannerInput" name="endDate" id="time1" type="text" placeholder="2017-12-26" required>
+                      </div>
+                    </div>
                       <div class="col-md-2 col-xs-6">
                         <div class="form-group">
                             <label>人数</label>
@@ -158,10 +164,15 @@ pageContext.setAttribute("basePath", basePath);
   <script type="text/javascript" src="${basePath}/static/layDate/layDate/laydate/laydate.js"></script>
   <script type="text/javascript">
   	laydate.render({
-				  elem: '#time', 
+				  elem: '#time',
 				  min: 0,
 				  max:30
 				});
+    laydate.render({
+        elem: '#time1',
+        min: 0,
+        max:60
+    });
 
   </script>
   <!-- /Scripts -->

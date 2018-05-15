@@ -63,7 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="col-md-6">
             <div class="about_info">
                 <div class="div1">房型：<span><s:property value="roomType.roomTypeName"/></span></div>
-                <div class="div1">预订日期：<span><s:property value="booking.arrivalDate"/></span></div>
+                <div class="div1">预订日期：<span><s:date name="booking.arrivalDate" format="yyy-MM-dd" /></span></div>
+                <div class="div1">离开日期：<span><s:date name="booking.endDate" format="yyy-MM-dd" /></span></div>
                 <div class="div1">预订人：<span><s:property value="vip.customersByVipId[0].customerName"/></span></div>
                 <div class="div1">电话：<span><s:property value="vip.phone"/></span></div>
                 <div class="div1">会员等级：<span><s:property value="vip.vipCredit"/></span></div>
